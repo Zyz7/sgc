@@ -1,6 +1,0 @@
-Options -Multiviews
-
-RewriteEngine On
-
-#hacia el archivo index.php
-RewriteRule ^$ index.php [L]
