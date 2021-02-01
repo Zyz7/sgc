@@ -1,4 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
-  <?php phpinfo(); ?>
+  <head>
+  </head>
+  
+  <body>  
+    <?php phpinfo(); ?>
+  </body>
 </html>
