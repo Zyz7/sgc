@@ -16,7 +16,7 @@ class Controlador {
 	
 	public function vista($vista, $datos=[]) {
 		if (file_exists('../app/vistas/'.$vista)) {
-			require_once('../app/vista/'.$vista)
+			require_once('../app/vistas/'.$vista)
 		} else {
 			die('La vsta no existe');
 		}
