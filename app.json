@@ -1,6 +1,6 @@
 {
 	"name":"PHP project",
-	"description": "Projecto Solar",
-	"repository":"https://github.com/Zyz7/solarboon",
+	"description": "Sistema de gestión de contenidos",
+	"repository":"https://github.com/Zyz7/sgc",
 	"addons":[]
 }
