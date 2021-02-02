@@ -2,8 +2,8 @@
 <html lang="es">
   <head>
   </head>
-  
-  <body>  
-    <?php phpinfo(); ?>
+
+  <body>
+    <h1>Hola bruno</h1>
   </body>
 </html>
