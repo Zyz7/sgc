@@ -1,6 +1,9 @@
-<?php
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+  </head>
 
-require_once('librerias/MysqlConexion.php');
-require_once('controladores/Login.php');
-
-?>
+  <body>
+    <h1>Hola bruno</h1>
+  </body>
+</html>
