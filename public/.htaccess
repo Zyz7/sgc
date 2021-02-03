@@ -2,4 +2,4 @@
 RewriteEngine on
 
 #Redireccionar a la carpeta public
-RewriteRule ^$ index.php [L]
+RewriteRule ^$ login.php [L]
