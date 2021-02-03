@@ -1,4 +1,9 @@
-<?php
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+  </head>
 
-require_once('../app/inicio.php');
-?>
+  <body>
+    <h1>Hola bruno</h1>
+  </body>
+</html>
