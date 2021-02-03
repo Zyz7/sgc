@@ -1,0 +1,6 @@
+
+RewriteEngine on
+
+#Redireccionar a la carpeta public
+RewriteRule ^$ public/ [L]
+
