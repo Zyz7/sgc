@@ -5,7 +5,7 @@ class Controlador {
 	protected $metodo = "vista";
 	protected $parametros = [];
 
-	function __construct(){
+	function __construct() {
 
 	}
 
