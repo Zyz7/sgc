@@ -1,0 +1,10 @@
+
+Options -Multiviews
+
+RewriteEngine On
+
+#Redrecciona las visitas a los directorios o archivos
+#hacia el archivo index.php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
