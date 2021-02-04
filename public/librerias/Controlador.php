@@ -6,7 +6,7 @@ class Controlador {
   protected $parametros = [];
 
   function __construct() {
-
+    require_once("../controladores/".$controlador.".php");
   }
 
   public function modelo($modelo) {
