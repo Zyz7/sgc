@@ -5,7 +5,6 @@ class Login extends Controlador {
 
   function __construct() {
 
-    $this->modelo = $this->modelo("LoginModelo");
   }
 
   function caratula() {
