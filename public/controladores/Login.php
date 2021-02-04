@@ -13,3 +13,5 @@ class Login extends Controlador {
 	  $this->vista("loginVista");
   }
 }
+
+?>
