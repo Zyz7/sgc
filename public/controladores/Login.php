@@ -8,7 +8,7 @@ class Login extends Controlador {
     $this->modelo = $this->modelo("LoginModelo");
   }
 
-  function vista() {
+  function caratula() {
 
 	  $this->vista("loginVista");
   }
