@@ -1,16 +1,16 @@
 <?php
 
-class Login extends Controlador {
+class Login {
   private $modelo;
 
   function __construct() {
-
+    
+  }
+  
+  function vista() {
+    require('../vistas/loginVista.php');
   }
 
-  function caratula() {
-
-	  $this->vista("loginVista");
-  }
 }
 
 ?>
