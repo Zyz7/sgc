@@ -6,5 +6,6 @@ class LoginModelo {
   function __construct() {
     
   }
+}
 
 ?>
