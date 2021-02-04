@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-  </head>
+<?php
 
-  <body>
-    <h1>Hola bruno</h1>
-  </body>
-</html>
+require_once('vistas/loginVista.php');
+
+?>
