@@ -23,7 +23,6 @@ class Controlador {
 	  }
   }
 	
-  require_once("../controladores/".$controlador.".php");
 }
 
 ?>
