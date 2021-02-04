@@ -1,5 +1,5 @@
 <?php
-/*
+
 class Controlador {
   protected $controlador = "Login";
   protected $metodo = "caratula";
@@ -23,14 +23,5 @@ class Controlador {
 	  }
   }
 }
-*/
-?>
 
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-  </head>
-  <body>
-    <h1>Hola bruno y sofi</h1>
-  </body>
-</html>
+?>
