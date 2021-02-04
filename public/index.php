@@ -1,5 +1,5 @@
 <?php
 
-require_once('vistas/loginVista.php');
+require_once('librerias/Controlador.php');
 
 ?>
