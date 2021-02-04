@@ -14,7 +14,7 @@ class Controlador {
 	  return new $modelo();
   }
 
-  public function vista($vista, $datos=[]) {
+  public function vista($vista) {
 
     if (file_exists("../vistas/".$vista.".php")) {
 	    require_once("../vistas/".$vista.".php");
