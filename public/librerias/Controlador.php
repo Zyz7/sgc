@@ -2,7 +2,7 @@
 
 class Controlador {
   protected $controlador = "Login";
-  protected $metodo = "vista";
+  protected $metodo = "caratula";
   protected $parametros = [];
 
   function __construct() {
