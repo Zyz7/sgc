@@ -10,7 +10,7 @@ class Login extends Controlador {
 
   function caratula() {
     $this->datos = ["titulo" => "Login"];
-	  $this->vista("loginVista", $datos);
+	  $this->vista("loginVista", $this->$datos);
   }
 }
 
