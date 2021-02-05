@@ -16,7 +16,7 @@ class Controlador {
   }
 
   //Carga la vista
-  public function vista($vista, $datos) {
+  public function vista($vista, $datos=[]) {
     if (file_exists("../app/vistas/".$vista.".html")) {
 	    $template = file_get_contents("../app/vistas/".$vista.".html");
 
