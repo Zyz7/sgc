@@ -21,7 +21,7 @@ class Controlador {
 	    $template = file_get_contents("../app/vistas/".$vista.".html");
 
       foreach ($datos as $clave => $valor) {
-        $template = str_replace('{'.$clave.'}', '$valor', $template);
+        $template = str_replace('{'.$clave.'}', $valor, $template);
       }
       print $template;
 	  } else {
