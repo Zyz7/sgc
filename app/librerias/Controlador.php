@@ -17,8 +17,8 @@ class Controlador {
 
   //Carga la vista
   public function vista($vista, $datos=[]) {
-    if (file_exists("../app/vistas/".$vista.".php")) {
-	    $template = file_get_contents("../app/vistas/".$vista.".php");
+    if (file_exists("../app/vistas/".$vista.".html")) {
+	    $template = file_get_contents("../app/vistas/".$vista.".html");
 
       foreach ($datos as $clave => $valor) {
         $template = str_replace('{'.$clave.'}', '$valor', $template);
