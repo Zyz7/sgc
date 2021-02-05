@@ -18,7 +18,12 @@ class Controlador {
   //Carga la vista
   public function vista($vista, $datos=[]) {
     if (file_exists("../app/vistas/".$vista.".php")) {
-	    require_once("../app/vistas/".$vista.".php");
+	    $template = file_get_contents("../app/vistas/".$vista.".php");
+
+      foreach ($datos as $clave => $valor) {
+        $template = str_replace('{'.$clave.'}', '$valor', $template);
+      }
+      print $template;
 	  } else {
 	    die("La vista no existe");
 	  }
