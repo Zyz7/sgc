@@ -28,6 +28,12 @@ class Controlador {
 	    die("La vista no existe");
 	  }
   }
+
+  //Carga la validación
+  public function validar() {
+	  require_once("librerias/Validar.php");
+	  return new Validar();
+  }
 }
 
- ?>
+?>
