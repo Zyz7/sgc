@@ -10,11 +10,7 @@ class Login extends Controlador {
   }
 
   function caratula() {
-    $datos = ["titulo" => "Iniciar sesión"];
-	  $this->vista("loginVista", $datos);
-  }
 
-  function verificar() {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $usuario = $_POST('usuario');
       $contraseña = $_POST('contraseña');
@@ -22,16 +18,24 @@ class Login extends Controlador {
 
       if ($this->validar->usuario($valores) &&
         $this->validar->contraseña($valores)) {
-        if ($this->modelo->verificarLogin($valores)) {
-
+        if ($this->modelo->autenticar($valores)) {
+          //inicia sesión con éxito
         } else {
-
+          $datos = ["titulo" => "Iniciar sesión", "error" =>
+          "Correo eletrónico o contraseña incorrectos"];
+      	  $this->vista("loginVista", $datos);
         }
       } else {
-
+        $datos = ["titulo" => "Iniciar sesión", "error" =>
+        "Correo eletrónico o contraseña inválidos"];
+        $this->vista("loginVista", $datos);
       }
+    } else {
+      $datos = ["titulo" => "Iniciar sesión"];
+  	  $this->vista("loginVista", $datos);
     }
   }
+
 }
 
 ?>
