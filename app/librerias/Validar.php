@@ -1,17 +1,25 @@
 <?php
 
 class Validar {
+  private $resultado = false;
 
   function __construct() {
-
   }
 
-  public function usuario($valores) {
-
+  function email($valores) {
+    if (!empty($valores["email"]) && strlen($valores["email"]) < 100 &&
+    filter_var($valores["email"], FILTER_VALIDATE_EMAIL)) {
+      $this->$resultado = true;
+    }
+    return $this->$resultado;
   }
 
-  public function contraseña($valores) {
-	  
+  function contraseña($valores) {
+    if (!empty($valores["contraseña"]) && strlen($valores["contraseña"]) > 5 &&
+    strlen($valores["contraseña"]) < 13) {
+      $this->$resultado = true;
+    }
+    return $this->$resultado;
   }
 }
 

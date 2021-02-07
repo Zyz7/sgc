@@ -12,11 +12,11 @@ class Login extends Controlador {
   function caratula() {
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      $usuario = $_POST('usuario');
+      $email = $_POST('email');
       $contraseña = $_POST('contraseña');
-      $valores = ["usuario" => $usuario, "contraseña" => $contraseña];
+      $valores = ["email" => $email, "contraseña" => $contraseña];
 
-      if ($this->validar->usuario($valores) &&
+      if ($this->validar->email($valores) &&
         $this->validar->contraseña($valores)) {
         if ($this->modelo->autenticar($valores)) {
           //inicia sesión con éxito
