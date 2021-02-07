@@ -1,0 +1,13 @@
+
+user: b1c91617573beb
+pass: 7553b48e
+host: eu-cdbr-west-03.cleardb.net
+db: heroku_beecda265392686
+
+Conexión a través de SSL a ClearDB usando PHP
+Para conectarse a través de SSL usando PHP, deberá usar la extensión "MySQLi", como esta:
+
+    $ db = mysqli_init ();
+    $ db-> ssl_set (PATH_TO_SSL_CLIENT_KEY_FILE, PATH_TO_SSL_CLIENT_CERT_FILE, PATH_TO_CA_CERT_FILE, null, null);
+    $ db-> real_connect (HOSTNAME, USERNAME, PASSWORD, DATABASE_NAME);
+Para obtener más información sobre el uso de la extensión MySQLi de PHP para crear conexiones cifradas SSL a MySQL, consulte la documentación oficial de PHP .

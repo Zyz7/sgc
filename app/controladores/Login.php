@@ -31,7 +31,7 @@ class Login extends Controlador {
         $this->vista("loginVista", $datos);
       }
     } else {
-      $datos = ["titulo" => "Iniciar sesión"];
+      $datos = ["titulo" => "Iniciar sesión", "error" => ""];
   	  $this->vista("loginVista", $datos);
     }
   }

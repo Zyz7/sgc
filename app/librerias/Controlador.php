@@ -31,7 +31,7 @@ class Controlador {
 
   //Carga la validación
   public function validar() {
-	  require_once("librerias/Validar.php");
+	  require_once("Validar.php");
 	  return new Validar();
   }
 }
