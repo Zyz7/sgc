@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>{titulo}</title>
+    <meta charset="utf-8"/>
+    <meta name="author" content=""/>
+    <meta http-equiv="x-ua-compatible" content="ie-edge"/>
+    <meta name="keywords" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+
+    <link rel="canonical" href="https://sgcphp.herokuapp.com"/>
+    <link rel="shortcut icon" href="../public/img/logo.png"/>
+  </head>
+
+  <body>
+    <figure>
+      <img src="../public/img/logo.png" alt="Logo" aria-describedby="logo"/>
+    </figure>
+    <h1>Restablecer</h1>
+
+    <span>{error}</span>
+
+    <form method="post" action="login/verificar">
+      <label for="email">Correo electrónico</label>
+      <input type="email" id="email" name="email" autofocus="true" required/>
+      <button>Restablecer contraseña</button>
+      <span>¿Ya tienes cuenta? <a href="https://sgcphp.herokuapp.com/">Iniciar sesión<a/>
+    </form>
+  </body>
+</html>
