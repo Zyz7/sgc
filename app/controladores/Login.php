@@ -10,7 +10,6 @@ class Login extends Controlador {
   }
 
   function caratula() {
-
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $email = $_POST('email');
       $contraseña = $_POST('contraseña');
@@ -56,6 +55,24 @@ class Login extends Controlador {
     } else {
       $datos = ["titulo" => "Registrate", "error" => ""];
   	  $this->vista("registrateVista", $datos);
+    }
+  }
+  
+  function restablecer {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      $email = $_POST('email');
+      $valores = ["email" => $email];
+
+      if ($this->validar->email($valores)) {
+        
+      } else {
+        $datos = ["titulo" => "Iniciar sesión", "error" =>
+        "Correo eletrónico o contraseña inválidos"];
+        $this->vista("loginVista", $datos);
+      }
+    } else {
+      $datos = ["titulo" => "Restablecer", "error" => ""];
+  	  $this->vista("restablecerVista", $datos);
     }
   }
 
