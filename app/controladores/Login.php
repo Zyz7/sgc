@@ -35,6 +35,29 @@ class Login extends Controlador {
   	  $this->vista("loginVista", $datos);
     }
   }
+  
+  function registrate() {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      $nombre = $_POST('nombre');
+      $apellido = $_POST('apellido');
+      $usuario = $_POST('usuario');
+      $email = $_POST('email');
+      $contraseña = $_POST('contraseña');
+      $valores = ["email" => $email, "contraseña" => $contraseña];
+
+      if ($this->validar->email($valores) &&
+        $this->validar->contraseña($valores)) {
+        
+      } else {
+        $datos = ["titulo" => "Iniciar sesión", "error" =>
+        "Correo eletrónico o contraseña inválidos"];
+        $this->vista("loginVista", $datos);
+      }
+    } else {
+      $datos = ["titulo" => "Registrate", "error" => ""];
+  	  $this->vista("registrateVista", $datos);
+    }
+  }
 
 }
 
