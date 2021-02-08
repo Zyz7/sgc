@@ -58,7 +58,7 @@ class Login extends Controlador {
     }
   }
   
-  function restablecer {
+  function restablecer() {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $email = $_POST('email');
       $valores = ["email" => $email];
