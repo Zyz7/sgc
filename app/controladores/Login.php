@@ -52,15 +52,12 @@ class Login extends Controlador {
       $this->validar->contraseña($contraseña)) {
         if ($this->modelo->registrate($valores)) {
           $datos["acierto"] = "Registro completado";
-      	  $this->vista("registrateVista", $datos);
         }
       } else {
         $datos["error"] = "errores en el formulario";
-        $this->vista("registrateVista", $datos);
       }
-    } else {
-  	  $this->vista("registrateVista", $datos);
-    }
+    } 
+    $this->vista("registrateVista", $datos);
   }
 
   function restablecer() {
