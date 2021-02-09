@@ -25,18 +25,22 @@
     <form class="formLogin" method="post" action="login/verificar">
       <label for="nombre">Nombre</label>
       <input type="text" id="nombre" name="nombre" autofocus="true" required/>
+
       <label for="apellido">Apellido</label>
       <input type="text" id="apellido" name="apellido" required/>
+
       <label for="usuario">Nombre de usuario</label>
       <input type="text" id="usuario" name="usuario" required/>
+
       <label for="email">Correo electrónico</label>
       <input type="email" id="email" name="email" required/>
+
       <label for="contraseña">Contraseña</label>
       <input type="password" id="contraseña" name="contraseña"
         pattern="[!-~]{6,12}" required/>
       <button>Registrarse</button>
       <span>¿Ya tienes cuenta? <a href="https://sgcphp.herokuapp.com/">
-        Iniciar sesión<a/></span>
+        Iniciar sesión</a></span>
     </form>
   </body>
 </html>

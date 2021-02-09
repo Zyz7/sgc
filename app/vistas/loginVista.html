@@ -25,12 +25,16 @@
     <form class="formLogin" method="post" action="login/verificar">
       <label for="email">Correo electrónico</label>
       <input type="email" id="email" name="email" autofocus="true" required/>
+
       <label for="contraseña">Contraseña</label>
       <input type="password" id="contraseña" name="contraseña"
         pattern="[!-~]{6,12}" required/>
+
       <button>Entrar</button>
-      <a href="https://sgcphp.herokuapp.com/login/registrate">Registrate<a/>
-      <a href="https://sgcphp.herokuapp.com/login/restablecer">¿Olvidaste tu contraseña?<a/>
+      <div>
+        <a href="https://sgcphp.herokuapp.com/login/registrate">Registrate<a/>
+        <a href="https://sgcphp.herokuapp.com/login/restablecer">
+          ¿Olvidaste tu contraseña?</a>
     </form>
   </body>
 </html>
