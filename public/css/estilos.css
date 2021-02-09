@@ -87,7 +87,7 @@ a:active {
   margin: 1%;
 }
 
-#formLogin {
+.formLogin {
   width: 30%;
   padding: 5px;
   display: flex;
@@ -97,18 +97,18 @@ a:active {
   border: 1px solid hsl(207,44%,49%);
 }
 
-#formLogin label {
+.formLogin label {
   margin: 10px;
 }
 
-#formLogin input {
+.formLogin input {
   margin: 10px;
   padding: 5px 10px;
   border-radius: 5px;
   border: 1px solid gray;
 }
 
-#formLogin button {
+.formLogin button {
   color: white;
   margin: 10px;
   padding: 5px 10px;
@@ -117,7 +117,7 @@ a:active {
   background-color: hsl(146,50%,36%);
 }
 
-#formLogin a {
+.formLogin a {
   margin: 5px 10px;
   text-decoration: none;
 }
