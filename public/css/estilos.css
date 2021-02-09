@@ -122,12 +122,7 @@ a {
   background-color: hsl(146,50%,36%);
 }
 
-.formLogin > div {
-  display: block;
-}
-
 .formLogin div a {
-  display: block;
   margin: 5px 10px;
 }
 
