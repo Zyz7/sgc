@@ -80,7 +80,7 @@ a:active {
 
 .figureLogin img {
   width: 50px;
-  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
 .h1Login {
@@ -89,8 +89,9 @@ a:active {
 
 #formLogin {
   width: 30%;
+  padding: 5px;
   display: flex;
-  margin: 0 auto;
+  margin: 1% auto;
   border-radius: 7px;
   flex-direction: column;
   border: 1px solid hsl(207,44%,49%);
