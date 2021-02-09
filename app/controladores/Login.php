@@ -45,11 +45,12 @@ class Login extends Controlador {
       $valores = ["nombre" => $nombre, "apellido" => $apellidos,
       "usuario" => $usuario, "email" => $email, "contraseña" => $contraseña];
 
-      if ($this->validar->email($valores) &&
+      if ($this->validar->texto($nombre) && $this->validar->texto($apellido) &&
+        $this->validar->usuario($usuario) && $this->validar->email($valores) &&
         $this->validar->contraseña($valores)) {
 
       } else {
-        $datos = ["titulo" => "Iniciar sesión", "error" =>
+        $datos = ["titulo" => "Registrate", "error" =>
         "Correo eletrónico o contraseña inválidos"];
         $this->vista("loginVista", $datos);
       }

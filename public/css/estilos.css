@@ -72,6 +72,10 @@ a:active {
   border-bottom: 2px solid;
 }
 
+a {
+  text-decoration: none;
+}
+
 /********** Comienza login **********/
 
 .figureLogin, .h1Login, .spanLogin {
@@ -118,15 +122,18 @@ a:active {
   background-color: hsl(146,50%,36%);
 }
 
+.formLogin div {
+  display: block;
+}
+
 .formLogin div a {
   margin: 5px 10px;
-  text-decoration: none;
 }
 
 .formLogin .spanLogin {
   color: red;
-  margin: 10px;
   text-align: left;
+  margin: 5px 10px 0 10px;
 }
 
 /********** Termina login **********/
