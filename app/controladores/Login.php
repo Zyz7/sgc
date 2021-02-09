@@ -34,7 +34,7 @@ class Login extends Controlador {
   	  $this->vista("loginVista", $datos);
     }
   }
-  
+
   function registrate() {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $nombre = $_POST('nombre');
@@ -42,11 +42,12 @@ class Login extends Controlador {
       $usuario = $_POST('usuario');
       $email = $_POST('email');
       $contraseña = $_POST('contraseña');
-      $valores = ["email" => $email, "contraseña" => $contraseña];
+      $valores = ["nombre" => $nombre, "apellido" => $apellidos,
+      "usuario" => $usuario, "email" => $email, "contraseña" => $contraseña];
 
       if ($this->validar->email($valores) &&
         $this->validar->contraseña($valores)) {
-        
+
       } else {
         $datos = ["titulo" => "Iniciar sesión", "error" =>
         "Correo eletrónico o contraseña inválidos"];
@@ -57,14 +58,14 @@ class Login extends Controlador {
   	  $this->vista("registrateVista", $datos);
     }
   }
-  
+
   function restablecer() {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $email = $_POST('email');
       $valores = ["email" => $email];
 
       if ($this->validar->email($valores)) {
-        
+
       } else {
         $datos = ["titulo" => "Iniciar sesión", "error" =>
         "Correo eletrónico o contraseña inválidos"];
