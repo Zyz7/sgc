@@ -10,18 +10,19 @@
     <meta name="description" content=""/>
 
     <link rel="canonical" href="https://sgcphp.herokuapp.com"/>
-    <link rel="shortcut icon" href="img/logo.png"/>
+    <link rel="stylesheet" href="/css/estilos.css"/>
+    <link rel="shortcut icon" href="/img/logo.png"/>
   </head>
 
   <body>
-    <figure>
-      <img src="img/logo.png" alt="Logo" aria-describedby="logo"/>
+    <figure class="figureLogin">
+      <img src="/img/logo.png" alt="Logo" aria-describedby="logo"/>
     </figure>
-    <h1>Iniciar sesión</h1>
+    <h1 class="h1Login">Iniciar sesión</h1>
 
-    <span>{error}</span>
+    <span class="spanLogin">{error}</span>
 
-    <form method="post" action="login/verificar">
+    <form id="formLogin" method="post" action="login/verificar">
       <label for="email">Correo electrónico</label>
       <input type="email" id="email" name="email" autofocus="true" required/>
       <label for="contraseña">Contraseña</label>
