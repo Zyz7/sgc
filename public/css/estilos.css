@@ -78,7 +78,8 @@ a {
 
 /********** Comienza login **********/
 
-.figureLogin, .h1Login, .spanLogin {
+.figureLogin, .h1Login, .error,
+.acierto {
   text-align: center;
 }
 
@@ -89,6 +90,16 @@ a {
 
 .h1Login {
   margin: 1%;
+}
+
+.error {
+  color: red;
+  background-color: hsl(0,100%,50%,0.5);
+}
+
+.acierto {
+  color: green;
+  background-color: hsl(120,100%,25%,0.5);
 }
 
 .formLogin {
