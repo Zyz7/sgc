@@ -57,11 +57,11 @@ a:link {
 }
 
 a:visited {
-  color: red;
+  color: green;
 }
 
 a:focus {
-  outline: 3px solid;
+  outline: 2px solid black;
 }
 
 a:hover {
