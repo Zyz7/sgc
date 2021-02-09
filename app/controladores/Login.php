@@ -15,8 +15,8 @@ class Login extends Controlador {
       $contraseña = $_POST('contraseña');
       $valores = ["email" => $email, "contraseña" => $contraseña];
 
-      if ($this->validar->email($valores) &&
-        $this->validar->contraseña($valores)) {
+      if ($this->validar->email($email) &&
+        $this->validar->contraseña($contraseña)) {
         if ($this->modelo->autenticar($valores)) {
           //inicia sesión con éxito
         } else {
@@ -46,8 +46,8 @@ class Login extends Controlador {
       "usuario" => $usuario, "email" => $email, "contraseña" => $contraseña];
 
       if ($this->validar->texto($nombre) && $this->validar->texto($apellido) &&
-        $this->validar->usuario($usuario) && $this->validar->email($valores) &&
-        $this->validar->contraseña($valores)) {
+        $this->validar->usuario($usuario) && $this->validar->email($email) &&
+        $this->validar->contraseña($contraseña)) {
 
       } else {
         $datos = ["titulo" => "Registrate", "error" =>
@@ -63,9 +63,8 @@ class Login extends Controlador {
   function restablecer() {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $email = $_POST('email');
-      $valores = ["email" => $email];
 
-      if ($this->validar->email($valores)) {
+      if ($this->validar->email($email)) {
 
       } else {
         $datos = ["titulo" => "Iniciar sesión", "error" =>

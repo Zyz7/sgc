@@ -122,7 +122,7 @@ a {
   background-color: hsl(146,50%,36%);
 }
 
-.formLogin div {
+.formLogin > div {
   display: block;
 }
 
@@ -133,7 +133,7 @@ a {
 .formLogin .spanLogin {
   color: red;
   text-align: left;
-  margin: 5px 10px 0 10px;
+  margin: 0 10px 10px 10px;
 }
 
 /********** Termina login **********/
