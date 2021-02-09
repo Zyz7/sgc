@@ -10,18 +10,19 @@
     <meta name="description" content=""/>
 
     <link rel="canonical" href="https://sgcphp.herokuapp.com"/>
+    <link rel="stylesheet" href="/css/estilos.css"/>
     <link rel="shortcut icon" href="/img/logo.png"/>
   </head>
 
   <body>
-    <figure>
+    <figure class="figureLogin">
       <img src="/img/logo.png" alt="Logo" aria-describedby="logo"/>
     </figure>
-    <h1>Registrate</h1>
+    <h1 class="h1Login">Registrate</h1>
 
-    <span>{error}</span>
+    <span class="spanLogin">{error}</span>
 
-    <form method="post" action="login/verificar">
+    <form class="formLogin" method="post" action="login/verificar">
       <label for="nombre">Nombre</label>
       <input type="text" id="nombre" name="nombre" autofocus="true" required/>
       <label for="apellido">Apellido</label>
