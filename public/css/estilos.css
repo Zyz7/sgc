@@ -1,0 +1,122 @@
+/********** Comienza reseteo de estilos **********/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center, dl, dt, dd, ol, ul, li,
+fieldset, form, label, input, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /*Relleno y borde incluidos en ancho y altura*/
+  box-sizing: border-box;
+ }
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote::before, blockquote::after,
+q::before, q::after {
+  content: none;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+/********** Termina reseteo de estilos **********/
+
+/********** Comienza lista de colores *********
+* Azul acero: hsl(207,44%,49%)
+* Verde mar: hsl(146,50%,36%)
+* 
+********* Termina lista de colores **********/
+
+html {
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  background-color: hsl(0,0%,83%,0.1);
+  font-family: "Lucida Console", "Monaco", monospace;
+}
+
+body {
+  display: block;
+}
+
+a:link {
+  color: blue;
+}
+
+a:visited {
+  color: red;
+}
+
+a:focus {
+  outline: 3px solid;
+}
+
+a:hover {
+  border-bottom: 2px solid;
+}
+
+a:active {
+  border-bottom: 2px solid;
+}
+
+/********** Comienza login **********/
+.figureLogin, .h1Login, .spanLogin {
+  text-align: center;
+}
+
+.figureLogin {
+  width: 50px;
+  margin-top: 5%;
+}
+
+.h1Login {
+  margin: 1%;
+}
+
+#formLogin {
+  width: 30%;
+  display: flex;
+  margin: 0 auto;
+  border-radius: 7px;
+  flex-direction: column;
+  border: 1px solid hsl(207,44%,49%);
+}
+
+#formLogin label {
+  margin: 10px;
+}
+
+#formLogin input {
+  margin: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+#formLogin button {
+  color: white;
+  margin: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  background-color: hsl(146,50%,36%);
+}
+
+#formLogin a {
+  margin: 5px 10px;
+  text-decoration: none;
+}
+/********** Termina login **********/
