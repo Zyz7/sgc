@@ -123,6 +123,7 @@ a {
 }
 
 .formLogin div a {
+  display: inline;
   margin: 5px 10px;
 }
 
