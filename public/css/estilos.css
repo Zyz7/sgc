@@ -111,6 +111,7 @@ a:active {
 .formLogin button {
   color: white;
   margin: 10px;
+  font-weight: bold;
   padding: 5px 10px;
   border-radius: 5px;
   border: 1px solid gray;
@@ -118,12 +119,15 @@ a:active {
 }
 
 .formLogin a {
+  display: block;
   margin: 5px 10px;
   text-decoration: none;
 }
 
 .formLogin span {
+  color: red;
   margin: 10px;
+  text-align: left;
 }
 
 /********** Termina login **********/
