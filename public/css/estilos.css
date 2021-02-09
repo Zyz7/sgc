@@ -73,11 +73,12 @@ a:active {
 }
 
 /********** Comienza login **********/
+
 .figureLogin, .h1Login, .spanLogin {
   text-align: center;
 }
 
-.figureLogin {
+.figureLogin img {
   width: 50px;
   margin-top: 5%;
 }
@@ -119,4 +120,5 @@ a:active {
   margin: 5px 10px;
   text-decoration: none;
 }
+
 /********** Termina login **********/
