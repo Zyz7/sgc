@@ -50,7 +50,7 @@ class Login extends Controlador {
         if ($this->modelo->registrate($valores)) {
           $datos = ["titulo" => "Registrate", "error" => "", "errorNombre" => "",
           "errorApellido" => "", "errorUsuario" => "", "errorCorreo" => "",
-          "errorContraseña" => ""];
+          "errorContraseña" => "", "acierto" => "Registro completado"];
       	  $this->vista("registrateVista", $datos);
         }
       } else {
