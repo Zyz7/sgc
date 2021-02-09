@@ -112,6 +112,12 @@ a {
   margin: 0 10px 10px 10px;
 }
 
+.formLogin .spanLogin {
+  color: red;
+  text-align: left;
+  margin: 0 10px 10px 10px;
+}
+
 .formLogin button {
   color: white;
   margin: 10px;
@@ -122,14 +128,8 @@ a {
   background-color: hsl(146,50%,36%);
 }
 
-.formLogin a {
+.formLogin p, .formLogin a {
   margin: 5px 10px;
-}
-
-.formLogin .spanLogin {
-  color: red;
-  text-align: left;
-  margin: 0 10px 10px 10px;
 }
 
 /********** Termina login **********/
