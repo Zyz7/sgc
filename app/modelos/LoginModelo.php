@@ -26,6 +26,18 @@ class LoginModelo {
     }
     return $this->$resultado;
   }
+  
+  function autenticar($valores) {
+    $consulta = "select * from usuarios where email='".$valores["email"]."'";
+    
+    if ($this->db->consultaBooleano($consulta)) {
+      $valoresConsulta = $this->db->consultas($consulta)
+      if (password_verify($valores["contraseña"], $valoresConsulta["clave"])) {
+        $this->$resultado = true;
+      }
+    } 
+    return $this->$resultado;
+  }
 
 }
 
