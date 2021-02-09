@@ -55,13 +55,13 @@ class Login extends Controlador {
         }
       } else {
         $datos = ["titulo" => "Registrate", "error" =>
-        "Correo eletrónico o contraseña inválidos"];
+        "errores en el formulario"];
         $this->vista("loginVista", $datos);
       }
     } else {
-      $datos = ["titulo" => "Registrate", "error" => "error", "errorNombre" => "",
+      $datos = ["titulo" => "Registrate", "error" => "", "errorNombre" => "",
       "errorApellido" => "", "errorUsuario" => "", "errorCorreo" => "",
-      "errorContraseña" => "", "acierto" => "acierto"];
+      "errorContraseña" => "", "acierto" => ""];
   	  $this->vista("registrateVista", $datos);
     }
   }
@@ -74,11 +74,12 @@ class Login extends Controlador {
 
       } else {
         $datos = ["titulo" => "Restablecer", "error" =>
-        "Correo eletrónico o contraseña inválidos"];
+        "Correo eletrónico inválido", "acierto" => ""];
         $this->vista("loginVista", $datos);
       }
     } else {
-      $datos = ["titulo" => "Restablecer", "error" => "", "errorCorreo" => ""];
+      $datos = ["titulo" => "Restablecer", "error" => "", "errorCorreo" => "",
+      "acierto" => ""];
   	  $this->vista("restablecerVista", $datos);
     }
   }
