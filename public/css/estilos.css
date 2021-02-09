@@ -127,6 +127,7 @@ a {
 }
 
 .formLogin div a {
+  display: block;
   margin: 5px 10px;
 }
 
