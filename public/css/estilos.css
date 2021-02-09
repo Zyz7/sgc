@@ -122,4 +122,8 @@ a:active {
   text-decoration: none;
 }
 
+.formLogin span {
+  margin: 10px;
+}
+
 /********** Termina login **********/
