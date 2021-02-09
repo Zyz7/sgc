@@ -10,6 +10,8 @@ class Login extends Controlador {
   }
 
   function caratula() {
+    $datos = ["titulo" => "Iniciar sesión", "error" => ""];
+    
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $email = $_POST('email');
       $contraseña = $_POST('contraseña');
@@ -19,22 +21,23 @@ class Login extends Controlador {
         if ($this->modelo->autenticar($valores)) {
           //inicia sesión con éxito
         } else {
-          $datos = ["titulo" => "Iniciar sesión", "error" =>
-          "Correo eletrónico o contraseña incorrectos"];
+          $datos["error"] = "Correo eletrónico o contraseña incorrectos";
       	  $this->vista("loginVista", $datos);
         }
       } else {
-        $datos = ["titulo" => "Iniciar sesión", "error" =>
-        "Correo eletrónico o contraseña inválidos"];
+        $datos["error"] = "Correo eletrónico o contraseña inválidos";
         $this->vista("loginVista", $datos);
       }
     } else {
-      $datos = ["titulo" => "Iniciar sesión", "error" => ""];
-  	  $this->vista("loginVista", $datos);
+  	  $this->vista("loginVista", $datos); 
     }
   }
 
   function registrate() {
+    $datos = ["titulo" => "Registrate", "error" => "", "errorNombre" => "",
+    "errorApellido" => "", "errorUsuario" => "", "errorCorreo" => "",
+    "errorContraseña" => "", "acierto" => ""];
+    
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $nombre = $_POST('nombre');
       $apellido = $_POST('apellido');
@@ -48,40 +51,36 @@ class Login extends Controlador {
       $this->validar->usuario($usuario) && $this->validar->email($email) &&
       $this->validar->contraseña($contraseña)) {
         if ($this->modelo->registrate($valores)) {
-          $datos = ["titulo" => "Registrate", "error" => "", "errorNombre" => "",
-          "errorApellido" => "", "errorUsuario" => "", "errorCorreo" => "",
-          "errorContraseña" => "", "acierto" => "Registro completado"];
+          $datos["acierto"] = "Registro completado";
       	  $this->vista("registrateVista", $datos);
         }
       } else {
-        $datos = ["titulo" => "Registrate", "error" =>
-        "errores en el formulario"];
-        $this->vista("loginVista", $datos);
+        $datos["error"] = "errores en el formulario";
+        $this->vista("registrateVista", $datos);
       }
     } else {
-      $datos = ["titulo" => "Registrate", "error" => "", "errorNombre" => "",
-      "errorApellido" => "", "errorUsuario" => "", "errorCorreo" => "",
-      "errorContraseña" => "", "acierto" => ""];
   	  $this->vista("registrateVista", $datos);
     }
   }
 
   function restablecer() {
+    $datos = ["titulo" => "Restablecer", "error" => "", "errorCorreo" => "",
+    "acierto" => ""];
+    
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $email = $_POST('email');
 
       if ($this->validar->email($email)) {
-
+        if ($this->modelo->verificarEmail($email)) {
+          //se manda correo
+        } else {
+          $datos["error"] = "El correo eletrónico no esta registrado";
+        }
       } else {
-        $datos = ["titulo" => "Restablecer", "error" =>
-        "Correo eletrónico inválido", "acierto" => ""];
-        $this->vista("loginVista", $datos);
+        $datos["errorCorreo"] = "Correo eletrónico inválido";
       }
-    } else {
-      $datos = ["titulo" => "Restablecer", "error" => "", "errorCorreo" => "",
-      "acierto" => ""];
-  	  $this->vista("restablecerVista", $datos);
-    }
+    } 
+    $this->vista("restablecerVista", $datos);
   }
 
 }
