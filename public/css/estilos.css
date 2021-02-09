@@ -92,12 +92,12 @@ a {
   margin: 1%;
 }
 
-.error {
+span[class="error"] {
   color: red;
   background-color: hsl(0,100%,50%,0.5);
 }
 
-.acierto {
+span[class="acierto"] {
   color: green;
   background-color: hsl(120,100%,25%,0.5);
 }
