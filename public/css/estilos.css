@@ -104,8 +104,8 @@ a:active {
 .formLogin input {
   padding: 5px 10px;
   border-radius: 5px;
-  margin: 5px 0 10px 0;
   border: 1px solid gray;
+  margin: 0 10px 10px 10px;
 }
 
 .formLogin button {
