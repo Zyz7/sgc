@@ -10,20 +10,20 @@
     <meta name="description" content=""/>
 
     <link rel="canonical" href="https://sgcphp.herokuapp.com"/>
-    <link rel="stylesheet" href="/css/estilos.css"/>
-    <link rel="shortcut icon" href="/img/logo.png"/>
+    <link rel="stylesheet" href="{RUTA}css/estilos.css"/>
+    <link rel="shortcut icon" href="{RUTA}img/logo.png"/>
   </head>
 
   <body>
     <figure class="figureLogin">
-      <img src="/img/logo.png" alt="Logo" aria-describedby="logo"/>
+      <img src="{RUTA}img/logo.png" alt="Logo" aria-describedby="logo"/>
     </figure>
     <h1 class="h1Login">Restablecer</h1>
 
     <span class="spanLogin">{error}</span>
     <span class="error">{acierto}</span>
 
-    <form class="formLogin" method="post" action="/login/restablecer">
+    <form class="formLogin" method="post" action="{RUTA}login/restablecer">
       <label for="email">Correo electrónico</label>
       <input type="email" id="email" name="email" autofocus="true"
         pattern="{2,50}" required/>
@@ -31,7 +31,7 @@
 
       <button>Restablecer contraseña</button>
       <p>¿Ya tienes cuenta?</p>
-      <p><a href="/">Iniciar sesión</a></p>
+      <p><a href="{RUTA}">Iniciar sesión</a></p>
     </form>
   </body>
 </html>
