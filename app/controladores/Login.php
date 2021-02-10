@@ -68,8 +68,8 @@ class Login extends Controlador {
       $email = $_POST('email');
 
       if ($this->validar->email($email)) {
-        if ($this->modelo->verificarEmail($email)) {
-          //se manda correo
+        if ($this->modelo->enviarEmail($email)) {
+          $datos["acierto"] = "El correo eletrónico ha sido enviado a ".$email;
         } else {
           $datos["error"] = "El correo eletrónico no esta registrado";
         }
@@ -78,6 +78,25 @@ class Login extends Controlador {
       }
     } 
     $this->vista("restablecerVista", $datos);
+  }
+  
+  function restablecer($email) {
+    $datos = ["titulo" => "Restablecer", "error" => "", "errorContraseña" => "",
+    "acierto" => ""];
+    
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      $contraseña = $_POST('contraseña');
+      $valores = ["email" => $email, "contraseña" => $contraseña];
+
+      if ($this->validar->contraseña($contraseña)) {
+        if ($this->modelo->restablecerContraseña($valores)) {
+          $datos["acierto"] = "Se ha restablecido la contraseña puede iniciar sesión";
+        } 
+      } else {
+        $datos["errorContraseña"] = "Contraseña inválida";
+      }
+    } 
+    $this->vista("restablecerContraseñaVista", $datos);
   }
 
 }
