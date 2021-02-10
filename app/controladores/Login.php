@@ -52,6 +52,8 @@ class Login extends Controlador {
       $this->validar->contraseña($contraseña)) {
         if ($this->modelo->registrate($valores)) {
           $datos["acierto"] = "Registro completado";
+        } else {
+          $datos["error"] = "Error al intentar guardar los datos";  
         }
       } else {
         $datos["error"] = "errores en el formulario";

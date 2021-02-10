@@ -12,7 +12,7 @@ class LoginModelo {
   function registrate($valores) {
     $hash = password_hash($valores["contraseña"], PASSWORD_BCRYPT);
 
-    $consulta = "insert into usuarios values(";
+    $consulta = "insert into usuarios values(0, ";
     $consulta.= "'".$valores["nombre"]."', ";
     $consulta.= "'".$valores["apellido"]."', ";
     $consulta.= "'".$valores["usuario"]."', ";
@@ -26,16 +26,16 @@ class LoginModelo {
     }
     return $this->$resultado;
   }
-  
+
   function autenticar($valores) {
     $consulta = "select * from usuarios where email='".$valores["email"]."'";
-    
+
     if ($this->db->consultaBooleano($consulta)) {
       $valoresConsulta = $this->db->consultas($consulta);
       if (password_verify($valores["contraseña"], $valoresConsulta["clave"])) {
         $this->$resultado = true;
       }
-    } 
+    }
     return $this->$resultado;
   }
 
