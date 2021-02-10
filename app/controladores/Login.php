@@ -10,7 +10,7 @@ class Login extends Controlador {
   }
 
   function caratula() {
-    $datos = ["titulo" => "Iniciar sesión", "error" => ""];
+    $datos = ["RUTA" => RUTA, "titulo" => "Iniciar sesión", "error" => ""];
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $email = $_POST('email');
@@ -53,7 +53,7 @@ class Login extends Controlador {
         if ($this->modelo->registrate($valores)) {
           $datos["acierto"] = "Registro completado";
         } else {
-          $datos["error"] = "Error al intentar guardar los datos";  
+          $datos["error"] = "Error al intentar guardar los datos";
         }
       } else {
         $datos["error"] = "errores en el formulario";
