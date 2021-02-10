@@ -31,7 +31,7 @@ class LoginModelo {
     $consulta = "select * from usuarios where email='".$valores["email"]."'";
     
     if ($this->db->consultaBooleano($consulta)) {
-      $valoresConsulta = $this->db->consultas($consulta)
+      $valoresConsulta = $this->db->consultas($consulta);
       if (password_verify($valores["contraseña"], $valoresConsulta["clave"])) {
         $this->$resultado = true;
       }
