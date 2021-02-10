@@ -11,7 +11,7 @@ class Login extends Controlador {
 
   function caratula() {
     $datos = ["titulo" => "Iniciar sesión", "error" => ""];
-    
+
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $email = $_POST('email');
       $contraseña = $_POST('contraseña');
@@ -29,7 +29,7 @@ class Login extends Controlador {
         $this->vista("loginVista", $datos);
       }
     } else {
-  	  $this->vista("loginVista", $datos); 
+  	  $this->vista("loginVista", $datos);
     }
   }
 
@@ -37,7 +37,7 @@ class Login extends Controlador {
     $datos = ["titulo" => "Registrate", "error" => "", "errorNombre" => "",
     "errorApellido" => "", "errorUsuario" => "", "errorCorreo" => "",
     "errorContraseña" => "", "acierto" => ""];
-    
+
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $nombre = $_POST('nombre');
       $apellido = $_POST('apellido');
@@ -56,14 +56,14 @@ class Login extends Controlador {
       } else {
         $datos["error"] = "errores en el formulario";
       }
-    } 
+    }
     $this->vista("registrateVista", $datos);
   }
 
   function restablecer() {
     $datos = ["titulo" => "Restablecer", "error" => "", "errorCorreo" => "",
     "acierto" => ""];
-    
+
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $email = $_POST('email');
 
@@ -76,14 +76,14 @@ class Login extends Controlador {
       } else {
         $datos["errorCorreo"] = "Correo eletrónico inválido";
       }
-    } 
+    }
     $this->vista("restablecerVista", $datos);
   }
-  
-  function restablecer($email) {
-    $datos = ["titulo" => "Restablecer", "error" => "", "errorContraseña" => "",
+
+  function recuperar($email) {
+    $datos = ["titulo" => "Recuperar", "error" => "", "errorContraseña" => "",
     "acierto" => ""];
-    
+
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $contraseña = $_POST('contraseña');
       $valores = ["email" => $email, "contraseña" => $contraseña];
@@ -91,12 +91,12 @@ class Login extends Controlador {
       if ($this->validar->contraseña($contraseña)) {
         if ($this->modelo->restablecerContraseña($valores)) {
           $datos["acierto"] = "Se ha restablecido la contraseña puede iniciar sesión";
-        } 
+        }
       } else {
         $datos["errorContraseña"] = "Contraseña inválida";
       }
-    } 
-    $this->vista("restablecerContraseñaVista", $datos);
+    }
+    $this->vista("recuperarContraseñaVista", $datos);
   }
 
 }
