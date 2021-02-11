@@ -13,7 +13,7 @@ class Login extends Controlador {
     $datos = ["RUTA" => RUTA, "titulo" => "Iniciar sesión", "error" => ""];
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      $email = $_POST['email']);
+      $email = $_POST['email'];
       $contraseña = $_POST['contraseña'];
       $valores = ["email" => $email, "contraseña" => $contraseña];
 
