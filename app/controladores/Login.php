@@ -21,11 +21,11 @@ class Login extends Controlador {
         if ($this->modelo->autenticar($valores)) {
           //inicia sesión con éxito
         } else {
-          $datos["error"] = "Correo eletrónico o contraseña incorrectos";
+          $datos["error"] = "Correo o contraseña incorrectos";
       	  $this->vista("loginVista", $datos);
         }
       } else {
-        $datos["error"] = "Correo eletrónico o contraseña inválidos";
+        $datos["error"] = "Correo o contraseña inválidos";
         $this->vista("loginVista", $datos);
       }
     } else {
@@ -34,9 +34,9 @@ class Login extends Controlador {
   }
 
   function registrate() {
-    $datos = ["RUTA" => RUTA, "titulo" => "Registrate", "error" => "",
+    $datos = ["RUTA" => RUTA, "titulo" => "Registrate", "error" => "error",
     "errorNombre" => "", "errorApellido" => "", "errorUsuario" => "",
-    "errorCorreo" => "", "errorContraseña" => "", "acierto" => ""];
+    "errorCorreo" => "", "errorContraseña" => "", "acierto" => "acierto"];
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $nombre = $_POST['nombre'];
@@ -53,7 +53,7 @@ class Login extends Controlador {
         if ($this->modelo->registrate($valores)) {
           $datos["acierto"] = "Registro completado";
         } else {
-          $datos["error"] = "Error al intentar guardar los datos";
+          $datos["error"] = "Error al guardar los datos";
         }
       } else {
         $datos["error"] = "errores en el formulario";
@@ -71,9 +71,9 @@ class Login extends Controlador {
 
       if ($this->validar->email($email)) {
         if ($this->modelo->enviarEmail($email)) {
-          $datos["acierto"] = "El correo eletrónico ha sido enviado a ".$email;
+          $datos["acierto"] = "Correo enviado a ".$email;
         } else {
-          $datos["error"] = "El correo eletrónico no esta registrado";
+          $datos["error"] = "El correo no esta registrado";
         }
       } else {
         $datos["errorCorreo"] = "Correo eletrónico inválido";
@@ -92,7 +92,7 @@ class Login extends Controlador {
 
       if ($this->validar->contraseña($contraseña)) {
         if ($this->modelo->restablecerContraseña($valores)) {
-          $datos["acierto"] = "Se ha restablecido la contraseña puede iniciar sesión";
+          $datos["acierto"] = "Se ha restablecido la contraseña";
         }
       } else {
         $datos["errorContraseña"] = "Contraseña inválida";
