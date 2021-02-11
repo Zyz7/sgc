@@ -13,8 +13,8 @@ class Login extends Controlador {
     $datos = ["RUTA" => RUTA, "titulo" => "Iniciar sesión", "error" => ""];
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      $email = $_POST('email');
-      $contraseña = $_POST('contraseña');
+      $email = $_POST['email']);
+      $contraseña = $_POST['contraseña'];
       $valores = ["email" => $email, "contraseña" => $contraseña];
 
       if ($this->validar->email($email) && $this->validar->contraseña($contraseña)) {
@@ -34,16 +34,16 @@ class Login extends Controlador {
   }
 
   function registrate() {
-    $datos = ["titulo" => "Registrate", "error" => "", "errorNombre" => "",
-    "errorApellido" => "", "errorUsuario" => "", "errorCorreo" => "",
-    "errorContraseña" => "", "acierto" => ""];
+    $datos = ["RUTA" => RUTA, "titulo" => "Registrate", "error" => "",
+    "errorNombre" => "", "errorApellido" => "", "errorUsuario" => "",
+    "errorCorreo" => "", "errorContraseña" => "", "acierto" => ""];
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      $nombre = $_POST('nombre');
-      $apellido = $_POST('apellido');
-      $usuario = $_POST('usuario');
-      $email = $_POST('email');
-      $contraseña = $_POST('contraseña');
+      $nombre = $_POST['nombre'];
+      $apellido = $_POST['apellido'];
+      $usuario = $_POST['usuario'];
+      $email = $_POST['email'];
+      $contraseña = $_POST['contraseña'];
       $valores = ["nombre" => $nombre, "apellido" => $apellidos,
       "usuario" => $usuario, "email" => $email, "contraseña" => $contraseña];
 
@@ -63,11 +63,11 @@ class Login extends Controlador {
   }
 
   function restablecer() {
-    $datos = ["titulo" => "Restablecer", "error" => "", "errorCorreo" => "",
-    "acierto" => ""];
+    $datos = ["RUTA" => RUTA, "titulo" => "Restablecer", "error" => "",
+    "errorCorreo" => "", "acierto" => ""];
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      $email = $_POST('email');
+      $email = $_POST['email'];
 
       if ($this->validar->email($email)) {
         if ($this->modelo->enviarEmail($email)) {
@@ -83,11 +83,11 @@ class Login extends Controlador {
   }
 
   function recuperar($email) {
-    $datos = ["titulo" => "Recuperar", "error" => "", "errorContraseña" => "",
-    "acierto" => ""];
+    $datos = ["RUTA" => RUTA, "titulo" => "Recuperar", "error" => "",
+    "errorContraseña" => "", "acierto" => ""];
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      $contraseña = $_POST('contraseña');
+      $contraseña = $_POST['contraseña'];
       $valores = ["email" => $email, "contraseña" => $contraseña];
 
       if ($this->validar->contraseña($contraseña)) {

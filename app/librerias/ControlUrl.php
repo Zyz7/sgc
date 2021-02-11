@@ -51,7 +51,6 @@ class ControlUrl {
       //rtrim retira los caracteres / y \\ del final de la cadena
       $url = rtrim($_GET["url"],"/");
       $url = rtrim($_GET["url"],"\\");
-      $url = str_replace('{RUTA}', RUTA, $url);
 
       //elimina los caracteres ilegales de la url
       $url = filter_var($url, FILTER_SANITIZE_URL);
