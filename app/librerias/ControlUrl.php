@@ -14,7 +14,7 @@ class ControlUrl {
   protected $parametros = [];
 
   function __construct() {
-    
+
     $url = $this->separarURL();
 
     //ucwords convierte a mayúsculas el primer caracter de cada palabra de la cadena
@@ -23,7 +23,7 @@ class ControlUrl {
       //unset elimina la variable
       unset($url[0]);
     }
-    
+
     //Carga el controlador Login
     require_once("../app/controladores/".ucwords($this->controlador).".php");
     $this->controlador = new $this->controlador;
@@ -51,6 +51,7 @@ class ControlUrl {
       //rtrim retira los caracteres / y \\ del final de la cadena
       $url = rtrim($_GET["url"],"/");
       $url = rtrim($_GET["url"],"\\");
+      $url = str_replace('{RUTA}', RUTA, $url);
 
       //elimina los caracteres ilegales de la url
       $url = filter_var($url, FILTER_SANITIZE_URL);
