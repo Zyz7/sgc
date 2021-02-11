@@ -62,7 +62,7 @@ class LoginModelo {
     $consulta = "select * from usuarios where email='".$valores["email"]."'";
 
     //if ($this->db->consultaBooleano($consulta)) {
-      if (mail($para, $título, $mensaje, $cabeceras)) {
+      if (mail($para, $titulo, $mensaje, $cabeceras)) {
         $this->$resultado = true;
       }
     //}
