@@ -55,15 +55,17 @@ class LoginModelo {
       </body>
     </html>
     '";
-    $cabeceras  = 'MIME-Version: 1.0' . "\n";
-    $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\n";
-    $cabeceras .= 'From: SGC <soporte@sgc.com>' . "\n";
+    $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
+    $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+    $cabeceras .= 'From: SGC <soporte@sgc.com>' . "\r\n";
 
     $consulta = "select * from usuarios where email='".$valores["email"]."'";
 
     //if ($this->db->consultaBooleano($consulta)) {
       if (mail($para, $titulo, $mensaje, $cabeceras)) {
         $this->$resultado = true;
+        $errorMessage = error_get_last()['message'];
+        print $errorMessage;
       }
     //}
     return $this->$resultado;

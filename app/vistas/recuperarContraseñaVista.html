@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>{titulo}</title>
+    <meta charset="utf-8"/>
+    <meta name="author" content=""/>
+    <meta http-equiv="x-ua-compatible" content="ie-edge"/>
+    <meta name="keywords" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+
+    <link rel="canonical" href="https://sgcphp.herokuapp.com"/>
+    <link rel="stylesheet" href="{RUTA}css/estilos.css"/>
+    <link rel="shortcut icon" href="{RUTA}img/logo.png"/>
+  </head>
+
+  <body>
+    <figure class="figureLogin">
+      <img src="{RUTA}img/logo.png" alt="Logo" aria-describedby="logo"/>
+    </figure>
+    <h1 class="h1Login">Restablecer</h1>
+
+    <span class="error">{error}</span>
+    <span class="acierto">{acierto}</span>
+
+    <form class="formLogin" method="post" action="{RUTA}login/recuperar">
+      <label for="email">Nueva contraseña</label>
+      <input type="password" id="contraseña" name="contraseña" value=""
+        pattern="[!-~]{6,12}" required/>
+
+      <button>Restablecer contraseña</button>
+      <p>¿Ya tienes cuenta?</p>
+      <p><a href="{RUTA}">Iniciar sesión</a></p>
+    </form>
+  </body>
+</html>

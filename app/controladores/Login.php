@@ -84,7 +84,7 @@ class Login extends Controlador {
 
   function recuperar($email) {
     $datos = ["RUTA" => RUTA, "titulo" => "Recuperar", "error" => "",
-    "errorContraseña" => "", "acierto" => ""];
+    "acierto" => ""];
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $contraseña = $_POST['contraseña'];
@@ -95,7 +95,7 @@ class Login extends Controlador {
           $datos["acierto"] = "Se ha restablecido la contraseña";
         }
       } else {
-        $datos["errorContraseña"] = "Contraseña inválida";
+        $datos["error"] = "Contraseña inválida";
       }
     }
     $this->vista("recuperarContraseñaVista", $datos);
