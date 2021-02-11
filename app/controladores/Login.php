@@ -34,9 +34,9 @@ class Login extends Controlador {
   }
 
   function registrate() {
-    $datos = ["RUTA" => RUTA, "titulo" => "Registrate", "error" => "error",
+    $datos = ["RUTA" => RUTA, "titulo" => "Registrate", "error" => "",
     "errorNombre" => "", "errorApellido" => "", "errorUsuario" => "",
-    "errorCorreo" => "", "errorContraseña" => "", "acierto" => "acierto"];
+    "errorCorreo" => "", "errorContraseña" => "", "acierto" => ""];
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $nombre = $_POST['nombre'];
