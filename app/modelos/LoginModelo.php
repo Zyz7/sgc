@@ -1,5 +1,9 @@
 <?php
 
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+
 class LoginModelo {
   private $db;
   private $phpmailer;
@@ -24,9 +28,9 @@ class LoginModelo {
     $consulta.= "'Activo')";
 
     if ($this->db->consultaBooleano($consulta)) {
-      $this->$resultado = true;
+      $this->resultado = true;
     }
-    return $this->$resultado;
+    return $this->resultado;
   }
 
   function autenticar($valores) {
@@ -35,10 +39,10 @@ class LoginModelo {
     if ($this->db->consultaBooleano($consulta)) {
       $valoresConsulta = $this->db->consultas($consulta);
       if (password_verify($valores["contraseña"], $valoresConsulta["clave"])) {
-        $this->$resultado = true;
+        $this->resultado = true;
       }
     }
-    return $this->$resultado;
+    return $this->resultado;
   }
 
   function enviarEmail($email) {
@@ -47,13 +51,14 @@ class LoginModelo {
     $this->phpmailer->Password = "jrBSz$7W";
 
     // $phpmailer->SMTPDebug = 1;
-    $this->phpmailer->SMTPSecure = 'ssl';
+    $this->phpmailer->SMTPSecure = 'tls';
     $this->phpmailer->Host = "smtp.gmail.com";
+    //puerto 587 requiere tls
     $this->phpmailer->Port = 587;
     $this->phpmailer->IsSMTP();
     $this->phpmailer->SMTPAuth = true;
 
-    $this->phpmailer->setFrom($phpmailer->Username,"SGC");
+    $this->phpmailer->setFrom($this->phpmailer->Username,"SGC");
     $this->phpmailer->AddAddress($email);
 
     $this->phpmailer->Subject = "Restablecer contraseña";
@@ -64,9 +69,9 @@ class LoginModelo {
     $this->phpmailer->IsHTML(true);
 
     if ($this->phpmailer->Send()) {
-      $this->$resultado = true;
+      $this->resultado = true;
     }
-    return $this->$resultado;
+    return $this->resultado;
   }
 
 }
