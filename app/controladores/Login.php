@@ -44,7 +44,7 @@ class Login extends Controlador {
       $usuario = $_POST['usuario'];
       $email = $_POST['email'];
       $contraseña = $_POST['contraseña'];
-      $valores = ["nombre" => $nombre, "apellido" => $apellidos,
+      $valores = ["nombre" => $nombre, "apellido" => $apellido,
       "usuario" => $usuario, "email" => $email, "contraseña" => $contraseña];
 
       if ($this->validar->texto($nombre) && $this->validar->texto($apellido) &&
