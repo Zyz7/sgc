@@ -1,4 +1,6 @@
 <?php
+include "PHPMailer.php";
+include "SMTP.php";
 
 class LoginModelo {
   private $db;
@@ -40,34 +42,32 @@ class LoginModelo {
   }
 
   function enviarEmail($email) {
-    $para = "'".$email."'";
-    $titulo = 'Restablecer contraseña';
-    $mensaje = '
-    <html>
-      <head>
-        <title>Recordatorio de cumpleaños para Agosto</title>
-      </head>
-      <body>
-        <h1>Restablecer contraseña</h1>
-        <p>Da click en:</p>
-        <a href="https://sgcphp.herokuapp.com/login/recuperar/'.$email.
-        "'>restablecer</a>
-      </body>
-    </html>
-    '";
-    $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
-    $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-    $cabeceras .= 'From: SGC <soporte@sgc.com>' . "\r\n";
+    $phpmailer = new PHPMailer();
 
-    $consulta = "select * from usuarios where email='".$valores["email"]."'";
+    //datos de la cuenta de Gmail
+    $phpmailer->Username = "zyzstfwr@gmail.com";
+    $phpmailer->Password = "jrBSz$7W"; 
 
-    //if ($this->db->consultaBooleano($consulta)) {
-      if (mail($para, $titulo, $mensaje, $cabeceras)) {
-        $this->$resultado = true;
-        $errorMessage = error_get_last()['message'];
-        print $errorMessage;
-      }
-    //}
+    // $phpmailer->SMTPDebug = 1;
+    $phpmailer->SMTPSecure = 'ssl';
+    $phpmailer->Host = "smtp.gmail.com"; 
+    $phpmailer->Port = 587;
+    $phpmailer->IsSMTP(); 
+    $phpmailer->SMTPAuth = true;
+
+    $phpmailer->setFrom($phpmailer->Username,"SGC");
+    $phpmailer->AddAddress($email);
+
+    $phpmailer->Subject = "Restablecer contraseña";	
+    $phpmailer->Body .="<h1>Restablecer contraseña</h1>";
+    $phpmailer->Body .= "<p>Da clic en el siguiente enlace:</p>";
+    $phpmailer->Body .= "<p><a href='https://sgcphp.herokuapp.com/login/recuperar/".
+      $email."'>Restablecer</a></p>";
+    $phpmailer->IsHTML(true);
+
+    if ($phpmailer->Send()) {
+      $this->$resultado = true;
+    }
     return $this->$resultado;
   }
 
