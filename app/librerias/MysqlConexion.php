@@ -10,7 +10,8 @@ class MysqlConexion {
   private $conexion;
 
   function __construct() {
-    $this->conexion = mysqli_connect($this->host, $this->usuario, $this->clave, $this->db);
+    $this->conexion = mysqli_connect($this->host, $this->usuario, $this->clave,
+      $this->db);
 
     //si falla la prueba de conexión se desconecta
     if (mysqli_connect_errno()) {
@@ -40,7 +41,7 @@ class MysqlConexion {
     $valores = array();
     $resultado = mysqli_query($this->conexion, $consulta);
 
-	  if($resultado) {
+	  if ($resultado) {
 		  while ($row = mysqli_fetch_assoc($consulta_mysql)) {
         array_push($valores, $row);
       }

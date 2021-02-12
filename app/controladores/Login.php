@@ -19,7 +19,7 @@ class Login extends Controlador {
 
       if ($this->validar->email($email) && $this->validar->contraseña($contraseña)) {
         if ($this->modelo->autenticar($valores)) {
-          //inicia sesión con éxito
+          header("Location:".RUTA."usuario");
         } else {
           $datos["error"] = "Correo o contraseña incorrectos";
       	  $this->vista("loginVista", $datos);
