@@ -1,14 +1,14 @@
 <?php
-include "PHPMailer.php";
-include "SMTP.php";
 
 class LoginModelo {
   private $db;
+  private $phpmailer;
   private $resultado = false;
 
   //Instancia la clase MysqlConexion de la carpeta app/librerias
   function __construct() {
     $this->db = new MysqlConexion();
+    $this->phpmailer = new PHPMailer();
   }
 
   function registrate($valores) {
@@ -42,30 +42,28 @@ class LoginModelo {
   }
 
   function enviarEmail($email) {
-    $phpmailer = new PHPMailer();
-
     //datos de la cuenta de Gmail
-    $phpmailer->Username = "zyzstfwr@gmail.com";
-    $phpmailer->Password = "jrBSz$7W"; 
+    $this->phpmailer->Username = "zyzstfwr@gmail.com";
+    $this->phpmailer->Password = "jrBSz$7W";
 
     // $phpmailer->SMTPDebug = 1;
-    $phpmailer->SMTPSecure = 'ssl';
-    $phpmailer->Host = "smtp.gmail.com"; 
-    $phpmailer->Port = 587;
-    $phpmailer->IsSMTP(); 
-    $phpmailer->SMTPAuth = true;
+    $this->phpmailer->SMTPSecure = 'ssl';
+    $this->phpmailer->Host = "smtp.gmail.com";
+    $this->phpmailer->Port = 587;
+    $this->phpmailer->IsSMTP();
+    $this->phpmailer->SMTPAuth = true;
 
-    $phpmailer->setFrom($phpmailer->Username,"SGC");
-    $phpmailer->AddAddress($email);
+    $this->phpmailer->setFrom($phpmailer->Username,"SGC");
+    $this->phpmailer->AddAddress($email);
 
-    $phpmailer->Subject = "Restablecer contraseña";	
-    $phpmailer->Body .="<h1>Restablecer contraseña</h1>";
-    $phpmailer->Body .= "<p>Da clic en el siguiente enlace:</p>";
-    $phpmailer->Body .= "<p><a href='https://sgcphp.herokuapp.com/login/recuperar/".
+    $this->phpmailer->Subject = "Restablecer contraseña";
+    $this->phpmailer->Body .="<h1>Restablecer contraseña</h1>";
+    $this->phpmailer->Body .= "<p>Da clic en el siguiente enlace:</p>";
+    $this->phpmailer->Body .= "<p><a href='https://sgcphp.herokuapp.com/login/recuperar/".
       $email."'>Restablecer</a></p>";
-    $phpmailer->IsHTML(true);
+    $this->phpmailer->IsHTML(true);
 
-    if ($phpmailer->Send()) {
+    if ($this->phpmailer->Send()) {
       $this->$resultado = true;
     }
     return $this->$resultado;

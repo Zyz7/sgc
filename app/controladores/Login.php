@@ -6,7 +6,7 @@ class Login extends Controlador {
 
   function __construct() {
     $this->modelo = $this->modelo("LoginModelo");
-    $this->validar = $this->validar();
+    $this->validar = new Validar();
   }
 
   function caratula() {
