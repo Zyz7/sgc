@@ -19,6 +19,9 @@ class Login extends Controlador {
 
       if ($this->validar->email($email) && $this->validar->contraseña($contraseña)) {
         if ($this->modelo->autenticar($valores)) {
+          session_start();
+          session_regenerate_id();
+          $_SESSION[$email] = $email;
           header("Location:".RUTA."usuario");
         } else {
           $datos["error"] = "Correo o contraseña incorrectos";
