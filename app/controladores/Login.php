@@ -92,10 +92,14 @@ class Login extends Controlador {
       $email = $_POST['email'];
 
       if ($this->validar->email($email)) {
-        if ($this->modelo->enviarEmail($email)) {
-          $datos["acierto"] = "Correo enviado a ".$email;
+        if (!$this->modelo->validarEmail($email)) {
+          if ($this->modelo->enviarEmail($email)) {
+            $datos["acierto"] = "Correo enviado a ".$email;
+          } else {
+            $datos["error"] = "No se pudo enviar el correo";
+          }
         } else {
-          $datos["error"] = "El correo no esta registrado";
+          $datos["error"] = "Error el correo no esta registrado";
         }
       } else {
         $datos["errorCorreo"] = "Debe de tener el formato nombre@dominio.extension";

@@ -26,7 +26,8 @@
     <form class="formLogin" method="post" action="{RUTA}login/restablecer">
       <label for="email">Correo electrónico</label>
       <input type="email" id="email" name="email" autofocus="true"
-        pattern="{5,100}" required/>
+        pattern="{5,100}" title="Debe de tener el formato nombre@dominio.extension"
+        required/>
       <span class="spanLogin">{errorCorreo}</span>
 
       <button>Restablecer contraseña</button>
