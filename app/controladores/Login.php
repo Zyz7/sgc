@@ -53,13 +53,32 @@ class Login extends Controlador {
       if ($this->validar->texto($nombre) && $this->validar->texto($apellido) &&
       $this->validar->usuario($usuario) && $this->validar->email($email) &&
       $this->validar->contraseña($contraseña)) {
-        if ($this->modelo->registrate($valores)) {
-          $datos["acierto"] = "Registro completado";
+        if ($this->modelo->validarEmail($email)) {
+          if ($this->modelo->registrate($valores)) {
+            $datos["acierto"] = "Registro completado";
+          } else {
+            $datos["error"] = "Error al guardar los datos";
+          }
         } else {
-          $datos["error"] = "Error al guardar los datos";
+          $datos["error"] = "Error el correo ya esta registrado";
         }
       } else {
         $datos["error"] = "errores en el formulario";
+        if (!$this->validar->texto($nombre)) {
+          $datos["errorNombre"] = "Sólo ingrese letras menores a 25 carácteres";
+        }
+        if (!$this->validar->texto($apellido)) {
+          $datos["errorApellido"] = "Sólo ingrese letras menores a 25 carácteres";
+        }
+        if (!$this->validar->usuario($usuario)) {
+          $datos["errorUsuario"] = "Sólo letras y números menores a 15 carácteres";
+        }
+        if (!$this->validar->email($email)) {
+          $datos["errorCorreo"] = "Debe de tener el formato nombre@dominio.extension";
+        }
+        if (!$this->validar->contraseña($contraseña)) {
+          $datos["errorContraseña"] = "Debe de tener mínimo 6 carácteres";
+        }
       }
     }
     $this->vista("registrateVista", $datos);
@@ -79,7 +98,7 @@ class Login extends Controlador {
           $datos["error"] = "El correo no esta registrado";
         }
       } else {
-        $datos["errorCorreo"] = "Correo eletrónico inválido";
+        $datos["errorCorreo"] = "Debe de tener el formato nombre@dominio.extension";
       }
     }
     $this->vista("restablecerVista", $datos);

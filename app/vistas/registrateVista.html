@@ -26,21 +26,21 @@
     <form class="formLogin" method="post" action="{RUTA}login/registrate">
       <label for="nombre">Nombre</label>
       <input type="text" id="nombre" name="nombre" autofocus="true" value=""
-        pattern="[a-zA-Z\s]{2,25}" required/>
+        pattern="[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]{2,25}" required/>
       <span class="spanLogin">{errorNombre}</span>
 
       <label for="apellido">Apellido</label>
       <input type="text" id="apellido" name="apellido" value=""
-        pattern="[a-zA-Z\s]{2,25}" required/>
+        pattern="[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]{2,25}" required/>
       <span class="spanLogin">{errorApellido}</span>
 
       <label for="usuario">Nombre de usuario</label>
       <input type="text" id="usuario" name="usuario" value=""
-        pattern="[a-zA-Z0-9\s]{2,15}" required/>
+        pattern="[a-zA-Z0-9\sáéíóúÁÉÍÓÚñÑ]{2,15}" required/>
       <span class="spanLogin">{errorUsuario}</span>
 
       <label for="email">Correo electrónico</label>
-      <input type="email" id="email" name="email" value="" pattern="{2,50}"
+      <input type="email" id="email" name="email" value="" pattern="{5,100}"
         required/>
       <span class="spanLogin">{errorCorreo}</span>
 

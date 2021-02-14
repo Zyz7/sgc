@@ -33,6 +33,16 @@ class LoginModelo {
     return $this->resultado;
   }
 
+  function validarEmail($email) {
+    $consulta = "select email from usuarios where email='".$email."'";
+    $valores = $this->db->consulta($consulta);
+
+    if ($valores["email"] == NULL) {
+      $this->resultado = true;
+    }
+    return $this->resultado;
+  }
+
   function autenticar($valores) {
     $consulta = "select * from usuarios where email='".$valores["email"]."'";
 

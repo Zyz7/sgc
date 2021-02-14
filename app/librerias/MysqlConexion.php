@@ -29,8 +29,8 @@ class MysqlConexion {
     $valor = array();
     $resultado = mysqli_query($this->conexion, $consulta);
 
-	  if($resultado) {
-      $valor = mysqli_fetch_assoc($consulta_mysql);
+	  if($resultado && mysqli_num_rows($resultado) > 0) {
+      $valor = mysqli_fetch_assoc($resultado);
 	  }
 
     return $valor;
@@ -42,7 +42,7 @@ class MysqlConexion {
     $resultado = mysqli_query($this->conexion, $consulta);
 
 	  if ($resultado) {
-		  while ($row = mysqli_fetch_assoc($consulta_mysql)) {
+		  while ($row = mysqli_fetch_assoc($resultado)) {
         array_push($valores, $row);
       }
 	  }
