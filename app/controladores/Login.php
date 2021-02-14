@@ -99,7 +99,7 @@ class Login extends Controlador {
             $datos["error"] = "No se pudo enviar el correo";
           }
         } else {
-          $datos["error"] = "Error el correo no esta registrado";
+          $datos["error"] = "El correo no se encuentra registrado";
         }
       } else {
         $datos["errorCorreo"] = "Debe de tener el formato nombre@dominio.extension";
