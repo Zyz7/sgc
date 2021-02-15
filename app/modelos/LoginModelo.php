@@ -47,7 +47,7 @@ class LoginModelo {
     $consulta = "select * from usuarios where email='".$valores["email"]."'";
     $valoresConsulta = $this->db->consultas($consulta);
 
-    if ($valoresConsulta["email"] == $valores["email"]) {
+    if ($valoresConsulta["email"] != NULL) {
       if (password_verify($valores["contraseña"], $valoresConsulta["clave"])) {
         $this->resultado = true;
       }
