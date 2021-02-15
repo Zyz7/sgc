@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\SMTP;
 class LoginModelo {
   private $db;
   private $phpmailer;
-  private $resultado = false;
+  private $resultado;
 
   //Instancia la clase MysqlConexion de la carpeta app/librerias
   function __construct() {
@@ -16,6 +16,7 @@ class LoginModelo {
   }
 
   function registrate($valores) {
+    $this->resultado = false;
     $hash = password_hash($valores["contraseña"], PASSWORD_BCRYPT);
 
     $consulta = "insert into usuarios values(0, ";
@@ -34,6 +35,7 @@ class LoginModelo {
   }
 
   function validarEmail($email) {
+    $this->resultado = false;
     $consulta = "select email from usuarios where email='".$email."'";
     $valores = $this->db->consulta($consulta);
 
@@ -44,6 +46,7 @@ class LoginModelo {
   }
 
   function autenticar($valores) {
+    $this->resultado = false;
     $consulta = "select * from usuarios where email='".$valores["email"]."'";
     $valoresConsulta = $this->db->consultas($consulta);
 
@@ -56,6 +59,7 @@ class LoginModelo {
   }
 
   function enviarEmail($email) {
+    $this->resultado = false;
     //datos de la cuenta de Gmail
     $this->phpmailer->Username = "zyzstfwr@gmail.com";
     $this->phpmailer->Password = "jrBSz$7W";
@@ -79,6 +83,19 @@ class LoginModelo {
     $this->phpmailer->IsHTML(true);
 
     if ($this->phpmailer->Send()) {
+      $this->resultado = true;
+    }
+    return $this->resultado;
+  }
+  
+  function recuperarContraseña($valores) {
+    $this->resultado = false;
+    $hash = password_hash($valores["contraseña"], PASSWORD_BCRYPT);
+    
+    $consulta = "update usuarios set clave='".$hash."' ";
+    $consulta.= "where email='".$valores["email"]."'";
+
+    if ($this->db->consultaBooleano($consulta)) {
       $this->resultado = true;
     }
     return $this->resultado;
