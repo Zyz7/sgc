@@ -9,8 +9,8 @@ class Usuario extends Controlador {
     $this->validar = new Validar();
   }
 
-  function caratula() {
-    $datos = ["RUTA" => RUTA, "titulo" => "Usuario", "error" => ""];
+  function caratula($usuario) {
+    $datos = ["RUTA" => RUTA, "titulo" => "Usuario", "usuario" => $usuario];
     $this->vista("usuarioVista", $datos);
   }
 
