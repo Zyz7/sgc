@@ -20,9 +20,9 @@ class Login extends Controlador {
       if ($this->validar->email($email) && $this->validar->contraseña($contraseña)) {
         if ($this->modelo->autenticar($valores)) {
           session_start();
-          session_regenerate_id();
+          //session_regenerate_id();
           $_SESSION[$email] = $email;
-          header("Location:".RUTA."usuario");
+          header("Location:".RUTA."usuario/".$email);
         } else {
           $datos["error"] = "Correo o contraseña incorrectos";
       	  $this->vista("loginVista", $datos);
@@ -125,6 +125,13 @@ class Login extends Controlador {
       }
     }
     $this->vista("recuperarContraseñaVista", $datos);
+  }
+  
+  function salir($usuario) {
+    session_start();
+    unset($_SESSION[$usuario]);
+    session_destroy();
+    header("Location:".RUTA);
   }
 
 }
