@@ -110,7 +110,7 @@ class Login extends Controlador {
 
   function recuperar($email) {
     $datos = ["RUTA" => RUTA, "titulo" => "Recuperar", "error" => "",
-    "acierto" => ""];
+    "acierto" => "", "email" => $email];
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $contraseña = $_POST['contraseña'];
