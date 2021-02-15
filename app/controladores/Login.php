@@ -109,7 +109,7 @@ class Login extends Controlador {
   }
 
   function recuperar($email) {
-    $datos = ["RUTA" => RUTA, "titulo" => "Recuperar", "error" => "",
+    $datos = ["RUTA" => RUTA, "titulo" => "Restablecer", "error" => "",
     "acierto" => "", "email" => $email];
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -117,11 +117,11 @@ class Login extends Controlador {
       $valores = ["email" => $email, "contraseña" => $contraseña];
 
       if ($this->validar->contraseña($contraseña)) {
-        if ($this->modelo->restablecerContraseña($valores)) {
+        if ($this->modelo->recuperarContraseña($valores)) {
           $datos["acierto"] = "Se ha restablecido la contraseña";
         }
       } else {
-        $datos["error"] = "Contraseña inválida";
+        $datos["error"] = "Debe de tener mínimo 6 carácteres";
       }
     }
     $this->vista("recuperarContraseñaVista", $datos);
