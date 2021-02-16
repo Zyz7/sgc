@@ -26,7 +26,7 @@ class MysqlConexion {
 
   //regresa un valor
   function consulta($consulta) {
-    $valor = array();
+    $valor = [];
     $resultado = mysqli_query($this->conexion, $consulta);
 
 	  if($resultado && mysqli_num_rows($resultado) > 0) {
@@ -38,7 +38,7 @@ class MysqlConexion {
 
   //Regresa varios valores
   function consultas($consulta) {
-    $valores = array();
+    $valores = [];
     $resultado = mysqli_query($this->conexion, $consulta);
 
 	  if ($resultado) {
