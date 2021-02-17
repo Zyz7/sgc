@@ -75,6 +75,7 @@ class LoginModelo {
     $this->phpmailer->setFrom($this->phpmailer->Username,"SGC");
     $this->phpmailer->addAddress($email);
 
+    $this->phpmailer->CharSet = "utf-8";
     $this->phpmailer->Subject = "Restablecer contraseña";
     $this->phpmailer->Body .="<h1>Restablecer contraseña</h1>";
     $this->phpmailer->Body .= "<p>Da clic en el siguiente enlace:</p>";
