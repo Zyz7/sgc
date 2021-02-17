@@ -69,20 +69,21 @@ class LoginModelo {
     $this->phpmailer->Host = "smtp.gmail.com";
     //puerto 587 requiere tls
     $this->phpmailer->Port = 587;
-    $this->phpmailer->IsSMTP();
+    $this->phpmailer->isSMTP();
     $this->phpmailer->SMTPAuth = true;
 
     $this->phpmailer->setFrom($this->phpmailer->Username,"SGC");
-    $this->phpmailer->AddAddress($email);
+    $this->phpmailer->addAddress($email);
 
     $this->phpmailer->Subject = "Restablecer contraseña";
-    $this->phpmailer->Body .="<h1>Restablecer contraseña</h1>";
+    /*$this->phpmailer->Body .="<h1>Restablecer contraseña</h1>";
     $this->phpmailer->Body .= "<p>Da clic en el siguiente enlace:</p>";
     $this->phpmailer->Body .= "<p><a href='https://sgcphp.herokuapp.com/login/recuperar/".
       $email."'>Restablecer</a></p>";
-    $this->phpmailer->IsHTML(true);
+    $this->phpmailer->isHTML(true);*/
+    $this->phpmailer->msgHTML(file_get_contents('mensaje.html'), __DIR__);
 
-    if ($this->phpmailer->Send()) {
+    if ($this->phpmailer->send()) {
       $this->resultado = true;
     }
     return $this->resultado;
