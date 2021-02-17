@@ -92,8 +92,10 @@ class LoginModelo {
     $this->resultado = false;
     $hash = password_hash($valores["contraseña"], PASSWORD_BCRYPT);
     
+    $consultaId = "select id from usuarios where email='".$valores["email"]."'";
+    $id = $this->db->consulta($consultaId);
     $consulta = "update usuarios set clave='".$hash."' ";
-    $consulta.= "where email='".$valores["email"]."'";
+    $consulta.= "where id='".$id."'";
 
     if ($this->db->consultaBooleano($consulta)) {
       $this->resultado = true;
