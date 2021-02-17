@@ -47,14 +47,14 @@ class LoginModelo {
 
   function autenticar($valores) {
     $this->resultado = false;
-    $consulta = "select * from usuarios where email='".$valores["email"]."'";
-    $valoresConsulta = $this->db->consultas($consulta);
+    $consulta = "select clave from usuarios where email='".$valores["email"]."'";
+    $valoresConsulta = $this->db->consulta($consulta);
 
-    if ($valoresConsulta["email"] != NULL) {
+    //if ($valoresConsulta["email"] != NULL) {
       if (password_verify($valores["contraseña"], $valoresConsulta["clave"])) {
         $this->resultado = true;
       }
-    }
+    //}
     return $this->resultado;
   }
 
