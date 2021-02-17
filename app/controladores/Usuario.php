@@ -10,8 +10,12 @@ class Usuario extends Controlador {
   }
 
   function caratula($usuario) {
-    $datos = ["RUTA" => RUTA, "titulo" => "Usuario", "usuario" => $usuario];
-    $this->vista("usuarioVista", $datos);
+    if (isset($_SSESSION[$usuario])) {
+      $datos = ["RUTA" => RUTA, "titulo" => "Usuario", "usuario" => $usuario];
+      $this->vista("usuarioVista", $datos);
+    } else {
+      header("Location:".RUTA);
+    }
   }
 
 }
