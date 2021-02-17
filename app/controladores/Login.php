@@ -119,6 +119,8 @@ class Login extends Controlador {
       if ($this->validar->contraseña($contraseña)) {
         if ($this->modelo->recuperarContraseña($valores)) {
           $datos["acierto"] = "Se ha restablecido la contraseña";
+        } else {
+          $datos["error"] = "No se pudo restablecer la contraseña";
         }
       } else {
         $datos["error"] = "Debe de tener mínimo 6 carácteres";
