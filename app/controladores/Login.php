@@ -22,7 +22,7 @@ class Login extends Controlador {
           session_start();
           //session_regenerate_id();
           $_SESSION[$email] = $email;
-          header("Location:".RUTA."usuario/".$email);
+          header("Location:".RUTA."usuario/".$_SESSION[$email]);
         } else {
           $datos["error"] = "Correo o contraseña incorrectos";
       	  $this->vista("loginVista", $datos);
