@@ -76,12 +76,11 @@ class LoginModelo {
     $this->phpmailer->addAddress($email);
 
     $this->phpmailer->Subject = "Restablecer contraseña";
-    /*$this->phpmailer->Body .="<h1>Restablecer contraseña</h1>";
+    $this->phpmailer->Body .="<h1>Restablecer contraseña</h1>";
     $this->phpmailer->Body .= "<p>Da clic en el siguiente enlace:</p>";
     $this->phpmailer->Body .= "<p><a href='https://sgcphp.herokuapp.com/login/recuperar/".
       $email."'>Restablecer</a></p>";
-    $this->phpmailer->isHTML(true);*/
-    $this->phpmailer->msgHTML(file_get_contents('mensaje.html'), __DIR__);
+    $this->phpmailer->isHTML(true);
 
     if ($this->phpmailer->send()) {
       $this->resultado = true;
