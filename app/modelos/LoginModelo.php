@@ -4,18 +4,26 @@ use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
-class LoginModelo {
+/*
+ * \class LoginModelo
+ * \brief Se crean y ejecutan las consultas a la base de datos
+ * \date 2021
+ * \author Mario Alberto Zayas González
+ */
+class LoginModelo 
+{
   private $db;
   private $phpmailer;
   private $resultado;
 
-  //Instancia la clase MysqlConexion de la carpeta app/librerias
   function __construct() {
     $this->db = new MysqlConexion();
     $this->phpmailer = new PHPMailer();
   }
 
-  function registrate($valores) {
+  /// \fn registrate Crea un nuevo usuario
+  function registrate($valores) 
+  {
     $this->resultado = false;
     $hash = password_hash($valores["contraseña"], PASSWORD_BCRYPT);
 
@@ -34,7 +42,9 @@ class LoginModelo {
     return $this->resultado;
   }
 
-  function validarEmail($email) {
+  /// \fn validarEmail Valida que no exista el email que se desea registrar
+  function validarEmail($email) 
+  {
     $this->resultado = false;
     $consulta = "select email from usuarios where email='".$email."'";
     $valores = $this->db->consulta($consulta);
@@ -45,20 +55,23 @@ class LoginModelo {
     return $this->resultado;
   }
 
-  function autenticar($valores) {
+  /// \fn autenticar Verifica las credenciales contra la base de datos
+  function autenticar($valores) 
+  {
     $this->resultado = false;
     $consulta = "select clave from usuarios where email='".$valores["email"]."'";
     $valoresConsulta = $this->db->consulta($consulta);
 
-    //if ($valoresConsulta["email"] != NULL) {
-      if (password_verify($valores["contraseña"], $valoresConsulta["clave"])) {
-        $this->resultado = true;
-      }
-    //}
+    if (password_verify($valores["contraseña"], $valoresConsulta["clave"])) {
+      $this->resultado = true;
+    }
+ 
     return $this->resultado;
   }
 
-  function enviarEmail($email) {
+  /// \fn enviarEmail Envía un correo electrónico mediante gmail con phpmailer
+  function enviarEmail($email) 
+  {
     $this->resultado = false;
     //datos de la cuenta de Gmail
     $this->phpmailer->Username = "zyzstfwr@gmail.com";
@@ -89,7 +102,9 @@ class LoginModelo {
     return $this->resultado;
   }
   
-  function recuperarContraseña($valores) {
+  ///  \fn recuperarContraseña Actualiza la contraseña
+  function recuperarContraseña($valores) 
+  {
     $this->resultado = false;
     $hash = password_hash($valores["contraseña"], PASSWORD_BCRYPT);
     
@@ -105,5 +120,3 @@ class LoginModelo {
   }
 
 }
-
-?>
