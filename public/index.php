@@ -1,7 +1,6 @@
 <?php
 
 /*
- * \version 1
  * \date 2021
  * \author Mario Alberto Zayas González
  */
