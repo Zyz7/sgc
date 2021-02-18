@@ -31,7 +31,7 @@ class MysqlConexion
     }
   }
 
-  /// Regresa un valor
+  /// \fn consulta Regresa un valor
   function consulta($consulta)
   {
     $valor = [];
@@ -44,7 +44,7 @@ class MysqlConexion
     return $valor;
   }
 
-  /// Regresa más de un valor
+  /// \fn cosultas Regresa más de un valor
   function consultas($consulta) 
   {
     $valores = [];
@@ -59,7 +59,7 @@ class MysqlConexion
     return $valores;
   }
 
-  /// Regresa un valor booleano
+  /// \fn consultaBooleno Regresa un valor booleano
   function consultaBooleano($consulta) 
   {
     $resultado = mysqli_query($this->conexion, $consulta);
