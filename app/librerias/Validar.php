@@ -1,12 +1,21 @@
 <?php
 
-class Validar {
+/*
+ * \class Validar
+ * \brief Valida que los datos contengan carácteres permitidos
+ * \date 2021
+ * \author Mario Alberto Zayas González
+ */
+class Validar 
+{
   private $resultado;
 
   function __construct() {
   }
-
-  function email($valor) {
+  
+  /// \fn email Valida los correos electrónicos
+  function email($valor) 
+  {
     $this->resultado = false;
 
     if (!empty($valor)) {
@@ -17,7 +26,9 @@ class Validar {
     return $this->resultado;
   }
 
-  function contraseña($valor) {
+  /// \fn contraseña Valida la contraseña
+  function contraseña($valor) 
+  {
     $this->resultado = false;
 
     if (!empty($valor)) {
@@ -28,7 +39,9 @@ class Validar {
     return $this->resultado;
   }
 
-  function texto($valor) {
+  /// \fn email Valida los datos que sólo deben de contener letras
+  function texto($valor) 
+  {
     $this->resultado = false;
 
     if (!empty($valor)) {
@@ -41,7 +54,9 @@ class Validar {
     return $this->resultado;
   }
 
-  function usuario($valor) {
+  /// \fn email Valida los nombres de usuario
+  function usuario($valor) 
+  {
     $this->resultado = false;
 
     if (!empty($valor)) {
@@ -54,5 +69,3 @@ class Validar {
     return $this->resultado;
   }
 }
-
-?>
