@@ -1,31 +1,39 @@
 <?php
 
-class MysqlConexion {
-
+/*
+ * \class MysqlConexion
+ * \brief Realiza la conexión y consultas a la base de datos
+ * \date 2021
+ * \author Mario Alberto Zayas González
+ */
+class MysqlConexion 
+{
   private $host = "eu-cdbr-west-03.cleardb.net";
   private $usuario = "b1c91617573beb";
   private $clave = "7553b48e";
   private $db = "heroku_beecda265392686";
-  private $puerto = ""; //Windows necesita el puerto
+  private $puerto = ""; /// Windows necesita el puerto
   private $conexion;
 
-  function __construct() {
+  function __construct() 
+  {
     $this->conexion = mysqli_connect($this->host, $this->usuario, $this->clave,
       $this->db);
 
-    //si falla la prueba de conexión se desconecta
+    /// Si falla la prueba de conexión se desconecta
     if (mysqli_connect_errno()) {
       exit();
     }
 
-    //si no se establen los caracteres utf8 se desconecta
+    /// Si no se establen los caracteres utf8 se desconecta
     if (!mysqli_set_charset($this->conexion, "utf8")) {
       exit();
     }
   }
 
-  //regresa un valor
-  function consulta($consulta) {
+  /// Regresa un valor
+  function consulta($consulta)
+  {
     $valor = [];
     $resultado = mysqli_query($this->conexion, $consulta);
 
@@ -36,8 +44,9 @@ class MysqlConexion {
     return $valor;
   }
 
-  //Regresa varios valores
-  function consultas($consulta) {
+  /// Regresa más de un valor
+  function consultas($consulta) 
+  {
     $valores = [];
     $resultado = mysqli_query($this->conexion, $consulta);
 
@@ -50,13 +59,11 @@ class MysqlConexion {
     return $valores;
   }
 
-  //Regresa un valor booleano
-  function consultaBooleano($consulta) {
+  /// Regresa un valor booleano
+  function consultaBooleano($consulta) 
+  {
     $resultado = mysqli_query($this->conexion, $consulta);
-
     return $resultado;
   }
 
 }
-
-?>
