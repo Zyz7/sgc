@@ -1,25 +1,29 @@
 <?php
 
-class Controlador {
-  protected $controlador = "Login";
-  protected $metodo = "caratula";
-  protected $parametros = [];
-
+/*
+ * \class Controlador
+ * \brief Instancia el modelo e imprime la vista
+ * \date 2021
+ * \author Mario Alberto Zayas González
+ */
+class Controlador 
+{
   function __construct() {
 
   }
 
-  //Carga el modelo
+  /// \fn modelo Instancia el modelo
   public function modelo($modelo) {
 	  require_once("../app/modelos/".$modelo.".php");
 	  return new $modelo();
   }
 
-  //Carga la vista
+  /// \fn vista Imprime la vista con sus parámetros
   public function vista($vista, $datos=[]) {
     if (file_exists("../app/vistas/".$vista.".html")) {
 	    $template = file_get_contents("../app/vistas/".$vista.".html");
-
+	
+	/// Sustituye los parámetros por su variable con la forma {valor}
       foreach ($datos as $clave => $valor) {
         $template = str_replace('{'.$clave.'}', $valor, $template);
       }
@@ -29,11 +33,4 @@ class Controlador {
 	  }
   }
 
-  //Carga la validación
-  public function validar() {
-	  require_once("Validar.php");
-	  return new Validar();
-  }
 }
-
-?>
