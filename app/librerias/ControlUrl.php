@@ -1,54 +1,63 @@
 <?php
-/*
-* Maneja la url y lanza los procesos
-* Primer elemento: constante: /solarboon/ (en modo local)
-* Segundo elemento: archivo de la carpeta controladores: login/, admin/
-* Tercer elemento: método del archivo controlador: registrar/, alta
-* Tercer elemento o más: los parámetros
-* Ejemplo ruta: /solarboon/login/registrar/
-*/
 
-class ControlUrl {
+/*
+ * \class MysqlConexion
+ * \brief  Maneja la dirección url y lanza los procesos
+ *
+ * Primer elemento: constante RUTA.
+ * Segundo elemento: clase controladora: login, admin, etc.
+ * Tercer elemento: método: registrar, modificar, etc.
+ * Tercer elemento o más: los parámetros.
+ * Ejemplo ruta en modo local: localhost/sgc/login/registrar
+ *
+ * \date 2021
+ * \author Mario Alberto Zayas González
+ */
+class ControlUrl 
+{
   protected $controlador = "Login";
   protected $metodo = "caratula";
   protected $parametros = [];
 
-  function __construct() {
+  function __construct() 
+  {
+    $url = $this->separarUrl();
 
-    $url = $this->separarURL();
-
-    //ucwords convierte a mayúsculas el primer caracter de cada palabra de la cadena
+    /// Verifica la existencia del controlador
     if($url != "" && file_exists("../app/controladores/".ucwords($url[0]).".php")) {
+      /// ucwords convierte a mayúscula el primer caracter
       $this->controlador = ucwords($url[0]);
-      //unset elimina la variable
+      /// unset elimina la variable
       unset($url[0]);
     }
 
-    //Carga el controlador Login
+    /// Asigna el controlador
     require_once("../app/controladores/".ucwords($this->controlador).".php");
     $this->controlador = new $this->controlador;
 
-    //isset determina si la variable esta definida
+    /// isset determina si la variable esta definida
     if (isset($url[1])) {
-      //verifica la existencia del método dentro de la clase (clase, método)
+      /// Verifica la existencia del método dentro de la clase (clase, método)
 	    if (method_exists($this->controlador, $url[1])) {
 		    $this->metodo = $url[1];
 		    unset($url[1]);
 	    }
 	  }
 
-    //array_values regresa un arreglo con los índices
+    /// array_values regresa un arreglo con los parámetros
 	  $this->parametros = $url ? array_values($url):[];
-    //([clase, método], parámetros)
+    /// Invoca al controlador con una de sus funciones y parámetros
 	  call_user_func_array([$this->controlador, $this->metodo],$this->parametros);
   }
-
-  function separarURL() {
+  
+  /// \fn separarUrl Elimina carácteres de la url
+  function separarUrl() 
+  {
     $url = "";
 
     //isset determina si la variable esta definida
     if (isset($_GET["url"])) {
-      //rtrim retira los caracteres / y \\ del final de la cadena
+      //rtrim elimina los caracteres / y \\ del final de la cadena
       $url = rtrim($_GET["url"],"/");
       $url = rtrim($_GET["url"],"\\");
 
@@ -62,5 +71,3 @@ class ControlUrl {
   }
 
 }
-
-?>

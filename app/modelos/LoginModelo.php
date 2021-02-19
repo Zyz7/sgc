@@ -4,18 +4,26 @@ use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
-class LoginModelo {
+/*
+ * \class LoginModelo
+ * \brief Se crean y ejecutan las consultas a la base de datos
+ * \date 2021
+ * \author Mario Alberto Zayas González
+ */
+class LoginModelo
+{
   private $db;
   private $phpmailer;
   private $resultado;
 
-  //Instancia la clase MysqlConexion de la carpeta app/librerias
   function __construct() {
     $this->db = new MysqlConexion();
     $this->phpmailer = new PHPMailer();
   }
 
-  function registrate($valores) {
+  /// \fn registrate Crea un nuevo usuario
+  function registrate($valores)
+  {
     $this->resultado = false;
     $hash = password_hash($valores["contraseña"], PASSWORD_BCRYPT);
 
@@ -34,7 +42,9 @@ class LoginModelo {
     return $this->resultado;
   }
 
-  function validarEmail($email) {
+  /// \fn validarEmail Valida que no exista el email que se desea registrar
+  function validarEmail($email)
+  {
     $this->resultado = false;
     $consulta = "select email from usuarios where email='".$email."'";
     $valores = $this->db->consulta($consulta);
@@ -45,20 +55,23 @@ class LoginModelo {
     return $this->resultado;
   }
 
-  function autenticar($valores) {
+  /// \fn autenticar Verifica las credenciales contra la base de datos
+  function autenticar($valores)
+  {
     $this->resultado = false;
-    $consulta = "select * from usuarios where email='".$valores["email"]."'";
-    $valoresConsulta = $this->db->consultas($consulta);
+    $consulta = "select clave from usuarios where email='".$valores["email"]."'";
+    $valoresConsulta = $this->db->consulta($consulta);
 
-    if (!empty($valoresConsulta)) {
-      if (password_verify($valores["contraseña"], $valoresConsulta["clave"])) {
-        $this->resultado = true;
-      }
+    if (password_verify($valores["contraseña"], $valoresConsulta["clave"])) {
+      $this->resultado = true;
     }
+
     return $this->resultado;
   }
 
-  function enviarEmail($email) {
+  /// \fn enviarEmail Envía un correo electrónico mediante gmail con phpmailer
+  function enviarEmail($email)
+  {
     $this->resultado = false;
     //datos de la cuenta de Gmail
     $this->phpmailer->Username = "zyzstfwr@gmail.com";
@@ -69,31 +82,44 @@ class LoginModelo {
     $this->phpmailer->Host = "smtp.gmail.com";
     //puerto 587 requiere tls
     $this->phpmailer->Port = 587;
-    $this->phpmailer->IsSMTP();
+    $this->phpmailer->isSMTP();
     $this->phpmailer->SMTPAuth = true;
 
     $this->phpmailer->setFrom($this->phpmailer->Username,"SGC");
-    $this->phpmailer->AddAddress($email);
+    $this->phpmailer->addAddress($email);
 
+    $this->phpmailer->CharSet = "utf-8";
     $this->phpmailer->Subject = "Restablecer contraseña";
     $this->phpmailer->Body .="<h1>Restablecer contraseña</h1>";
     $this->phpmailer->Body .= "<p>Da clic en el siguiente enlace:</p>";
     $this->phpmailer->Body .= "<p><a href='https://sgcphp.herokuapp.com/login/recuperar/".
       $email."'>Restablecer</a></p>";
-    $this->phpmailer->IsHTML(true);
+    $this->phpmailer->isHTML(true);
 
-    if ($this->phpmailer->Send()) {
+    if ($this->phpmailer->send()) {
       $this->resultado = true;
     }
     return $this->resultado;
   }
+<<<<<<< HEAD
 
   function recuperarContraseña($valores) {
     $this->resultado = false;
     $hash = password_hash($valores["contraseña"], PASSWORD_BCRYPT);
 
+=======
+
+  ///  \fn recuperarContraseña Actualiza la contraseña
+  function recuperarContraseña($valores)
+  {
+    $this->resultado = false;
+    $hash = password_hash($valores["contraseña"], PASSWORD_BCRYPT);
+
+    $consultaId = "select id from usuarios where email='".$valores["email"]."'";
+    $id = $this->db->consulta($consultaId);
+>>>>>>> 74053b7b273fe28cbea97b1c2680dc24dc7a62f4
     $consulta = "update usuarios set clave='".$hash."' ";
-    $consulta.= "where email='".$valores["email"]."'";
+    $consulta.= "where id='".$id."'";
 
     if ($this->db->consultaBooleano($consulta)) {
       $this->resultado = true;
@@ -102,5 +128,3 @@ class LoginModelo {
   }
 
 }
-
-?>

@@ -1,19 +1,32 @@
 <?php
 
-class Usuario extends Controlador {
+/*
+ * \class Usuario
+ * \brief 
+ * \date 2021
+ * \author Mario Alberto Zayas González
+ */
+class Usuario extends Controlador 
+{
   private $modelo;
   private $validar;
 
-  function __construct() {
+  function __construct() 
+  {
     //$this->modelo = $this->modelo("LoginModelo");
-    $this->validar = new Validar();
+    //$this->validar = new Validar();
   }
 
-  function caratula($usuario) {
-    $datos = ["RUTA" => RUTA, "titulo" => "Usuario", "usuario" => $usuario];
-    $this->vista("usuarioVista", $datos);
+  /// \fn caratula
+  function caratula($usuario) 
+  {
+    session_start();
+    if (isset($_SESSION[$usuario])) {
+      $datos = ["RUTA" => RUTA, "titulo" => "Usuario", "usuario" => $usuario];
+      $this->vista("usuarioVista", $datos);
+    } else {
+      header("Location:".RUTA);
+    }
   }
 
 }
-
-?>
