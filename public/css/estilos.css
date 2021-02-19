@@ -1,3 +1,10 @@
+
+/*
+ * https://sgcphp.herokuapp.com
+ * Febrero 2021
+ * Mario Alberto Zayas González
+ */
+
 /********** Comienza reseteo de estilos **********/
 
 html, body, div, span, applet, object, iframe,
@@ -74,6 +81,10 @@ a:active {
 
 a {
   text-decoration: none;
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 /********** Comienza login **********/
