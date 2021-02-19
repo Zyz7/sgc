@@ -6,24 +6,26 @@
  * \date 2021
  * \author Mario Alberto Zayas González
  */
-class Controlador 
+class Controlador
 {
-  function __construct() {
-
+  function __construct()
+  {
   }
 
   /// \fn modelo Instancia el modelo
-  public function modelo($modelo) {
+  public function modelo($modelo)
+  {
 	  require_once("../app/modelos/".$modelo.".php");
 	  return new $modelo();
   }
 
   /// \fn vista Imprime la vista con sus parámetros
-  public function vista($vista, $datos=[]) {
+  public function vista($vista, $datos=[])
+  {
     if (file_exists("../app/vistas/".$vista.".html")) {
 	    $template = file_get_contents("../app/vistas/".$vista.".html");
-	
-	/// Sustituye los parámetros por su variable con la forma {valor}
+
+	    /// Sustituye los parámetros por su variable de la forma {valor}
       foreach ($datos as $clave => $valor) {
         $template = str_replace('{'.$clave.'}', $valor, $template);
       }

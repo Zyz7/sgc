@@ -1,7 +1,7 @@
 <?php
 
 /*
- * \class MysqlConexion
+ * \class ControlUrl
  * \brief  Maneja la dirección url y lanza los procesos
  *
  * Primer elemento: constante RUTA.
@@ -13,18 +13,18 @@
  * \date 2021
  * \author Mario Alberto Zayas González
  */
-class ControlUrl 
+class ControlUrl
 {
   protected $controlador = "Login";
   protected $metodo = "caratula";
   protected $parametros = [];
 
-  function __construct() 
+  function __construct()
   {
     $url = $this->separarUrl();
 
     /// Verifica la existencia del controlador
-    if($url != "" && file_exists("../app/controladores/".ucwords($url[0]).".php")) {
+    if ($url != "" && file_exists("../app/controladores/".ucwords($url[0]).".php")) {
       /// ucwords convierte a mayúscula el primer caracter
       $this->controlador = ucwords($url[0]);
       /// unset elimina la variable
@@ -49,9 +49,9 @@ class ControlUrl
     /// Invoca al controlador con una de sus funciones y parámetros
 	  call_user_func_array([$this->controlador, $this->metodo],$this->parametros);
   }
-  
+
   /// \fn separarUrl Elimina carácteres de la url
-  function separarUrl() 
+  function separarUrl()
   {
     $url = "";
 

@@ -16,7 +16,8 @@ class LoginModelo
   private $phpmailer;
   private $resultado;
 
-  function __construct() {
+  function __construct()
+  {
     $this->db = new MysqlConexion();
     $this->phpmailer = new PHPMailer();
   }
@@ -101,13 +102,6 @@ class LoginModelo
     }
     return $this->resultado;
   }
-<<<<<<< HEAD
-
-  function recuperarContraseña($valores) {
-    $this->resultado = false;
-    $hash = password_hash($valores["contraseña"], PASSWORD_BCRYPT);
-
-=======
 
   ///  \fn recuperarContraseña Actualiza la contraseña
   function recuperarContraseña($valores)
@@ -117,7 +111,6 @@ class LoginModelo
 
     $consultaId = "select id from usuarios where email='".$valores["email"]."'";
     $id = $this->db->consulta($consultaId);
->>>>>>> 74053b7b273fe28cbea97b1c2680dc24dc7a62f4
     $consulta = "update usuarios set clave='".$hash."' ";
     $consulta.= "where id='".$id."'";
 

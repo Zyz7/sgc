@@ -6,19 +6,19 @@
  * \date 2021
  * \author Mario Alberto Zayas González
  */
-class Login extends Controlador 
+class Login extends Controlador
 {
   private $modelo;
   private $validar;
 
-  function __construct() 
+  function __construct()
   {
     $this->modelo = $this->modelo("LoginModelo");
     $this->validar = new Validar();
   }
 
-  /// \fn caratula Formulario para iniciar sesión
-  function caratula() 
+  /// \fn caratula Obtiene y verifica las credenciales
+  function caratula()
   {
     $datos = ["RUTA" => RUTA, "titulo" => "Iniciar sesión", "error" => ""];
 
@@ -45,9 +45,9 @@ class Login extends Controlador
   	  $this->vista("loginVista", $datos);
     }
   }
-  
+
   /// \fn registrate Guarda un nuevo usuario en la base de datos
-  function registrate() 
+  function registrate()
   {
     $datos = ["RUTA" => RUTA, "titulo" => "Registrate", "error" => "",
     "errorNombre" => "", "errorApellido" => "", "errorUsuario" => "",
@@ -97,7 +97,7 @@ class Login extends Controlador
   }
 
   /// \fn restablecer Se envía un correo para restablecer la contraseña
-  function restablecer() 
+  function restablecer()
   {
     $datos = ["RUTA" => RUTA, "titulo" => "Restablecer", "error" => "",
     "errorCorreo" => "", "acierto" => ""];
@@ -123,7 +123,7 @@ class Login extends Controlador
   }
 
   /// \fn recuperar Se actualiza la contraseña en la base de datos
-  function recuperar($email) 
+  function recuperar($email)
   {
     $datos = ["RUTA" => RUTA, "titulo" => "Restablecer", "error" => "",
     "acierto" => "", "email" => $email];
@@ -144,9 +144,9 @@ class Login extends Controlador
     }
     $this->vista("recuperarContraseñaVista", $datos);
   }
-  
-  /// \fn salir Termina la sesión y regresa a la página de loguearse
-  function salir($usuario) 
+
+  /// \fn salir Termina la sesión y regresa a la página del login
+  function salir($usuario)
   {
     session_start();
     unset($_SESSION[$usuario]);
