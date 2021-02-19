@@ -72,15 +72,15 @@ class Login extends Controlador
             $datos["error"] = "Error al guardar los datos";
           }
         } else {
-          $datos["error"] = "Error el correo ya esta registrado";
+          $datos["error"] = "El correo ya se encuentra registrado";
         }
       } else {
         $datos["error"] = "errores en el formulario";
         if (!$this->validar->texto($nombre)) {
-          $datos["errorNombre"] = "Sólo ingrese letras menores a 25 carácteres";
+          $datos["errorNombre"] = "Ingrese sólo letras menores a 25 carácteres";
         }
         if (!$this->validar->texto($apellido)) {
-          $datos["errorApellido"] = "Sólo ingrese letras menores a 25 carácteres";
+          $datos["errorApellido"] = "Ingrese sólo letras menores a 25 carácteres";
         }
         if (!$this->validar->usuario($usuario)) {
           $datos["errorUsuario"] = "Sólo letras y números menores a 15 carácteres";
@@ -113,7 +113,7 @@ class Login extends Controlador
             $datos["error"] = "No se pudo enviar el correo";
           }
         } else {
-          $datos["error"] = "El correo no se encuentra registrado";
+          $datos["error"] = "Ingrese un correo que este registrado";
         }
       } else {
         $datos["errorCorreo"] = "Debe de tener el formato nombre@dominio.extension";
