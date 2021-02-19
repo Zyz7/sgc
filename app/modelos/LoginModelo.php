@@ -50,7 +50,7 @@ class LoginModelo {
     $consulta = "select * from usuarios where email='".$valores["email"]."'";
     $valoresConsulta = $this->db->consultas($consulta);
 
-    if ($valoresConsulta["email"] != NULL) {
+    if (!empty($valoresConsulta)) {
       if (password_verify($valores["contraseña"], $valoresConsulta["clave"])) {
         $this->resultado = true;
       }
@@ -87,11 +87,11 @@ class LoginModelo {
     }
     return $this->resultado;
   }
-  
+
   function recuperarContraseña($valores) {
     $this->resultado = false;
     $hash = password_hash($valores["contraseña"], PASSWORD_BCRYPT);
-    
+
     $consulta = "update usuarios set clave='".$hash."' ";
     $consulta.= "where email='".$valores["email"]."'";
 
