@@ -112,7 +112,7 @@ class LoginModelo
     $this->sendgrid->addContent(
       "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
     );
-    $enviar = new \SendGrid(getenv('SENDGRID_API_KEY'));
+    $enviar = new \SendGrid('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');
     try {
       $response = $enviar->send($this->sendgrid);
       if ($response) {
