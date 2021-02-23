@@ -20,3 +20,4 @@ require_once('librerias/Validar.php');
 require_once('librerias/Exception.php');
 require_once('librerias/PHPMailer.php');
 require_once('librerias/SMTP.php');
+require_once('librerias/sendgrid-php.php');
