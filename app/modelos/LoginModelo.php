@@ -14,12 +14,14 @@ class LoginModelo
 {
   private $db;
   private $phpmailer;
+  private $sendgrid;
   private $resultado;
 
   function __construct()
   {
     $this->db = new MysqlConexion();
     $this->phpmailer = new PHPMailer();
+    $this->sendgrid = new \SendGrid\Mail\Mail();
   }
 
   /// \fn registrate Crea un nuevo usuario
@@ -71,7 +73,7 @@ class LoginModelo
   }
 
   /// \fn enviarEmail Envía un correo electrónico mediante gmail con phpmailer
-  function enviarEmail($email)
+  /*function enviarEmail($email)
   {
     $this->resultado = false;
     //datos de la cuenta de Gmail
@@ -99,6 +101,28 @@ class LoginModelo
 
     if ($this->phpmailer->send()) {
       $this->resultado = true;
+    }
+    return $this->resultado;
+  }*/
+  function enviarEmail($email) {
+    $this->sendgrid->setFrom("test@example.com", "Example User");
+    $this->sendgrid->setSubject("Sending with Twilio SendGrid is Fun");
+    $this->sendgrid->addTo($email, "Example User");
+    $this->sendgrid->addContent("text/plain", "and easy to do anywhere, even with PHP");
+    $this->sendgrid->addContent(
+      "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
+    );
+    $enviar = new \SendGrid(getenv('SENDGRID_API_KEY'));
+    try {
+      $response = $enviar->send($this->sendgrid);
+      if ($response) {
+        $this->resultado = true;
+      }
+      print $response->statusCode() . "\n";
+      print_r($response->headers());
+      print $response->body() . "\n";
+    } catch (Exception $e) {
+      echo 'Caught exception: '. $e->getMessage() ."\n";
     }
     return $this->resultado;
   }
