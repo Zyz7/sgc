@@ -71,7 +71,7 @@ class LoginModelo
 
     return $this->resultado;
   }
-
+  /*
   /// \fn enviarEmail Envía un correo electrónico mediante gmail con phpmailer
   function enviarEmail($email)
   {
@@ -103,8 +103,8 @@ class LoginModelo
       $this->resultado = true;
     }
     return $this->resultado;
-  }
-  /*
+  }*/
+  
   function enviarEmail($email) {
     $this->sendgrid->setFrom("test@example.com", "Example User");
     $this->sendgrid->setSubject("Sending with Twilio SendGrid is Fun");
@@ -127,7 +127,7 @@ class LoginModelo
     }
     return $this->resultado;
   }
-  */
+  
   ///  \fn recuperarContraseña Actualiza la contraseña
   function recuperarContraseña($valores)
   {
