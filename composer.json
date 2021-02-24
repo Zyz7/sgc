@@ -4,5 +4,8 @@
     },
     "require": {
         "php": "~7"
+    },
+    "require": {
+        "sendgrid/sendgrid": "~7"
     }
 }
