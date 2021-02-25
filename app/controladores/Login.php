@@ -75,7 +75,7 @@ class Login extends Controlador
           $datos["error"] = "El correo ya se encuentra registrado";
         }
       } else {
-        $datos["error"] = "errores en el formulario";
+        $datos["error"] = count($datos)." errores en el formulario";
         if (!$this->validar->texto($nombre)) {
           $datos["errorNombre"] = "Ingrese sólo letras menores a 25 carácteres";
         }
