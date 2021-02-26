@@ -164,12 +164,21 @@ span[class="acierto"] {
 }
 
 @media screen and (max-width: 767px) {
+  .formLogin, span[class="error"],
+  span[class="acierto"]  {
+    margin: 4% auto;
+  }
+  
   .formLogin {
     width: 90%;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1279px) {
+  .formLogin {
+    margin: 2% auto;
+  }
+  
   .formLogin, span[class="error"],
   span[class="acierto"] {
     width: 55%;
