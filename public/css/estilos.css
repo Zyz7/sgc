@@ -186,3 +186,23 @@ span[class="acierto"] {
 }
 
 /********** Termina login **********/
+
+/********** Inicia sesión **********/
+
+.contenedor {
+  display: flex;
+}
+
+.menuIzq {
+  width: 20%;
+  height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  border: 1px solid hsl(207,44%,49%);
+}
+
+.menuDer {
+  width: 80%;
+}
+
+/********** Termina sesión **********/
