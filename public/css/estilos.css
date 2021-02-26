@@ -163,4 +163,10 @@ span[class="acierto"] {
   margin: 5px 10px;
 }
 
+@media screen and (max-width: 767px) {
+  .formLogin {
+    width: 90%;
+  }
+}
+
 /********** Termina login **********/
