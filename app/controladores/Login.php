@@ -75,22 +75,32 @@ class Login extends Controlador
           $datos["error"] = "El correo ya se encuentra registrado";
         }
       } else {
-        $datos["error"] = count($datos)." errores en el formulario";
+        $total = 0;
         if (!$this->validar->texto($nombre)) {
+          $total++;
           $datos["errorNombre"] = "Ingrese sólo letras menores a 25 carácteres";
         }
         if (!$this->validar->texto($apellido)) {
+          $total++;
           $datos["errorApellido"] = "Ingrese sólo letras menores a 25 carácteres";
         }
         if (!$this->validar->usuario($usuario)) {
+          $total++;
           $datos["errorUsuario"] = "Sólo letras y números menores a 15 carácteres";
         }
         if (!$this->validar->email($email)) {
+          $total++;
           $datos["errorCorreo"] = "Debe de tener el formato nombre@dominio.extension";
         }
         if (!$this->validar->contraseña($contraseña)) {
+          $total++;
           $datos["errorContraseña"] = "Debe de tener mínimo 6 carácteres";
         }
+        if ($total == 1) {
+		      $datos["error"] = $total." error en el formulario";
+		    } else {
+          $datos["error"] = $total." errores en el formulario";
+	      }
       }
     }
     $this->vista("registrateVista", $datos);
