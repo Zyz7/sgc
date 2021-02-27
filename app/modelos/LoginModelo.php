@@ -143,5 +143,13 @@ class LoginModelo
     }
     return $this->resultado;
   }
+  
+  ///  \fn usuario Obtiene el nombre de usuario
+  function usuario($email)
+  {
+    $consulta = "select usuario from usuarios where email='".$email."'";
+    $usuario = $this->db->consulta($consulta);
+    return $usuario;
+  }
 
 }
