@@ -202,6 +202,10 @@ span[class="acierto"] {
   border: 1px solid hsl(207,44%,49%);
 }
 
+.menuIzq a {
+  padding: 0 20px;
+}
+
 .menuDer {
   width: 80%;
 }
