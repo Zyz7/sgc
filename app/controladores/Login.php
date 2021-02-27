@@ -29,6 +29,7 @@ class Login extends Controlador
 
       if ($this->validar->email($email) && $this->validar->contraseña($contraseña)) {
         if ($this->modelo->autenticar($valores)) {
+	  $usuario = $this->modelo->usuario($email);
           session_start();
           //session_regenerate_id();
           $_SESSION[$email] = $email;
