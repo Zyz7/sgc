@@ -197,6 +197,7 @@ span[class="acierto"] {
   width: 20%;
   height: 100vh; 
   display: flex;
+  padding: 0 10px;
   flex-direction: column;
   border: 1px solid hsl(207,44%,49%);
 }
