@@ -22,8 +22,20 @@ class Usuario extends Controlador
   {
     session_start();
     if (isset($_SESSION[$usuario])) {
-      $datos = ["RUTA" => RUTA, "titulo" => "Usuario", "usuario" => $usuario];
+      $datos = ["RUTA" => RUTA, "titulo" => "Inicio", "usuario" => $usuario];
       $this->vista("usuarioVista", $datos);
+    } else {
+      header("Location:".RUTA);
+    }
+  }
+  
+  /// \fn editar
+  function editar($usuario) 
+  {
+    session_start();
+    if (isset($_SESSION[$usuario])) {
+      $datos = ["RUTA" => RUTA, "titulo" => "Editar", "usuario" => $usuario];
+      $this->vista("usuarioEditarVista", $datos);
     } else {
       header("Location:".RUTA);
     }
