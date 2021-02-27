@@ -42,7 +42,7 @@ class Usuario extends Controlador
 	      $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
 		      if ($this->validar->imagen($_FILES['imagen'])) {
 		        if(move_uploaded_file($_FILES['imagen']['tmp_name'], 
-		        RUTA.'img/logo_'.$usuario.'.'.$_FILES['imagen']['type']) {
+		        RUTA.'img/logo_'.$usuario.'.'.$_FILES['imagen']['type'])) {
 			        $datos["acierto"] = "Imagen guardada";
 			      } else {
 			        $datos["error"] = "No se pudo guardar la imagen";
