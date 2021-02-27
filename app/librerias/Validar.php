@@ -69,4 +69,19 @@ class Validar
     }
     return $this->resultado;
   }
+  
+  /// \fn imagen Valida las imagenes
+  function imagen($valor)
+  {
+    $this->resultado = false;
+    $extensiones = array('jpg', 'jpeg', 'png');
+    $archivoExt = strtolower(end(explode(".", $_FILES['imagen']['name'])));
+
+    if (in_array($archivoExt, $extensiones)) {
+      if ($_FILES['imagen']['size'] < 1000000) {
+        $this->resultado = true;
+      }
+    }
+    return $this->resultado;
+  }
 }
