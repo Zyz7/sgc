@@ -54,7 +54,9 @@ class Usuario extends Controlador
 			      } else {
 			        $datos["error"] = "No se pudo guardar la imagen";
 			      }
-		      }
+		      } else {
+				$datos["error"] = "Imagen inválida";
+			  }
 		    }
 	    }
       $this->vista("usuarioEditarVista", $datos);
