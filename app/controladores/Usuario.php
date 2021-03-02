@@ -14,7 +14,7 @@ class Usuario extends Controlador
   function __construct() 
   {
     //$this->modelo = $this->modelo("LoginModelo");
-    //$this->validar = new Validar();
+    $this->validar = new Validar();
   }
 
   /// \fn caratula
@@ -40,9 +40,16 @@ class Usuario extends Controlador
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	      if (isset($_FILES['imagen']) && 
 	      $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
-		      if ($this->validar->imagen($_FILES['imagen'])) {
-		        if(move_uploaded_file($_FILES['imagen']['tmp_name'], 
-		        RUTA.'img/logo_'.$usuario.'.'.strtolower(end(explode(".", $_FILES['imagen']['name']))))) {
+		      $valores = ["tmp_name" => $_FILES['imagen']['tmp_name'],
+			  "name" => $_FILES['imagen']['name'], "size" => 
+			  $_FILES['imagen']['size'], "type" => 
+			  $_FILES['imagen']['type']];
+			  $name_campos = explode(".", $valores['name']);
+			  $ext = strtolower(end($name_campos));
+		      
+		      if ($this->validar->imagen($valores)) {
+		        if (move_uploaded_file($valores['tmp_name'], './img/logo_'.
+			        $usuario.'.'.$ext)) {
 			        $datos["acierto"] = "Imagen guardada";
 			      } else {
 			        $datos["error"] = "No se pudo guardar la imagen";
