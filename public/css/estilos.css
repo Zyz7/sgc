@@ -43,15 +43,15 @@ table {
 /********** Termina reseteo de estilos **********/
 
 /********** Comienza lista de colores *********
-* Azul acero: hsl(207,44%,49%)
-* Verde mar: hsl(146,50%,36%)
+* Azul acero: hsl(207, 44%, 49%)
+* Verde mar: hsl(146, 50%, 36%)
 *
 ********* Termina lista de colores **********/
 
 html {
   font-size: 16px;
   letter-spacing: 0.5px;
-  background-color: hsl(0,0%,83%,0.1);
+  background-color: hsl(0, 0%, 83%, 0.1);
   font-family: "Lucida Console", "Monaco", monospace;
 }
 
@@ -87,7 +87,24 @@ button:hover {
   cursor: pointer;
 }
 
-/********** Comienza login **********/
+/********** Comienza vista inicio **********/
+
+#bodyInicio {
+  padding: 25px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: hsl(207, 44%, 49%, 0.2)
+}
+
+#bodyInicio > h1 {
+  padding: 10px;
+}
+
+/********** Comienza vista inicio **********/
+
+/********** Comienza vista login **********/
 
 .figureLogin, .h1Login, .error,
 .acierto {
@@ -114,12 +131,12 @@ span[class="acierto"] {
 
 span[class="error"] {
   color: red;
-  background-color: hsl(0,100%,50%,0.25);
+  background-color: hsl(0, 100%, 50%, 0.25);
 }
 
 span[class="acierto"] {
   color: green;
-  background-color: hsl(120,100%,25%,0.25);
+  background-color: hsl(120, 100%, 25%, 0.25);
 }
 
 .formLogin {
@@ -129,7 +146,7 @@ span[class="acierto"] {
   margin: 1% auto;
   border-radius: 7px;
   flex-direction: column;
-  border: 1px solid hsl(207,44%,49%);
+  border: 1px solid hsl(207, 44%, 49%);
 }
 
 .formLogin label {
@@ -156,7 +173,7 @@ span[class="acierto"] {
   padding: 5px 10px;
   border-radius: 5px;
   border: 1px solid gray;
-  background-color: hsl(146,50%,36%);
+  background-color: hsl(146, 50%, 36%);
 }
 
 .formLogin p, .formLogin a {
@@ -167,7 +184,7 @@ span[class="acierto"] {
   .formLogin {
     margin: 4% auto;
   }
-  
+
   .formLogin, span[class="error"],
   span[class="acierto"] {
     width: 90%;
@@ -178,16 +195,16 @@ span[class="acierto"] {
   .formLogin {
     margin: 2% auto;
   }
-  
+
   .formLogin, span[class="error"],
   span[class="acierto"] {
     width: 55%;
   }
 }
 
-/********** Termina login **********/
+/********** Termina vista login **********/
 
-/********** Inicia sesión **********/
+/********** Inicia vista admin **********/
 
 .contenedor {
   display: flex;
@@ -195,11 +212,11 @@ span[class="acierto"] {
 
 .menuIzq {
   width: 20%;
-  height: 100vh; 
+  height: 100vh;
   display: flex;
   padding: 0 10px;
   flex-direction: column;
-  border: 1px solid hsl(207,44%,49%);
+  border: 1px solid hsl(207, 44%, 49%);
 }
 
 .menuIzq a {
@@ -210,4 +227,4 @@ span[class="acierto"] {
   width: 80%;
 }
 
-/********** Termina sesión **********/
+/********** Termina vista admin **********/

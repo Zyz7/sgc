@@ -15,7 +15,7 @@
  */
 class ControlUrl
 {
-  protected $controlador = "Login";
+  protected $controlador = "Inicio";
   protected $metodo = "caratula";
   protected $parametros = [];
 

@@ -22,28 +22,32 @@ class Login extends Controlador
   {
     $datos = ["RUTA" => RUTA, "titulo" => "Iniciar sesión", "error" => ""];
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      $email = $_POST['email'];
-      $contraseña = $_POST['contraseña'];
-      $valores = ["email" => $email, "contraseña" => $contraseña];
+    if ($this->modelo->validarAdmin()) {
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $email = $_POST['email'];
+        $contraseña = $_POST['contraseña'];
+        $valores = ["email" => $email, "contraseña" => $contraseña];
 
-      if ($this->validar->email($email) && $this->validar->contraseña($contraseña)) {
-        if ($this->modelo->autenticar($valores)) {
-	  $usuario = $this->modelo->usuario($email);
-          session_start();
-          //session_regenerate_id();
-          $_SESSION[$email] = $email;
-          header("Location:".RUTA."usuario/".$_SESSION[$email]);
+        if ($this->validar->email($email) && $this->validar->contraseña($contraseña)) {
+          if ($this->modelo->autenticar($valores)) {
+  	        $usuario = $this->modelo->usuario($email);
+            session_start();
+            //session_regenerate_id();
+            $_SESSION[$email] = $email;
+            header("Location:".RUTA."usuario/".$_SESSION[$email]);
+          } else {
+            $datos["error"] = "Correo o contraseña incorrectos";
+        	  $this->vista("loginVista", $datos);
+          }
         } else {
-          $datos["error"] = "Correo o contraseña incorrectos";
-      	  $this->vista("loginVista", $datos);
+          $datos["error"] = "Correo o contraseña inválidos";
+          $this->vista("loginVista", $datos);
         }
       } else {
-        $datos["error"] = "Correo o contraseña inválidos";
         $this->vista("loginVista", $datos);
       }
     } else {
-  	  $this->vista("loginVista", $datos);
+      header("Location:".RUTA."login/registrate");
     }
   }
 

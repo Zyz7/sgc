@@ -23,6 +23,20 @@ class LoginModelo
     $this->phpmailer = new PHPMailer();
   }
 
+  /// \fn validarAdmin Valida que exista por lo menos un administrador
+  function validarAdmin()
+  {
+    $this->resultado = false;
+
+    $consulta = "select tipo from usuarios";
+    $valores = $this->db->consultas($consulta);
+
+    if (in_array("admin", $valores)) {
+      $this->resultado = true;
+    }
+    return $this->resultado;
+  }
+
   /// \fn registrate Crea un nuevo usuario
   function registrate($valores)
   {
@@ -70,7 +84,7 @@ class LoginModelo
 
     return $this->resultado;
   }
-  
+
   /// \fn enviarEmail Envía un correo electrónico mediante gmail con phpmailer
   function enviarEmail($email)
   {
@@ -143,7 +157,7 @@ class LoginModelo
     }
     return $this->resultado;
   }
-  
+
   ///  \fn usuario Obtiene el nombre de usuario
   function usuario($email)
   {
