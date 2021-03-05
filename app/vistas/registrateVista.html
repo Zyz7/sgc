@@ -59,6 +59,13 @@
       <input type="password" id="contraseña" name="contraseña" value=""
         pattern="[!-~]{6,12}" title="Debe de tener mínimo 6 carácteres" required/>
       <span class="spanLogin">{errorContraseña}</span>
+      
+      <label for="captcha">Escribe el siguiente texto</label>
+      <figure class="figureCaptcha">
+        <img src="{RUTA}login/captcha" alt="Captcha" aria-describedby=""/>
+      </figure>
+      <input type="text" id="captcha" name="captcha" value=""
+        pattern="[A-Z]{6}" title="Sólo ingrese 6 carácteres" required/>
 
       <button>Registrarse</button>
       <p>¿Ya tienes cuenta?</p>
