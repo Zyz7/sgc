@@ -5,5 +5,17 @@ apellido varchar(25) not null,
 usuario varchar(15) not null,
 email varchar(50) not null,
 clave varchar(60) not null,
+imagen longblob,
 tipo varchar(15),
 estado varchar(15));
+
+create table entradas(
+id integer auto_increment primary key,
+titulo varchar(150) not null,
+descripcion text not null,
+contenido longtext not null,
+fecha_entrada date not null,
+fecha_modificacion date,
+estado boolean,
+autor varchar(25),
+categoria varchar(25));
