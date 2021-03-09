@@ -69,7 +69,7 @@ class Validar
     }
     return $this->resultado;
   }
-  
+
   /// \fn imagen Valida las imagenes
   function imagen($valores)
   {
@@ -82,6 +82,17 @@ class Validar
       if ($valores['size'] < 1000000) {
         $this->resultado = true;
       }
+    }
+    return $this->resultado;
+  }
+
+  /// \fn captcha Valida el texto ingresado para el captcha
+  function captcha($valor)
+  {
+    $this->resultado = false;
+
+    if ($valor == $_SESSION["captcha"]) {
+      $this->resultado = true;
     }
     return $this->resultado;
   }

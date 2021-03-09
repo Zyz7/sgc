@@ -13,7 +13,7 @@ class Inicio extends Controlador
 
   function __construct()
   {
-    //$this->modelo = $this->modelo("InicioModelo");
+    $this->modelo = $this->modelo("InicioModelo");
     //$this->validar = new Validar();
   }
 
