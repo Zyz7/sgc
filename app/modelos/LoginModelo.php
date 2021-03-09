@@ -23,8 +23,8 @@ class LoginModelo
     $this->phpmailer = new PHPMailer();
   }
 
-  /// \fn validarAdmin Valida que exista por lo menos un administrador
-  function validarAdmin()
+  /// \fn comprobarAdmin Comprueba que exista por lo menos un administrador
+  function comprobarAdmin()
   {
     $this->resultado = false;
 

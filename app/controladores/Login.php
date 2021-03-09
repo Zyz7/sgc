@@ -22,17 +22,17 @@ class Login extends Controlador
   {
     $datos = ["RUTA" => RUTA, "titulo" => "Iniciar sesión", "error" => ""];
 
-    if ($this->modelo->validarAdmin()) {
+    if ($this->modelo->comprobarAdmin()) {
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $email = $_POST['email'];
         $contraseña = $_POST['contraseña'];
         $valores = ["email" => $email, "contraseña" => $contraseña];
 
-        if ($this->validar->email($email) && $this->validar->contraseña($contraseña)) {
+        if ($this->validar->email($email) &&
+        $this->validar->contraseña($contraseña)) {
           if ($this->modelo->autenticar($valores)) {
   	        $usuario = $this->modelo->usuario($email);
             session_start();
-            //session_regenerate_id();
             $_SESSION[$email] = $email;
             header("Location:".RUTA."usuario/".$_SESSION[$email]);
           } else {
@@ -50,56 +50,59 @@ class Login extends Controlador
       header("Location:".RUTA."login/registrate");
     }
   }
-  
+
   /// \fn captcha Genera el captcha
   function captcha()
   {
     session_start();
-  
+
     $input = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
     $input_length = strlen($input);
     $captcha_string = '';
-	  
+
     for($i = 0; $i < 6; $i++) {
         $random_character = $input[mt_rand(0, $input_length - 1)];
         $captcha_string .= $random_character;
     }
- 
+
     $_SESSION['captcha'] = $captcha_string;
- 
+
     $image = imagecreatetruecolor(200, 50);
     imageantialias($image, true);
     $colors = [];
     $red = rand(125, 175);
     $green = rand(125, 175);
     $blue = rand(125, 175);
-	  
+
     for($i = 0; $i < 5; $i++) {
-      $colors[] = imagecolorallocate($image, $red - 20*$i, $green - 20*$i, $blue - 20*$i);
+      $colors[] = imagecolorallocate($image, $red - 20*$i, $green - 20*$i,
+      $blue - 20*$i);
     }
- 
+
     imagefill($image, 0, 0, $colors[0]);
- 
+
     for($i = 0; $i < 10; $i++) {
       imagesetthickness($image, rand(2, 10));
       $line_color = $colors[rand(1, 4)];
-      imagerectangle($image, rand(-10, 190), rand(-10, 10), rand(-10, 190), rand(40, 60), $line_color);
+      imagerectangle($image, rand(-10, 190), rand(-10, 10), rand(-10, 190),
+      rand(40, 60), $line_color);
     }
- 
+
     $black = imagecolorallocate($image, 0, 0, 0);
     $white = imagecolorallocate($image, 255, 255, 255);
     $textcolors = [$black, $white];
- 
+
     for($i = 0; $i < 6; $i++) {
       $letter_space = 170/6;
       $initial = 15;
-      imagettftext($image, 24, rand(-15, 15), $initial + $i*$letter_space, rand(25, 45), 
-		   $textcolors[rand(0, 1)], $fonts[array_rand($fonts)], $captcha_string[$i]);
+      imagettftext($image, 24, rand(-15, 15), $initial + $i*$letter_space,
+      rand(25, 45),
+		  $textcolors[rand(0, 1)], $fonts[array_rand($fonts)], $captcha_string[$i]);
     }
- 
+
     header('Content-type: image/png');
     imagepng($image);
-    imagedestroy($image);  
+    imagedestroy($image);
   }
 
   /// \fn registrate Guarda un nuevo usuario en la base de datos
@@ -211,7 +214,7 @@ class Login extends Controlador
     $this->vista("recuperarContraseñaVista", $datos);
   }
 
-  /// \fn salir Termina la sesión y regresa a la página del login
+  /// \fn salir Termina la sesión y regresa a la página de inicio
   function salir($usuario)
   {
     session_start();

@@ -20,8 +20,13 @@ class Inicio extends Controlador
   /// \fn caratula
   function caratula()
   {
-    $datos = ["RUTA" => RUTA, "titulo" => "Inicio"];
-    $this->vista("inicioVista", $datos);
+    if ($this->modelo->comprobarEntradas()) {
+      $datos = ["RUTA" => RUTA, "titulo" => "Inicio", "plantilla" => ""];
+      $this->vista("entradaVista", $datos);
+    } else {
+      $datos = ["RUTA" => RUTA, "titulo" => "Inicio"];
+      $this->vista("inicioVista", $datos);
+    }
   }
 
 }
