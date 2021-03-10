@@ -20,6 +20,19 @@ class Login extends Controlador
   /// \fn caratula Obtiene y verifica las credenciales
   function caratula()
   {
+	  session_start();
+
+    $input = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+    $input_length = strlen($input);
+    $captcha_string = '';
+
+    for($i = 0; $i < 6; $i++) {
+        $random_character = $input[mt_rand(0, $input_length - 1)];
+        $captcha_string .= $random_character;
+    }
+
+    $_SESSION['captcha'] = $captcha_string;
+	  
     $datos = ["RUTA" => RUTA, "titulo" => "Iniciar sesión", "error" => ""];
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -58,16 +71,7 @@ class Login extends Controlador
   {
     session_start();
 
-    $input = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
-    $input_length = strlen($input);
-    $captcha_string = '';
-
-    for($i = 0; $i < 6; $i++) {
-        $random_character = $input[mt_rand(0, $input_length - 1)];
-        $captcha_string .= $random_character;
-    }
-
-    $_SESSION['captcha'] = $captcha_string;
+    $captcha_string = $_SESSION['captcha'];
 
     // Crea una nueva imagen en color negro
     $image = imagecreatetruecolor(200, 50);
