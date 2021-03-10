@@ -106,7 +106,7 @@ class Login extends Controlador
       $initial = 15;
       // Escribe texto en la imagen usando fuentes
       imagettftext($image, 24, rand(-15, 15), $initial + $i*$letter_space,
-      rand(25, 45), $textcolors[rand(0, 1)], './ttf/arial_narrow_7.ttf',
+      rand(25, 45), $textcolors[rand(0, 1)], RUTA.'ttf/arial_narrow_7.ttf',
       $captcha_string[$i]);
     }
 
