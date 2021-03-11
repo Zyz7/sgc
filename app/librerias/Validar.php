@@ -90,7 +90,8 @@ class Validar
   function captcha($valor)
   {
     $this->resultado = false;
-
+    session_start();
+    
     if ($valor == $_SESSION["captcha"]) {
       $this->resultado = true;
     }

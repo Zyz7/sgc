@@ -32,7 +32,7 @@ class Login extends Controlador
     }
 
     $_SESSION['captcha'] = $captcha_string;
-	  
+
     $datos = ["RUTA" => RUTA, "titulo" => "Iniciar sesión", "error" => ""];
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -43,7 +43,7 @@ class Login extends Controlador
 
       if ($this->validar->email($email) &&
       $this->validar->contraseña($contraseña) &&
-      $this->validar->captcha($captcha)) {
+      $captcha == $_SESSION["captcha"]) {
         if ($this->modelo->autenticar($valores)) {
           $usuario = $this->modelo->usuario($email);
           session_start();
@@ -54,7 +54,7 @@ class Login extends Controlador
           $this->vista("loginVista", $datos);
         }
       } else {
-        if (!$this->validar->captcha($captcha)) {
+        if ($captcha != $_SESSION["captcha"]) {
           $datos["error"] = "Captcha incorrecto";
         } else {
           $datos["error"] = "Correo o contraseña inválidos";
@@ -110,7 +110,7 @@ class Login extends Controlador
       $initial = 15;
       // Escribe texto en la imagen usando fuentes
       imagettftext($image, 24, rand(-15, 15), $initial + $i*$letter_space,
-      rand(25, 45), $textcolors[rand(0, 1)], 'arial_narrow_7.ttf',
+      rand(25, 45), $textcolors[rand(0, 1)], './fonts/arial_narrow_7.ttf',
       $captcha_string[$i]);
     }
 
