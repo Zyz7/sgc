@@ -238,5 +238,3 @@ class Login extends Controlador
   }
 
 }
-
-?>
