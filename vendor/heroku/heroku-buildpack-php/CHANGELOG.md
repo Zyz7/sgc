@@ -1,5 +1,408 @@
 # heroku-buildpack-php CHANGELOG
 
+## v190 (2021-03-04)
+
+### ADD
+
+- PHP/7.4.15 [David Zuelke]
+- PHP/8.0.3 [David Zuelke]
+- ext-blackfire/1.50.0 (PHP 5.6) [David Zuelke]
+- ext-blackfire/1.51.0 (PHP 7+) [David Zuelke]
+
+### CHG
+
+- If `HEROKU_PHP_GRACEFUL_SIGTERM=1`, gracefully shut down PHP-FPM, Apache/Nginx, and log redirection in environments where all processes (not just the leader) receive a SIGTERM for termination [David Zuelke]
+- Composer/2.0.11 [David Zuelke]
+- librdkafka/1.6.1 [David Zuelke]
+
+## v189 (2021-02-05)
+
+### ADD
+
+- ext-rdkafka/5.0.0 [David Zuelke]
+- PHP/7.3.27 [David Zuelke]
+- PHP/7.4.15 [David Zuelke]
+- PHP/8.0.2 [David Zuelke]
+- ext-ev/1.1.1 [David Zuelke]
+- ext-redis/5.3.3 [David Zuelke]
+- ext-blackfire/1.49.1 [David Zuelke]
+- ext-newrelic/9.16.0.295 [David Zuelke]
+
+### CHG
+
+- Drop support for cedar-14 [David Zuelke]
+- Drop support for HHVM [David Zuelke]
+- Drop support for PHP 5.5 [David Zuelke]
+- Use PHP 7.4 for bootstrapping [David Zuelke]
+- librdkafka/1.6.0 [David Zuelke]
+- Composer/1.10.20 [David Zuelke]
+- Composer/2.0.9 [David Zuelke]
+
+## v188 (2021-01-08)
+
+### ADD
+
+- PHP/7.3.26 [David Zuelke]
+- PHP/7.4.14 [David Zuelke]
+- PHP/8.0.1 [David Zuelke]
+- ext-blackfire/1.48.1 [David Zuelke]
+- ext-rdkafka/4.1.2 [David Zuelke]
+
+## v187 (2020-12-09)
+
+### ADD
+
+- ext-rdkafka/4.1.1 [David Zuelke]
+- ext-newrelic/9.15.0.293 [David Zuelke]
+
+### CHG
+
+- librdkafka/1.5.3 [David Zuelke]
+
+### FIX
+
+- ext-redis is missing for PHP 8 (#452) [David Zuelke]
+
+## v186 (2020-12-07)
+
+### ADD
+
+- PHP/7.3.25 [David Zuelke]
+- PHP/7.4.13 [David Zuelke]
+- PHP/8.0.0 (for stacks `heroku-18` and `heroku-20`) [David Zuelke]
+- ext-ev/1.0.9 [David Zuelke]
+- ext-mongodb/1.9.0 [David Zuelke]
+- ext-blackfire/1.46.4 [David Zuelke]
+- ext-event/3.0.2 [David Zuelke]
+
+### CHG
+
+- Default to PHP 8 if possible for heroku-20 [David Zuelke]
+- Composer/1.10.19 [David Zuelke]
+- Composer/2.0.8 [David Zuelke]
+
+## v185 (2020-11-22)
+
+### FIX
+
+- composer bin-dir is not available on $PATH to subsequent buildpacks [David Zuelke]
+- composer bin-dir exported as relative location in $PATH at runtime [David Zuelke]
+
+## v184 (2020-11-20)
+
+### ADD
+
+- Support for Composer 2 (#440) [David Zuelke]
+- Composer/2.0.7 [David Zuelke]
+
+### CHG
+
+- Install Composer using platform installer [David Zuelke]
+- Do not output download progress during `composer install` [David Zuelke]
+
+### FIX
+
+- ext-newrelic prints info messages during startup regardless of `NEW_RELIC_LOG_LEVEL` [David Zuelke]
+
+## v183 (2020-11-13)
+
+### ADD
+
+- ext-newrelic/9.14.0.290 [David Zuelke]
+- PHP/8.0.0RC4 (heroku-20 stack only) [David Zuelke]
+- ext-mongodb/1.9.0RC1 (PHP 8 only) [David Zuelke]
+- PHP/7.3.24 [David Zuelke]
+- PHP/7.4.12 [David Zuelke]
+- ext-apcu/5.1.19 [David Zuelke]
+- ext-blackfire/1.44.0 [David Zuelke]
+- ext-event/3.0.0 [David Zuelke]
+- ext-mongodb/1.8.2 [David Zuelke]
+- ext-phalcon/4.1.0 [David Zuelke]
+- ext-rdkafka/4.0.4 [David Zuelke]
+- ext-redis/5.3.2 [David Zuelke]
+- ext-uuid/1.2.0 [David Zuelke]
+- ext-psr/1.0.1 [David Zuelke]
+
+### CHG
+
+- Patches to optionally ignore SIGTERM in Apache, Nginx and PHP builds (not yet implemented by the buildpack) [David Zuelke]
+- librdkafka/1.5.2 [David Zuelke]
+- Composer/1.10.17 [David Zuelke]
+
+### FIX
+
+- Explicit ext-newrelic require outputs info messages during builds [David Zuelke]
+
+## v182 (2020-10-12)
+
+### ADD
+
+- Support for heroku-20 stack [David Zuelke]
+
+## v181 (2020-10-01)
+
+### ADD
+
+- PHP/7.2.34 [David Zuelke]
+- PHP/7.3.23 [David Zuelke]
+- PHP/7.4.11 [David Zuelke]
+- ext-oauth/2.0.7 [David Zuelke]
+- ext-pq/2.1.8 [David Zuelke]
+- ext-newrelic/9.13.0.270 [David Zuelke]
+
+## v180 (2020-09-15)
+
+### ADD
+
+- PHP/7.3.22 [David Zuelke]
+- PHP/7.4.10 [David Zuelke]
+- ext-blackfire/1.39.1 [David Zuelke]
+- ext-event/2.5.7 [David Zuelke]
+- ext-oauth/2.0.6 [David Zuelke]
+
+### CHG
+
+- Composer/1.10.13 [David Zuelke]
+
+## v179 (2020-08-13)
+
+### ADD
+
+- PHP/7.2.33 [David Zuelke]
+- PHP/7.3.21 [David Zuelke]
+- PHP/7.4.9 [David Zuelke]
+- ext-blackfire/1.36.0 [David Zuelke]
+- ext-mongodb/1.8.0 [David Zuelke]
+- ext-newrelic/9.12.0.268 [David Zuelke]
+- Apache/2.4.46 [David Zuelke]
+
+### CHG
+
+- librdkafka/1.5.0 [David Zuelke]
+- Composer/1.10.10 [David Zuelke]
+- libcassandra/2.15.3 [David Zuelke]
+
+### FIX
+
+- Detection of `composer test` or common testing frameworks on Heroku CI occasionally fails on PHP 7.4 (#388) [David Zuelke]
+
+## v178 (2020-07-09)
+
+### ADD
+
+- PHP/7.4.8 [David Zuelke]
+- PHP/7.3.20 [David Zuelke]
+- PHP/7.2.32 [David Zuelke]
+- ext-redis/5.3.1 [David Zuelke]
+- ext-mongodb/1.7.5 [David Zuelke]
+
+### CHG
+
+- librdkafka/1.4.4 [David Zuelke]
+- Composer/1.10.8 [David Zuelke]
+
+## v177 (2020-06-18)
+
+### ADD
+
+- PHP/7.3.19 [David Zuelke]
+- PHP/7.4.7 [David Zuelke]
+- ext-blackfire/1.34.3 [David Zuelke]
+- ext-newrelic/9.6.0.267 [David Zuelke]
+- ext-pcov/1.0.6 (#415) [David Zuelke]
+
+### CHG
+
+- Composer/1.10.7 [David Zuelke]
+
+## v176 (2020-05-26)
+
+### FIX
+
+- Fix build failures for apps that also use heroku/python, introduced in 04c5e14 (#412) [David Zuelke]
+
+## v175 (2020-05-25)
+
+### ADD
+
+- PHP/7.2.31 [David Zuelke]
+- PHP/7.3.18 [David Zuelke]
+- PHP/7.4.6 [David Zuelke]
+- ext-redis/5.2.2 [David Zuelke]
+- ext-newrelic/9.10.1.263 [David Zuelke]
+- ext-phalcon/4.0.6 [David Zuelke]
+- ext-blackfire/1.34.0 [David Zuelke]
+- ext-event/2.5.6 [David Zuelke]
+
+### CHG
+
+- Support `python` not being symlinked to `python2` [Ed Morley]
+- Composer/1.10.6 [David Zuelke]
+- librdkafka/1.4.2 [David Zuelke]
+- libcassandra/2.15.2 [David Zuelke]
+
+## v174 (2020-04-30)
+
+### ADD
+
+- PHP/7.2.30 [David Zuelke]
+- PHP/7.3.17 [David Zuelke]
+- PHP/7.4.5 [David Zuelke]
+- Apache/2.4.43 [David Zuelke]
+- ext-blackfire/1.33.0 [David Zuelke]
+- ext-amqp/1.10.2 [David Zuelke]
+- Nginx/1.18.0 [David Zuelke]
+- ext-newrelic/9.10.0.262 [David Zuelke]
+
+### CHG
+
+- Composer/1.10.5 [David Zuelke]
+- librdkafka/1.4.0 [David Zuelke]
+
+## v173 (2020-03-20)
+
+### ADD
+
+- ext-phalcon/4.0.5 [David Zuelke]
+- ext-mongodb/1.7.4 [David Zuelke]
+- ext-redis/5.2.1 [David Zuelke]
+- PHP/7.4.4 [David Zuelke]
+- PHP/7.3.16 [David Zuelke]
+- PHP/7.2.29 [David Zuelke]
+
+### CHG
+
+- Composer/1.10.1 [David Zuelke]
+- libcassandra/2.15.1 [David Zuelke]
+
+## v172 (2020-02-28)
+
+### ADD
+
+- PHP/7.2.28 [David Zuelke]
+- PHP/7.3.15 [David Zuelke]
+- PHP/7.4.3 [David Zuelke]
+- ext-psr/1.0.0 [David Zuelke]
+- ext-phalcon/4.0.4 [David Zuelke]
+- ext-newrelic/9.7.0.258 [David Zuelke]
+- ext-mongodb/1.7.3 [David Zuelke]
+- ext-event/2.5.4 [David Zuelke]
+- ext-blackfire/1.31.0 [David Zuelke]
+
+### CHG
+
+- Use system libc-client for IMAP extension [David Zuelke]
+- Use system libmcrypt on all stacks [David Zuelke]
+- Use system libzip on heroku-16 and heroku-18 stacks [David Zuelke]
+- Use system libsqlite on heroku-16 and heroku-18 stacks [David Zuelke]
+- Use system libonig on heroku-16 and heroku-18 stacks [David Zuelke]
+
+## v171 (2020-02-11)
+
+### ADD
+
+- ext-mongodb/1.7.1 [David Zuelke]
+- ext-oauth/2.0.5 [David Zuelke]
+- ext-pq/2.1.7 [David Zuelke]
+- ext-rdkafka/4.0.3 [David Zuelke]
+- ext-psr/0.7.0 [David Zuelke]
+- ext-phalcon/4.0.3 [David Zuelke]
+
+### CHG
+
+- Composer/1.9.3 [David Zuelke]
+
+## v170 (2020-02-10)
+
+### ADD
+
+- PHP/7.4.2 [David Zuelke]
+
+### CHG
+
+- `$COMPOSER_MEMORY_LIMIT` defaults to dyno memory if information is available [David Zuelke]
+- `$COMPOSER_MIRROR_PATH_REPOS` defaults to 1 [David Zuelke]
+- `$COMPOSER_NO_INTERACTION` defaults to 1 [David Zuelke]
+- `$COMPOSER_PROCESS_TIMEOUT` defaults to 0 at app runtime [David Zuelke]
+- Build PHP-FPM with /proc/…/mem based process tracing [David Zuelke]
+- Log slow PHP-FPM requests after 3 seconds by default for PHP 7.4 [David Zuelke]
+- Terminate slow PHP-FPM requests after 30 seconds by default for PHP 7.4 [David Zuelke]
+- Refactor `$WEB_CONCURRENCY` calculation to use `/sys/fs/cgroup/memory/memory.limit_in_bytes` if available [David Zuelke]
+- Use all available instance RAM when calculating `$WEB_CONCURRENCY` for PHP 7.4+ running on Performance-L dynos [David Zuelke]
+- Use all available instance RAM as default PHP CLI memory_limit [David Zuelke]
+
+## v169 (2020-01-26)
+
+### CHG
+
+- Try and tell SIGTERM cases apart in boot scripts for more precise messaging on shutdown [David Zuelke]
+
+### FIX
+
+- Shell may emit confusing "... Terminated ..." messages on shutdown [David Zuelke]
+- PHP-FPM startup failures may trigger race condition where dyno boot hangs [David Zuelke]
+
+## v168 (2020-01-24)
+
+### ADD
+
+- PHP/7.2.27 [David Zuelke]
+- PHP/7.3.14 [David Zuelke]
+- ext-blackfire/1.30.0 [David Zuelke]
+- ext-newrelic/9.6.1.256 [David Zuelke]
+- ext-pq/2.1.6 [David Zuelke]
+
+### CHG
+
+- Composer/1.9.2 [David Zuelke]
+- libcassandra/2.15.0 [David Zuelke]
+
+## v167 (2020-01-23)
+
+### CHG
+
+- Graceful shutdown for boot scripts on SIGTERM and SIGINT [David Zuelke]
+- Dynamically poll for `newrelic-daemon` readiness on dyno boot instead of using blanket two-second wait [David Zuelke]
+- Dynamically poll for PHP-FPM readiness on dyno boot instead of using blanket two-second wait [David Zuelke]
+
+## v166 (2019-12-20)
+
+### ADD
+
+- PHP/7.2.26 [David Zuelke]
+- PHP/7.3.13 [David Zuelke]
+- ext-rdkafka/4.0.2 [David Zuelke]
+
+## v165 (2019-12-11)
+
+### ADD
+
+- ext-apcu/5.1.18 [David Zuelke]
+- ext-raphf/2.0.1 [David Zuelke]
+- ext-phalcon/3.4.5 [David Zuelke]
+- ext-redis/5.1.1 [David Zuelke]
+- PHP/7.2.25 [David Zuelke]
+- PHP/7.3.12 [David Zuelke]
+- ext-memcached/3.1.5 [David Zuelke]
+- ext-mongodb/1.6.1 [David Zuelke]
+- ext-newrelic/9.4.0.249 [David Zuelke]
+- ext-ev/1.0.7 [David Zuelke]
+- ext-rdkafka/3.1.3 [David Zuelke]
+- ext-rdkafka/4.0.0 [David Zuelke]
+- ext-blackfire/1.29.4 [David Zuelke]
+- ext-uuid/1.1.0 (#371) [David Zuelke]
+
+### CHG
+
+- Composer/1.9.1 [David Zuelke]
+- librdkafka/1.3.0 [David Zuelke]
+- libcassandra/2.14.1 [David Zuelke]
+
+### FIX
+
+- Revert ext-newrelic/9.2.0.247 due to startup failure [David Zuelke]
+- PHP 7.0 builds picking up generic rather than version-specific `heroku.ini` settings [David Zuelke]
+
 ## v164 (2019-10-24)
 
 ### ADD

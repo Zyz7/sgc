@@ -9,7 +9,7 @@ set -eu
 # move hidden files too, just in case
 shopt -s dotglob
 
-STACK=${STACK:-cedar-14} # Anvil has none
+STACK=${STACK:-heroku-18} # Anvil has none
 build_dir=$1
 cache_dir=$2/php
 mkdir -p "$cache_dir"
@@ -218,7 +218,7 @@ fi
 mkdir -p $build_dir/.heroku/php-min
 ln -s $build_dir/.heroku/php-min /app/.heroku/php-min
 
-curl_retry_on_18 --fail --silent --location -o $build_dir/.heroku/php-min.tar.gz "${s3_url}php-min-7.3.11.tar.gz" || {
+curl_retry_on_18 --fail --silent --location -o $build_dir/.heroku/php-min.tar.gz "${s3_url}php-min-7.4.16.tar.gz" || {
 	mcount "failures.bootstrap.download.php-min"
 	error <<-EOF
 		Failed to download minimal PHP for bootstrapping!
@@ -231,7 +231,7 @@ curl_retry_on_18 --fail --silent --location -o $build_dir/.heroku/php-min.tar.gz
 tar xzf $build_dir/.heroku/php-min.tar.gz -C $build_dir/.heroku/php-min
 rm $build_dir/.heroku/php-min.tar.gz
 
-curl_retry_on_18 --fail --silent --location -o $build_dir/.heroku/composer.tar.gz "${s3_url}composer-1.9.0.tar.gz" || {
+curl_retry_on_18 --fail --silent --location -o $build_dir/.heroku/composer.tar.gz "${s3_url}composer-1.10.20.tar.gz" || {
 	mcount "failures.bootstrap.download.composer"
 	error <<-EOF
 		Failed to download Composer for bootstrapping!
@@ -241,12 +241,13 @@ curl_retry_on_18 --fail --silent --location -o $build_dir/.heroku/composer.tar.g
 		version of the Heroku PHP buildpack which may need updating.
 	EOF
 }
-tar xzf $build_dir/.heroku/composer.tar.gz -C $build_dir/.heroku/php
+tar xzf $build_dir/.heroku/composer.tar.gz -C $build_dir/.heroku/php bin/composer
 rm $build_dir/.heroku/composer.tar.gz
+mv $build_dir/.heroku/php/bin/composer{,1} # we will need this at the end even if user installs happen with Composer 2
 
 # this alias is just for now while we install platform packages
 composer() {
-	/app/.heroku/php-min/bin/php /app/.heroku/php/bin/composer "$@"
+	/app/.heroku/php-min/bin/php /app/.heroku/php/bin/composer1 "$@"
 }
 export -f composer
 
@@ -254,13 +255,7 @@ export -f composer
 composer_vendordir=$(composer config --no-plugins vendor-dir)
 composer_bindir=$(composer config --no-plugins bin-dir)
 
-# packages that get installed will add to this file, it's both for us and for buildpacks that follow
-# composer bin-dir goes last to avoid any conflicts
-echo "export PATH=/app/.heroku/php/bin:\$PATH:/app/$composer_bindir" > $bp_dir/export
-# make sure Composer and binaries for it are on the path at runtime
-# composer bin-dir goes last to avoid any conflicts
 mkdir -p $build_dir/.profile.d
-echo "export PATH=\$HOME/.heroku/php/bin:\$PATH:\$HOME/$composer_bindir" > $build_dir/.profile.d/100-composer.sh
 
 # we perform this check early so people with stale lock files are reminded why if their lock file errors in the next step
 composer_lock_outdated=false
@@ -340,10 +335,12 @@ composer validate --no-plugins --no-check-publish --no-check-all --quiet "$COMPO
 
 status "Installing platform packages..."
 
-if [[ $STACK == "cedar-14" || $STACK == "heroku-16" ]]; then
-	HEROKU_PHP_DEFAULT_RUNTIME_VERSION="^5.5.17"
-else
+if [[ $STACK == "heroku-16" ]]; then
+	HEROKU_PHP_DEFAULT_RUNTIME_VERSION="^5.6.0"
+elif [[ $STACK == "heroku-18" ]]; then
 	HEROKU_PHP_DEFAULT_RUNTIME_VERSION="^7.0.0"
+else
+	HEROKU_PHP_DEFAULT_RUNTIME_VERSION="^7.0.0 | ^8.0.0"
 fi
 export HEROKU_PHP_DEFAULT_RUNTIME_VERSION
 # extract requirements from composer.lock
@@ -379,7 +376,7 @@ export HEROKU_PHP_DEFAULT_RUNTIME_VERSION
 	fi
 }
 
-# reset COMPOSER for the platform install step
+# reset $COMPOSER for the platform install step
 COMPOSER_bak="$COMPOSER"
 export COMPOSER=composer.json
 
@@ -449,7 +446,6 @@ else
 		For reference, the following runtimes are currently available:
 		
 		PHP:  $(composer show -d "$build_dir/.heroku/php" --available heroku-sys/php 2>&1 | sed -n 's/^versions : //p' | fold -s -w 58 || true)
-		HHVM: $(composer show -d "$build_dir/.heroku/php" --available heroku-sys/hhvm 2>&1 | sed -n 's/^versions : //p' | fold -s -w 58 || true)
 		
 		Please verify that all requirements for runtime versions in
 		'$COMPOSER_LOCK' are compatible with the list above, and ensure
@@ -458,25 +454,10 @@ else
 		When choosing a PHP runtimes and extensions, please also ensure
 		they are available on your app's stack ($STACK), and select
 		a different stack if needed after consulting the article below.
-		$(
-			[[ "$STACK" == "heroku-18" ]] && cat <<-EOF2
-				$(echo -e "\033[1;33m")
-				Be advised that the heroku-18 stack you're currently using only
-				supports PHP version 7.1 and later.
-				$(echo -e "\033[1;31m")
-			EOF2
-		)
+		
 		For a list of supported runtimes & extensions on Heroku, please
 		refer to: https://devcenter.heroku.com/articles/php-support
 	EOF
-fi
-
-if composer show -d "$build_dir/.heroku/php" --installed --quiet heroku-sys/php 2>/dev/null; then
-	engine="php"
-	engine_r="php -r"
-elif composer show -d "$build_dir/.heroku/php" --installed --quiet heroku-sys/hhvm 2>/dev/null; then
-	engine="hhvm"
-	engine_r="hhvm --php -r"
 fi
 
 # log number of installed platform packages
@@ -488,6 +469,7 @@ unset COMPOSER_bak
 
 # clean up
 rm -rf /app/.heroku/php-min $build_dir/.heroku/php-min
+# unset composer function that used php-min for invocation
 unset -f composer
 
 # export our "do not auto.start APM extensions" magic INI directory to PHP_INI_SCAN_DIR for ourself and for later buildpacks (but not for runtime)
@@ -497,15 +479,12 @@ echo "export PHP_INI_SCAN_DIR=\${PHP_INI_SCAN_DIR-}:$bp_dir/conf/php/apm-nostart
 # earlier we wrote at least one $PATH entry that we'll need now (and just above we added a PHP_INI_SCAN_DIR export), and installed packages will likely have added to it too
 source $bp_dir/export
 
-composer() {
-	$engine $(which composer) "$@"
-}
-export -f composer
+# from here onwards we're using the composer we installed via platform install with the PHP runtime that we installed via platform install
 
 # log runtime version
-mcount "platform.packages.php.$($engine_r "echo ${engine^^}_VERSION;")"
+mcount "platform.packages.php.$(php -r "echo PHP_VERSION;")"
 
-if eoldate=$($engine $bp_dir/bin/util/eol.php); then
+if eoldate=$(php $bp_dir/bin/util/eol.php); then
 	:
 else
 	code=$?
@@ -629,7 +608,7 @@ unset COMPOSER_GITHUB_OAUTH_TOKEN
 export_env_dir "$env_dir" '^[A-Z_][A-Z0-9_]*$' '^(HOME|PATH|GIT_DIR|CPATH|CPPATH|LD_PRELOAD|LIBRARY_PATH|LD_LIBRARY_PATH|STACK|REQUEST_ID|IFS|HEROKU_PHP_INSTALL_DEV|BPLOG_PREFIX|BUILDPACK_LOG_FILE|PHP_INI_SCAN_DIR)$'
 if cat "$COMPOSER" | python -c 'import sys,json; sys.exit(not json.load(sys.stdin));'; then
 	install_log=$(mktemp -t heroku-buildpack-php-composer-install-log-XXXX)
-	composer install ${HEROKU_PHP_INSTALL_DEV-"--no-dev"} --prefer-dist --optimize-autoloader --no-interaction 2>&1 | tee "$install_log" | indent || {
+	composer install ${HEROKU_PHP_INSTALL_DEV-"--no-dev"} --prefer-dist --optimize-autoloader --no-progress --no-interaction 2>&1 | tee "$install_log" | indent || {
 		code=$?
 		if [[ $code -eq 2 ]]; then
 			# dependency solving failed, which should only ever happen if people have platform overrides in their config
@@ -728,8 +707,8 @@ ln -fs $relbins .
 cd $build_dir
 
 if [[ ! -f "Procfile" ]]; then
-	echo "web: heroku-$engine-apache2" > Procfile
-	notice_inline "No Procfile, using 'web: heroku-$engine-apache2'."
+	echo "web: heroku-php-apache2" > Procfile
+	notice_inline "No Procfile, using 'web: heroku-php-apache2'."
 fi
 
 # write empty WEB_CONCURRENCY.sh to overwrite the defaults logic from a prior buildpack, e.g. Node (all buildpacks use the same filename to allow this)
@@ -752,3 +731,5 @@ fi
 # done with platform installs; restore COMPOSER from previous value
 export COMPOSER="$COMPOSER_bak"
 unset COMPOSER_bak
+# and remove the composer1 program we needed for platform installs
+rm $build_dir/.heroku/php/bin/composer1
