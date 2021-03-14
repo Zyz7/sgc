@@ -45,8 +45,8 @@ class Login extends Controlador
       $this->validar->contraseña($contraseña) &&
       $captcha == $_SESSION["captcha"]) {
         if ($this->modelo->autenticar($valores)) {
+          
           $usuario = $this->modelo->usuario($email);
-          session_start();
           $_SESSION[$email] = $email;
           header("Location:".RUTA."usuario/".$_SESSION[$email]);
         } else {
@@ -70,7 +70,6 @@ class Login extends Controlador
   function captcha()
   {
     session_start();
-
     $captcha_string = $_SESSION['captcha'];
 
     // Crea una nueva imagen en color negro
