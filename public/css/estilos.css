@@ -177,7 +177,7 @@ span[class="acierto"] {
 }
 
 #figureCaptcha {
-  
+  margin: 0 auto;
 }
 
 .formLogin p, .formLogin a {
