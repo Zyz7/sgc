@@ -176,6 +176,10 @@ span[class="acierto"] {
   background-color: hsl(146, 50%, 36%);
 }
 
+#figureCaptcha {
+  
+}
+
 .formLogin p, .formLogin a {
   margin: 5px 10px;
 }

@@ -1,4 +1,4 @@
-create table usuarios(
+create table usuarios (
 id integer auto_increment primary key,
 nombre varchar(25) not null,
 apellido varchar(25) not null,
@@ -7,15 +7,27 @@ email varchar(50) not null,
 clave varchar(60) not null,
 imagen longblob,
 tipo varchar(15),
-estado varchar(15));
+estado boolean);
 
-create table entradas(
+create table categorias (
+id integer auto_increment primary key,
+nombre varchar(25) not null,
+estado boolean);
+
+create table plantillas (
+id integer auto_increment primary key,
+nombre varchar(25) not null,
+estado boolean);
+
+create table entradas (
 id integer auto_increment primary key,
 titulo varchar(150) not null,
 descripcion text not null,
 contenido longtext not null,
 fecha_entrada date not null,
 fecha_modificacion date,
+autor integer,
+categoria integer,
 estado boolean,
-autor varchar(25),
-categoria varchar(25));
+foreign key (autor) references usuarios(id),
+foreign key (categoria) references categorias(id));
