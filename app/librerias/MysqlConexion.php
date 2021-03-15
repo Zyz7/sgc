@@ -36,9 +36,11 @@ class MysqlConexion
   {
     $resultado = mysqli_query($this->conexion, $consulta);
 
-	  if($resultado && mysqli_num_rows($resultado) > 0) {
-      $valor = mysqli_fetch_assoc($resultado);
-	  }
+	  if ($resultado) {
+      if (mysqli_num_rows($resultado) > 0) {
+        $valor = mysqli_fetch_assoc($resultado);
+      }
+    }
 
     return $valor;
   }
