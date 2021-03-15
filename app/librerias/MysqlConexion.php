@@ -6,16 +6,16 @@
  * \date 2021
  * \author Mario Alberto Zayas González
  */
-class MysqlConexion 
+class MysqlConexion
 {
-  private $host = "eu-cdbr-west-03.cleardb.net";
-  private $usuario = "b1c91617573beb";
-  private $clave = "7553b48e";
-  private $db = "heroku_beecda265392686";
-  private $puerto = ""; /// Windows necesita el puerto
+  private $host = 'eu-cdbr-west-03.cleardb.net';
+  private $usuario = 'b1c91617573beb';
+  private $clave = '7553b48e';
+  private $db = 'heroku_beecda265392686';
+  private $puerto = ''; /// Windows necesita el puerto
   private $conexion;
 
-  function __construct() 
+  function __construct()
   {
     $this->conexion = mysqli_connect($this->host, $this->usuario, $this->clave,
       $this->db);
@@ -26,7 +26,7 @@ class MysqlConexion
     }
 
     /// Si no se establen los caracteres utf8 se desconecta
-    if (!mysqli_set_charset($this->conexion, "utf8")) {
+    if (!mysqli_set_charset($this->conexion, 'utf8')) {
       exit();
     }
   }
@@ -45,7 +45,7 @@ class MysqlConexion
   }
 
   /// \fn cosultas Regresa más de un valor
-  function consultas($consulta) 
+  function consultas($consulta)
   {
     $valores = [];
     $resultado = mysqli_query($this->conexion, $consulta);
@@ -60,7 +60,7 @@ class MysqlConexion
   }
 
   /// \fn consultaBooleno Regresa un valor booleano
-  function consultaBooleano($consulta) 
+  function consultaBooleano($consulta)
   {
     $resultado = mysqli_query($this->conexion, $consulta);
     return $resultado;

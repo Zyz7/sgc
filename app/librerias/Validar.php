@@ -33,7 +33,7 @@ class Validar
     $this->resultado = false;
 
     if (!empty($valor)) {
-      if (preg_match("/[!-~]{6,12}/", $valor)) {
+      if (preg_match('/[!-~]{6,12}/', $valor)) {
         $this->resultado = true;
       }
     }
@@ -46,8 +46,8 @@ class Validar
     $this->resultado = false;
 
     if (!empty($valor)) {
-      if (preg_match("/[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,25}/", $valor)) {
-        if (!preg_match("/[0-9]/", $valor)) {
+      if (preg_match('/[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,25}/', $valor)) {
+        if (!preg_match('/[0-9]/', $valor)) {
           $this->resultado = true;
         }
       }
@@ -61,8 +61,8 @@ class Validar
     $this->resultado = false;
 
     if (!empty($valor)) {
-      if (preg_match("/[a-zA-ZáéíóúÁÉÍÓÚñÑ\s0-9]{2,15}/", $valor)) {
-        if (!preg_match("/[!-\/:-@[-`{-~]/", $valor)) {
+      if (preg_match('/[a-zA-ZáéíóúÁÉÍÓÚñÑ\s0-9]{2,15}/', $valor)) {
+        if (!preg_match('/[!-\/:-@[-`{-~]/', $valor)) {
           $this->resultado = true;
         }
       }
@@ -75,7 +75,7 @@ class Validar
   {
     $this->resultado = false;
     $extensiones = array('jpg', 'jpeg', 'png');
-    $name_campos = explode(".", $valores['name']);
+    $name_campos = explode('.', $valores['name']);
     $ext = strtolower(end($name_campos));
 
     if (in_array($ext, $extensiones)) {
@@ -86,15 +86,4 @@ class Validar
     return $this->resultado;
   }
 
-  /// \fn captcha Valida el texto ingresado para el captcha
-  function captcha($valor)
-  {
-    $this->resultado = false;
-    session_start();
-    
-    if ($valor == $_SESSION["captcha"]) {
-      $this->resultado = true;
-    }
-    return $this->resultado;
-  }
 }

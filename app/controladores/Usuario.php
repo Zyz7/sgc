@@ -22,10 +22,10 @@ class Usuario extends Controlador
   {
     session_start();
     if (isset($_SESSION[$usuario])) {
-      $datos = ["RUTA" => RUTA, "titulo" => "Inicio", "usuario" => $usuario];
-      $this->vista("usuarioVista", $datos);
+      $datos = ['RUTA' => RUTA, 'titulo' => 'Inicio', 'usuario' => $usuario];
+      $this->vista('usuarioVista', $datos);
     } else {
-      header("Location:".RUTA."login");
+      header('Location:'.RUTA.'login');
     }
   }
 
@@ -34,8 +34,8 @@ class Usuario extends Controlador
   {
     session_start();
     if (isset($_SESSION[$usuario])) {
-      $datos = ["RUTA" => RUTA, "titulo" => "Editar", "usuario" => $usuario,
-      "error" => "", "acierto" => ""];
+      $datos = ['RUTA' => RUTA, 'titulo' => 'Editar', 'usuario' => $usuario,
+      'error' => '', 'acierto' => ''];
 
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	      if (isset($_FILES['imagen']) &&
@@ -50,18 +50,18 @@ class Usuario extends Controlador
 		      if ($this->validar->imagen($valores)) {
 		        if (move_uploaded_file($valores['tmp_name'], './img/logo_'.
 			        $usuario.'.'.$ext)) {
-			        $datos["acierto"] = "Imagen guardada";
+			        $datos['acierto'] = 'Imagen guardada';
 			      } else {
-			        $datos["error"] = "No se pudo guardar la imagen";
+			        $datos['error'] = 'No se pudo guardar la imagen';
 			      }
 		      } else {
-				$datos["error"] = "Imagen inválida";
+				$datos['error'] = 'Imagen inválida';
 			  }
 		    }
 	    }
-      $this->vista("usuarioEditarVista", $datos);
+      $this->vista('usuarioEditarVista', $datos);
     } else {
-      header("Location:".RUTA);
+      header('Location:'.RUTA);
     }
   }
 

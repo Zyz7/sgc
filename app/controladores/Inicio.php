@@ -13,7 +13,7 @@ class Inicio extends Controlador
 
   function __construct()
   {
-    $this->modelo = $this->modelo("InicioModelo");
+    $this->modelo = $this->modelo('InicioModelo');
     //$this->validar = new Validar();
   }
 
@@ -21,11 +21,11 @@ class Inicio extends Controlador
   function caratula()
   {
     if ($this->modelo->comprobarEntradas()) {
-      $datos = ["RUTA" => RUTA, "titulo" => "Inicio", "plantilla" => ""];
+      $datos = ['RUTA' => RUTA, 'titulo' => 'Inicio', 'plantilla' => ''];
       $this->vista("entradaVista", $datos);
     } else {
-      $datos = ["RUTA" => RUTA, "titulo" => "Inicio"];
-      $this->vista("inicioVista", $datos);
+      $datos = ['RUTA' => RUTA, 'titulo' => 'Inicio'];
+      $this->vista('inicioVista', $datos);
     }
   }
 

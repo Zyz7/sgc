@@ -21,7 +21,7 @@ class InicioModelo
   {
     $this->resultado = false;
 
-    $consulta = "select * from entradas";
+    $consulta = 'select * from entradas';
     $valores = $this->db->consultas($consulta);
 
     if (strlen($valores) > 0) {

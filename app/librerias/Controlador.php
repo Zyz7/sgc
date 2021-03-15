@@ -15,15 +15,15 @@ class Controlador
   /// \fn modelo Instancia el modelo
   public function modelo($modelo)
   {
-	  require_once("../app/modelos/".$modelo.".php");
+	  require_once('../app/modelos/'.$modelo.'.php');
 	  return new $modelo();
   }
 
   /// \fn vista Imprime la vista con sus parámetros
   public function vista($vista, $datos=[])
   {
-    if (file_exists("../app/vistas/".$vista.".html")) {
-	    $template = file_get_contents("../app/vistas/".$vista.".html");
+    if (file_exists('../app/vistas/'.$vista.'.html')) {
+	    $template = file_get_contents('../app/vistas/'.$vista.'.html');
 
 	    /// Sustituye los parámetros por su variable de la forma {valor}
       foreach ($datos as $clave => $valor) {
@@ -31,7 +31,7 @@ class Controlador
       }
       print $template;
 	  } else {
-	    die("La vista no existe");
+	    die('La vista no existe');
 	  }
   }
 

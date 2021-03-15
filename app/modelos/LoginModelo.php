@@ -28,10 +28,10 @@ class LoginModelo
   {
     $this->resultado = false;
 
-    $consulta = "select tipo from usuarios";
+    $consulta = 'select tipo from usuarios';
     $valores = $this->db->consultas($consulta);
 
-    if (in_array("admin", $valores)) {
+    if (in_array('admin', $valores)) {
       $this->resultado = true;
     }
     return $this->resultado;
@@ -41,7 +41,7 @@ class LoginModelo
   function registrate($valores)
   {
     $this->resultado = false;
-    $hash = password_hash($valores["contraseña"], PASSWORD_BCRYPT);
+    $hash = password_hash($valores['contraseña'], PASSWORD_BCRYPT);
 
     $consulta = "insert into usuarios values(0, ";
     $consulta.= "'".$valores["nombre"]."', ";
@@ -65,7 +65,7 @@ class LoginModelo
     $consulta = "select email from usuarios where email='".$email."'";
     $valores = $this->db->consulta($consulta);
 
-    if ($valores["email"] == NULL) {
+    if ($valores['email'] == NULL) {
       $this->resultado = true;
     }
     return $this->resultado;
@@ -78,7 +78,7 @@ class LoginModelo
     $consulta = "select clave from usuarios where email='".$valores["email"]."'";
     $valoresConsulta = $this->db->consulta($consulta);
 
-    if (password_verify($valores["contraseña"], $valoresConsulta["clave"])) {
+    if (password_verify($valores['contraseña'], $valoresConsulta['clave'])) {
       $this->resultado = true;
     }
 
@@ -90,24 +90,24 @@ class LoginModelo
   {
     $this->resultado = false;
     //datos de la cuenta de Gmail
-    $this->phpmailer->Username = "zyzstfwr@gmail.com";
-    $this->phpmailer->Password = "jrBSz$7W";
+    $this->phpmailer->Username = 'zyzstfwr@gmail.com';
+    $this->phpmailer->Password = 'jrBSz$7W';
 
     // $phpmailer->SMTPDebug = 1;
     $this->phpmailer->SMTPSecure = 'tls';
-    $this->phpmailer->Host = "smtp.gmail.com";
+    $this->phpmailer->Host = 'smtp.gmail.com';
     //puerto 587 requiere tls
     $this->phpmailer->Port = 587;
     $this->phpmailer->isSMTP();
     $this->phpmailer->SMTPAuth = true;
 
-    $this->phpmailer->setFrom($this->phpmailer->Username,"SGC");
+    $this->phpmailer->setFrom($this->phpmailer->Username,'SGC');
     $this->phpmailer->addAddress($email);
 
-    $this->phpmailer->CharSet = "utf-8";
-    $this->phpmailer->Subject = "Restablecer contraseña";
-    $this->phpmailer->Body .="<h1>Restablecer contraseña</h1>";
-    $this->phpmailer->Body .= "<p>Da clic en el siguiente enlace:</p>";
+    $this->phpmailer->CharSet = 'utf-8';
+    $this->phpmailer->Subject = 'Restablecer contraseña';
+    $this->phpmailer->Body .= '<h1>Restablecer contraseña</h1>';
+    $this->phpmailer->Body .= '<p>Da clic en el siguiente enlace:</p>';
     $this->phpmailer->Body .= "<p><a href='https://sgcphp.herokuapp.com/login/recuperar/".
       $email."'>Restablecer</a></p>";
     $this->phpmailer->isHTML(true);
@@ -145,7 +145,7 @@ class LoginModelo
   function recuperarContraseña($valores)
   {
     $this->resultado = false;
-    $hash = password_hash($valores["contraseña"], PASSWORD_BCRYPT);
+    $hash = password_hash($valores['contraseña'], PASSWORD_BCRYPT);
 
     $consultaId = "select id from usuarios where email='".$valores["email"]."'";
     $id = $this->db->consulta($consultaId);

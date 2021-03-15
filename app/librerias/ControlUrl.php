@@ -15,8 +15,8 @@
  */
 class ControlUrl
 {
-  protected $controlador = "Inicio";
-  protected $metodo = "caratula";
+  protected $controlador = 'Inicio';
+  protected $metodo = 'caratula';
   protected $parametros = [];
 
   function __construct()
@@ -24,7 +24,7 @@ class ControlUrl
     $url = $this->separarUrl();
 
     /// Verifica la existencia del controlador
-    if ($url != "" && file_exists("../app/controladores/".ucwords($url[0]).".php")) {
+    if ($url != '' && file_exists('../app/controladores/'.ucwords($url[0]).'.php')) {
       /// ucwords convierte a mayúscula el primer caracter
       $this->controlador = ucwords($url[0]);
       /// unset elimina la variable
@@ -32,7 +32,7 @@ class ControlUrl
     }
 
     /// Asigna el controlador
-    require_once("../app/controladores/".ucwords($this->controlador).".php");
+    require_once('../app/controladores/'.ucwords($this->controlador).'.php');
     $this->controlador = new $this->controlador;
 
     /// isset determina si la variable esta definida
@@ -53,19 +53,19 @@ class ControlUrl
   /// \fn separarUrl Elimina carácteres de la url
   function separarUrl()
   {
-    $url = "";
+    $url = '';
 
     //isset determina si la variable esta definida
-    if (isset($_GET["url"])) {
+    if (isset($_GET['url'])) {
       //rtrim elimina los caracteres / y \\ del final de la cadena
-      $url = rtrim($_GET["url"],"/");
-      $url = rtrim($_GET["url"],"\\");
+      $url = rtrim($_GET['url'],'/');
+      $url = rtrim($_GET['url'],'\\');
 
       //elimina los caracteres ilegales de la url
       $url = filter_var($url, FILTER_SANITIZE_URL);
 
       //divide la cadena mediante el caracter /
-      $url = explode("/", $url);
+      $url = explode('/', $url);
     }
     return $url;
   }

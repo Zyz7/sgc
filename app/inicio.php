@@ -5,12 +5,12 @@
  * \author Mario Alberto Zayas González
  */
 
-/* 
+/*
  * Define la constante RUTA
  * En modo local se cambia por el nombre de la carpeta
  * Ejemplo: /nombre_carpeta/
  */
-define("RUTA", "/");
+define('RUTA', '/');
 
 /// Si no se pueden incluir los siguientes archivos se detiene la ejecución
 require_once('librerias/MysqlConexion.php');
