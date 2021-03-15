@@ -13,7 +13,7 @@ class Usuario extends Controlador
 
   function __construct()
   {
-    //$this->modelo = $this->modelo("LoginModelo");
+    $this->modelo = $this->modelo("UsuarioModelo");
     $this->validar = new Validar();
   }
 
@@ -27,6 +27,15 @@ class Usuario extends Controlador
     } else {
       header('Location:'.RUTA.'login');
     }
+  }
+
+  /// \fn imagen
+  function imagen($usuario) {
+    $ruta = $this->modelo->imagen($usuario);
+    $imagen = imagecreatefrompng($ruta);
+    header('Content-type: image/png');
+    imagepng($imagen);
+    imagedestroy($imagen);
   }
 
   /// \fn editar

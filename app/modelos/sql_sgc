@@ -5,7 +5,7 @@ apellido varchar(25) not null,
 usuario varchar(15) not null,
 email varchar(50) not null,
 clave varchar(60) not null,
-imagen longblob,
+imagen varchar(150),
 tipo varchar(15),
 estado boolean);
 

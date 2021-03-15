@@ -34,7 +34,6 @@ class MysqlConexion
   /// \fn consulta Regresa un valor
   function consulta($consulta)
   {
-    $valor = [];
     $resultado = mysqli_query($this->conexion, $consulta);
 
 	  if($resultado && mysqli_num_rows($resultado) > 0) {

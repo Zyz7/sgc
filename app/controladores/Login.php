@@ -29,24 +29,28 @@ class Login extends Controlador
       $captcha = $_POST['captcha'];
       $valores = ['email' => $email, 'contraseña' => $contraseña];
 
-      if ($this->validar->email($email) &&
-      $this->validar->contraseña($contraseña) &&
-      $captcha == $_SESSION['captcha']) {
-        if ($this->modelo->autenticar($valores)) {
-
-          $usuario = $this->modelo->usuario($email);
-          $_SESSION[$email] = $email;
-          header('Location:'.RUTA.'usuario/'.$_SESSION[$email]);
+      if ($captcha == $_SESSION['captcha']) {
+        if ($this->validar->email($email) &&
+        $this->validar->contraseña($contraseña)) {
+          if ($this->modelo->autenticar($valores)) {
+            if ($this->modelo->estado($email)) {
+              $usuario = $this->modelo->usuario($email);
+              $_SESSION[$email] = $email;
+              header('Location:'.RUTA.'usuario/'.$_SESSION[$email]);
+            } else {
+              $datos['error'] = 'Usuario inactivo';
+              $this->vista('loginVista', $datos);
+            }
+          } else {
+            $datos['error'] = 'Correo o contraseña incorrectos';
+            $this->vista('loginVista', $datos);
+          }
         } else {
-          $datos['error'] = 'Correo o contraseña incorrectos';
+          $datos['error'] = 'Correo o contraseña inválidos';
           $this->vista('loginVista', $datos);
         }
       } else {
-        if ($captcha != $_SESSION['captcha']) {
-          $datos['error'] = 'Captcha incorrecto';
-        } else {
-          $datos['error'] = 'Correo o contraseña inválidos';
-        }
+        $datos['error'] = 'Captcha incorrecto';
         $this->vista('loginVista', $datos);
       }
     } else {

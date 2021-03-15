@@ -23,20 +23,6 @@ class LoginModelo
     $this->phpmailer = new PHPMailer();
   }
 
-  /// \fn comprobarAdmin Comprueba que exista por lo menos un administrador
-  function comprobarAdmin()
-  {
-    $this->resultado = false;
-
-    $consulta = 'select tipo from usuarios';
-    $valores = $this->db->consultas($consulta);
-
-    if (in_array('admin', $valores)) {
-      $this->resultado = true;
-    }
-    return $this->resultado;
-  }
-
   /// \fn registrate Crea un nuevo usuario
   function registrate($valores)
   {
@@ -49,8 +35,9 @@ class LoginModelo
     $consulta.= "'".$valores["usuario"]."', ";
     $consulta.= "'".$valores["email"]."', ";
     $consulta.= "'".$hash."', ";
+    $consulta.= "'./img/avatar.png', ";
     $consulta.= "'', ";
-    $consulta.= "'Activo')";
+    $consulta.= "1)";
 
     if ($this->db->consultaBooleano($consulta)) {
       $this->resultado = true;
@@ -65,7 +52,7 @@ class LoginModelo
     $consulta = "select email from usuarios where email='".$email."'";
     $valores = $this->db->consulta($consulta);
 
-    if ($valores['email'] == NULL) {
+    if (empty($valores)) {
       $this->resultado = true;
     }
     return $this->resultado;
@@ -79,6 +66,20 @@ class LoginModelo
     $valoresConsulta = $this->db->consulta($consulta);
 
     if (password_verify($valores['contraseña'], $valoresConsulta['clave'])) {
+      $this->resultado = true;
+    }
+
+    return $this->resultado;
+  }
+
+  /// \fn estado Verifica que el usuario este activo
+  function estado($email)
+  {
+    $this->resultado = false;
+    $consulta = "select estado from usuarios where email='".$email."'";
+    $valor = $this->db->consulta($consulta);
+
+    if ($valor) {
       $this->resultado = true;
     }
 
