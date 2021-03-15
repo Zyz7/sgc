@@ -64,8 +64,9 @@ class Login extends Controlador
     $captcha = '';
 
     for($i = 0; $i < 6; $i++) {
-        $caracter = $entrada[mt_rand(0, $largo - 1)];
-        $captcha .= $caracter;
+      // Genera un número aleatorio
+      $caracter = $entrada[mt_rand(0, $largo - 1)];
+      $captcha .= $caracter;
     }
 
     $_SESSION['captcha'] = $captcha;

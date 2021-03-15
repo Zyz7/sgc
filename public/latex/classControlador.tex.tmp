@@ -1,0 +1,28 @@
+\hypertarget{classControlador}{}\section{Referencia de la Clase Controlador}
+\label{classControlador}\index{Controlador@{Controlador}}
+
+
+Diagrama de herencias de Controlador
+% FIG 0
+\subsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classControlador_a7a046f4e247028cde6365a17c5e3cc92}\label{classControlador_a7a046f4e247028cde6365a17c5e3cc92}} 
+{\bfseries modelo} (\$modelo)
+\item 
+\hyperlink{classControlador_a3c37ec4aa1157110c6b6872538addd4f}{vista} (\$vista, \$datos=\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\subsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classControlador_a3c37ec4aa1157110c6b6872538addd4f}\label{classControlador_a3c37ec4aa1157110c6b6872538addd4f}} 
+\index{Controlador@{Controlador}!vista@{vista}}
+\index{vista@{vista}!Controlador@{Controlador}}
+\subsubsection{\texorpdfstring{vista()}{vista()}}
+{\footnotesize\ttfamily Controlador\+::vista (\begin{DoxyParamCaption}\item[{}]{\$vista,  }\item[{}]{\$datos = {\ttfamily \mbox{[}\mbox{]}} }\end{DoxyParamCaption})}
+
+Sustituye los parámetros por su variable de la forma \{valor\} 
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+app/librerias/Controlador.\+php\end{DoxyCompactItemize}
