@@ -111,9 +111,9 @@ class Login extends Controlador
       $letra_espacio = 170/6;
       $inicial = 15;
       // Escribe texto en la imagen usando fuentes
+	    $fuente = RUTA.'fonts/arial_narrow_7.ttf';
       imagettftext($imagen, 24, rand(-15, 15), $inicial + $i*$letra_espacio,
-      rand(25, 45), $texto_colores[rand(0, 1)], RUTA.'fonts/arial_narrow_7.ttf',
-      $captcha[$i]);
+      rand(25, 45), $texto_colores[rand(0, 1)], $fuente, $captcha[$i]);
     }
 
     header('Content-type: image/png');
