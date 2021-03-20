@@ -18,13 +18,17 @@ class Usuario extends Controlador
   }
 
   /// \fn caratula
-  function caratula($usuario)
+  function caratula($id)
   {
     session_start();
-    if (isset($_SESSION[$usuario])) {
-      $datos = ['RUTA' => RUTA, 'titulo' => 'Inicio', 'usuario' => $usuario];
+    $email = $this->modelo->email(base64_decode($id));
+
+    if (isset($_SESSION[$email])) {
+      $datos = ['RUTA' => RUTA, 'titulo' => 'Inicio', 'id' => $id,
+      'usuario' => $usuario['usuario'], 'error' => ''];
       $this->vista('usuarioVista', $datos);
     } else {
+      $datos['error'] = 'No se encontró la sesión';
       header('Location:'.RUTA.'login');
     }
   }

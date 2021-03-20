@@ -86,6 +86,14 @@ class LoginModelo
     return $this->resultado;
   }
 
+  ///  \fn id Obtiene el id del usuario
+  function id($email)
+  {
+    $consulta = "select id from usuarios where email='".$email."'";
+    $valor = $this->db->consulta($consulta);
+    return $valor;
+  }
+
   /// \fn enviarEmail Envía un correo electrónico mediante gmail con phpmailer
   function enviarEmail($email)
   {
@@ -159,12 +167,12 @@ class LoginModelo
     return $this->resultado;
   }
 
-  ///  \fn usuario Obtiene el nombre de usuario
-  function usuario($email)
+  ///  \fn email Obtiene el email del usuario
+  function email($id)
   {
-    $consulta = "select usuario from usuarios where email='".$email."'";
-    $usuario = $this->db->consulta($consulta);
-    return $usuario;
+    $consulta = "select email from usuarios where id='".$id."'";
+    $valor = $this->db->consulta($consulta);
+    return $valor;
   }
 
 }

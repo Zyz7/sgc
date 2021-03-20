@@ -34,9 +34,10 @@ class Login extends Controlador
         $this->validar->contraseña($contraseña)) {
           if ($this->modelo->autenticar($valores)) {
             if ($this->modelo->estado($email)) {
-              $usuario = $this->modelo->usuario($email);
+
+              $id = $this->modelo->id($email);
               $_SESSION[$email] = $email;
-              header('Location:'.RUTA.'usuario/'.$_SESSION[$email]);
+              header('Location:'.RUTA.'usuario/'.base64_encode($id));
             } else {
               $datos['error'] = 'Usuario inactivo';
               $this->vista('loginVista', $datos);
@@ -233,10 +234,11 @@ class Login extends Controlador
   }
 
   /// \fn salir Termina la sesión y regresa a la página de inicio
-  function salir($usuario)
+  function salir($id)
   {
     session_start();
-    unset($_SESSION[$usuario]);
+    $email = $this->modelo->email(base64_decode($id));
+    unset($_SESSION[$email['email']]);
     session_destroy();
     header('Location:'.RUTA);
   }
