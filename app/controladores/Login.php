@@ -230,7 +230,7 @@ class Login extends Controlador
       } else {
         $datos['error'] = 'Debe de tener mínimo 6 carácteres';
       }
-    } 
+    }
     $this->vista('recuperarContraseñaVista', $datos);
   }
 
@@ -238,7 +238,7 @@ class Login extends Controlador
   function salir($email)
   {
     session_start();
-    //$email = $this->modelo->email(base64_decode($id));
+    $email = base64_decode($email);
     unset($_SESSION[$email]);
     session_destroy();
     header('Location:'.RUTA);

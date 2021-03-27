@@ -16,18 +16,18 @@ class UsuarioModelo
     $this->db = new MysqlConexion();
   }
 
-  /// \fn email Obtiene el email del usuario
-  function email($id)
+  /// \fn usuario Obtiene el pseudónimo del usuario
+  function usuario($email)
   {
-    $consulta = "select email from usuarios where id='".$id."'";
+    $consulta = "select usuario from usuarios where email='".$email."'";
     $valor = $this->db->consulta($consulta);
     return $valor;
   }
 
-  /// \fn imagen Obtiene la dirección de la imagen
-  function imagen($usuario)
+  /// \fn imagen Obtiene la dirección de la imagen de perfil del usuario
+  function imagen($email)
   {
-    $consulta = "select imagen from usuarios where email='".$usuario."'";
+    $consulta = "select imagen from usuarios where email='".$email."'";
     $valor = $this->db->consulta($consulta);
     return $valor;
   }

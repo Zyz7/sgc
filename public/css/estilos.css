@@ -209,7 +209,7 @@ span[class="acierto"] {
 
 /********** Termina vista login **********/
 
-/********** Inicia vista admin **********/
+/********** Inicia vista usuario **********/
 
 .contenedor {
   display: flex;
@@ -232,4 +232,4 @@ span[class="acierto"] {
   width: 80%;
 }
 
-/********** Termina vista admin **********/
+/********** Termina vista usuario **********/

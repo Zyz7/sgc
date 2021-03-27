@@ -21,9 +21,9 @@ class Usuario extends Controlador
   function caratula($email)
   {
     session_start();
-    $email = base64_decode($email);
+    $usuario = $this->modelo->usuario(base64_decode($email));
 
-    if (isset($_SESSION[$email])) {
+    if (isset($_SESSION[base64_decode($email)])) {
       $datos = ['RUTA' => RUTA, 'titulo' => 'Inicio', 'email' => $email,
       'usuario' => $usuario['usuario'], 'error' => ''];
       $this->vista('usuarioVista', $datos);
@@ -34,9 +34,11 @@ class Usuario extends Controlador
   }
 
   /// \fn imagen
-  function imagen($usuario) {
-    $ruta = $this->modelo->imagen($usuario);
-    $imagen = imagecreatefrompng($ruta);
+  function imagen($email) {
+    $email = base64_decode($email);
+    $ruta = $this->modelo->imagen($email);
+    $imagen = imagecreatefrompng($ruta['imagen']);
+
     header('Content-type: image/png');
     imagepng($imagen);
     imagedestroy($imagen);
