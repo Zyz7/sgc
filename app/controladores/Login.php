@@ -2,7 +2,7 @@
 
 /*
  * \class Login
- * \brief Realiza la gestión de iniciar sesión
+ * \brief Gestiona el inicio de sesión
  * \date 2021
  * \author Mario Alberto Zayas González
  */
@@ -37,7 +37,7 @@ class Login extends Controlador
 
               $id = $this->modelo->id($email);
               $_SESSION[$email] = $email;
-              header('Location:'.RUTA.'usuario/'.base64_encode($id));
+              header('Location:'.RUTA.'usuario/'.base64_encode($email));
             } else {
               $datos['error'] = 'Usuario inactivo';
               $this->vista('loginVista', $datos);
@@ -59,7 +59,7 @@ class Login extends Controlador
     }
   }
 
-  /// \fn captcha Genera el captcha
+  /// \fn captcha Genera la imagen del captcha
   function captcha()
   {
     session_start();
@@ -187,7 +187,7 @@ class Login extends Controlador
   /// \fn restablecer Se envía un correo para restablecer la contraseña
   function restablecer()
   {
-    $datos = ['RUTA' => RUTA, 'titulo' => 'Restablecer', 'error' => '',
+    $datos = ['RUTA' => RUTA, 'titulo' => 'Enviar correo', 'error' => '',
     'errorCorreo' => '', 'acierto' => ''];
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -217,6 +217,7 @@ class Login extends Controlador
     'acierto' => '', 'email' => $email];
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      $email = base64_decode($email);
       $contraseña = $_POST['contraseña'];
       $valores = ['email' => $email, 'contraseña' => $contraseña];
 
@@ -229,16 +230,16 @@ class Login extends Controlador
       } else {
         $datos['error'] = 'Debe de tener mínimo 6 carácteres';
       }
-    }
+    } 
     $this->vista('recuperarContraseñaVista', $datos);
   }
 
   /// \fn salir Termina la sesión y regresa a la página de inicio
-  function salir($id)
+  function salir($email)
   {
     session_start();
-    $email = $this->modelo->email(base64_decode($id));
-    unset($_SESSION[$email['email']]);
+    //$email = $this->modelo->email(base64_decode($id));
+    unset($_SESSION[$email]);
     session_destroy();
     header('Location:'.RUTA);
   }

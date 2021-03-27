@@ -18,13 +18,13 @@ class Usuario extends Controlador
   }
 
   /// \fn caratula
-  function caratula($id)
+  function caratula($email)
   {
     session_start();
-    $email = $this->modelo->email(base64_decode($id));
+    $email = base64_decode($email);
 
     if (isset($_SESSION[$email])) {
-      $datos = ['RUTA' => RUTA, 'titulo' => 'Inicio', 'id' => $id,
+      $datos = ['RUTA' => RUTA, 'titulo' => 'Inicio', 'email' => $email,
       'usuario' => $usuario['usuario'], 'error' => ''];
       $this->vista('usuarioVista', $datos);
     } else {

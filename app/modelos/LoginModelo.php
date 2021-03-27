@@ -98,7 +98,6 @@ class LoginModelo
   function enviarEmail($email)
   {
     $this->resultado = false;
-    //datos de la cuenta de Gmail
     $this->phpmailer->Username = 'zyzstfwr@gmail.com';
     $this->phpmailer->Password = 'jrBSz$7W';
 
@@ -117,8 +116,8 @@ class LoginModelo
     $this->phpmailer->Subject = 'Restablecer contraseña';
     $this->phpmailer->Body .= '<h1>Restablecer contraseña</h1>';
     $this->phpmailer->Body .= '<p>Da clic en el siguiente enlace:</p>';
-    $this->phpmailer->Body .= "<p><a href='https://sgcphp.herokuapp.com/login/recuperar/".
-      $email."'>Restablecer</a></p>";
+    $this->phpmailer->Body .= "<p><a href='".RUTA."login/recuperar/".
+      base64_encode($email)."'>Restablecer</a></p>";
     $this->phpmailer->isHTML(true);
 
     if ($this->phpmailer->send()) {
@@ -159,7 +158,7 @@ class LoginModelo
     $consultaId = "select id from usuarios where email='".$valores["email"]."'";
     $id = $this->db->consulta($consultaId);
     $consulta = "update usuarios set clave='".$hash."' ";
-    $consulta.= "where id='".$id."'";
+    $consulta.= "where id='".$id['id']."'";
 
     if ($this->db->consultaBooleano($consulta)) {
       $this->resultado = true;
