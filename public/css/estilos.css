@@ -228,6 +228,14 @@ span[class="acierto"] {
   margin: 5px 20px;
 }
 
+.imagenPerfil {
+  text-align: center;
+}
+
+.imagenPerfil img {
+  width: 100px;
+}
+
 .menuDer {
   width: 80%;
 }

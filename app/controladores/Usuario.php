@@ -33,7 +33,7 @@ class Usuario extends Controlador
     }
   }
 
-  /// \fn imagen
+  /// \fn imagen Muestra la imagen de perfil del usuario
   function imagen($email) {
     $email = base64_decode($email);
     $ruta = $this->modelo->imagen($email);
