@@ -44,39 +44,24 @@ class Usuario extends Controlador
     imagedestroy($imagen);
   }
 
-  /// \fn editar
-  function editar($usuario)
+  /// \fn editar Interfaz para editar datos del usuario
+  function editar($email)
   {
     session_start();
-    if (isset($_SESSION[$usuario])) {
-      $datos = ['RUTA' => RUTA, 'titulo' => 'Editar', 'usuario' => $usuario,
-      'error' => '', 'acierto' => ''];
+    $usuario = $this->modelo->usuario(base64_decode($email));
+
+    if (isset($_SESSION[base64_decode($email)])) {
+      $datos = ['RUTA' => RUTA, 'titulo' => 'Editar usuario', 'email' => $email,
+      'usuario' => $usuario['usuario'], 'error' => '', 'acierto' => '',
+      'errorNombre' => '', 'errorApellido' => '', 'errorUsuario' => '',
+      'errorCorreo' => '', 'errorContraseña' => '', 'errorImagen' => ''];
 
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	      if (isset($_FILES['imagen']) &&
-	      $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
-		      $valores = ["tmp_name" => $_FILES['imagen']['tmp_name'],
-			  "name" => $_FILES['imagen']['name'], "size" =>
-			  $_FILES['imagen']['size'], "type" =>
-			  $_FILES['imagen']['type']];
-			  $name_campos = explode(".", $valores['name']);
-			  $ext = strtolower(end($name_campos));
-
-		      if ($this->validar->imagen($valores)) {
-		        if (move_uploaded_file($valores['tmp_name'], './img/logo_'.
-			        $usuario.'.'.$ext)) {
-			        $datos['acierto'] = 'Imagen guardada';
-			      } else {
-			        $datos['error'] = 'No se pudo guardar la imagen';
-			      }
-		      } else {
-				$datos['error'] = 'Imagen inválida';
-			  }
-		    }
-	    }
+        
+      }
       $this->vista('usuarioEditarVista', $datos);
     } else {
-      header('Location:'.RUTA);
+      header('Location:'.RUTA.'login');
     }
   }
 

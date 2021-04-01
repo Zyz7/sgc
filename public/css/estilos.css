@@ -214,10 +214,6 @@ span[class="acierto"] {
   display: flex;
 }
 
-.menuDer {
-  background-color: hsl(207, 44%, 49%, 0.1);
-}
-
 .menuIzq {
   width: 15%;
   height: 100vh;
@@ -225,10 +221,7 @@ span[class="acierto"] {
   padding: 0 10px;
   flex-direction: column;
   border: 1px solid hsl(207, 44%, 49%);
-}
-
-.menuIzq a {
-  margin: 10px 20px;
+  background-color: hsl(0, 0%, 50%, 0.1);
 }
 
 .imagenPerfil {
@@ -237,10 +230,24 @@ span[class="acierto"] {
 
 .imagenPerfil img {
   width: 100px;
+  border: 1px solid black;
+}
+
+.menuIzq .menu span {
+  margin: 10px 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.menuIzq .menu p {
+  margin: 10px 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .menuDer {
   width: 85%;
+  background-color: hsl(207, 44%, 49%, 0.1);
 }
 
 /********** Termina vista usuario **********/

@@ -156,15 +156,15 @@ class Login extends Controlador
         $total = 0;
         if (!$this->validar->texto($nombre)) {
           $total++;
-          $datos['errorNombre'] = 'Ingrese sólo letras menores a 25 carácteres';
+          $datos['errorNombre'] = 'Ingrese sólo letras menores a 25 caracteres';
         }
         if (!$this->validar->texto($apellido)) {
           $total++;
-          $datos['errorApellido'] = 'Ingrese sólo letras menores a 25 carácteres';
+          $datos['errorApellido'] = 'Ingrese sólo letras menores a 25 caracteres';
         }
         if (!$this->validar->usuario($usuario)) {
           $total++;
-          $datos['errorUsuario'] = 'Sólo letras y números menores a 15 carácteres';
+          $datos['errorUsuario'] = 'Sólo letras y números menores a 15 caracteres';
         }
         if (!$this->validar->email($email)) {
           $total++;
@@ -172,7 +172,7 @@ class Login extends Controlador
         }
         if (!$this->validar->contraseña($contraseña)) {
           $total++;
-          $datos['errorContraseña'] = 'Debe de tener mínimo 6 carácteres';
+          $datos['errorContraseña'] = 'Debe de tener mínimo 6 caracteres';
         }
         if ($total == 1) {
 		      $datos['error'] = $total.' error en el formulario';
@@ -228,7 +228,7 @@ class Login extends Controlador
           $datos['error'] = 'No se pudo restablecer la contraseña';
         }
       } else {
-        $datos['error'] = 'Debe de tener mínimo 6 carácteres';
+        $datos['error'] = 'Debe de tener mínimo 6 caracteres';
       }
     }
     $this->vista('recuperarContraseñaVista', $datos);

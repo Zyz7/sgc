@@ -24,31 +24,67 @@
 
   <body>
     <div class="contenedor">
-	    <section class="menuIzq">
-	      <figure class="figureLogin">
-            <img src="{RUTA}img/logo.png" alt="Logo" aria-describedby="logo"/>
-          </figure>
-          <p><a href="{RUTA}usuario/{usuario}">Inicio</a></p>
+      <section class="menuIzq">
+        <figure class="imagenPerfil">
+          <img src="{RUTA}usuario/imagen/{email}" alt="Imagen de perfil"
+          aria-describedby=""/>
+        </figure>
+
+        <div class="menu">
+          <p><a href="{RUTA}usuario/{email}">Inicio</a></p>
           <span>{usuario}</span>
-          <p><a href="{RUTA}usuario/editar/{usuario}">Editar</a></p>
-	      <p><a href="{RUTA}login/salir/{usuario}">Salir</a></p>
-	    </section>  
-	  
+	        <p><a href="{RUTA}usuario/editar/{email}">Editar</a></p>
+          <span>Plantillas</span>
+          <span>Entradas</span>
+          <span>Usuarios</span>
+          <span>Actividad</span>
+          <span>Autoconfigurar</span>
+	        <p><a href="{RUTA}login/salir/{email}">Salir</a></p>
+        </div>
+      </section>
+
 	    <section class="menuDer">
-	      <h2>Editar</h2>
-		    
+	      <h2 class="h1Login">Editar</h2>
 	      <span class="error">{error}</span>
-              <span class="acierto">{acierto}</span>
-		    
-	      <form class="" method="post" action="{RUTA}usuario/editar/{usuario}" 
-	      enctype="multipart/form-data">
+        <span class="acierto">{acierto}</span>
+
+	      <form class="formLogin" method="post" action="{RUTA}usuario/editar/{email}">
 	        <label for="imagen">Imagen</label>
-	        <input type="file" id="imagen" name="imagen" 
-	          accept=".png, .jpeg, .jpg"/>
-		<button>Guardar</button>
+	        <input type="url" id="imagen" name="imagen" autofocus="true" value=""
+            title="Ingrese sólo una dirección válida"/>
+          <span class="spanLogin">{errorImagen}</span>
+
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" value=""
+            pattern="[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]{2,25}"
+            title="Ingrese sólo letras menores a 25 carácteres"/>
+          <span class="spanLogin">{errorNombre}</span>
+
+          <label for="apellido">Apellido</label>
+          <input type="text" id="apellido" name="apellido" value=""
+            pattern="[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]{2,25}"
+            title="Ingrese sólo letras menores a 25 carácteres"/>
+          <span class="spanLogin">{errorApellido}</span>
+
+          <label for="usuario">Nombre de usuario</label>
+          <input type="text" id="usuario" name="usuario" value=""
+            pattern="[a-zA-Z0-9\sáéíóúÁÉÍÓÚñÑ]{2,15}"
+            title="Sólo letras y números menores a 15 carácteres"/>
+          <span class="spanLogin">{errorUsuario}</span>
+
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" value="" pattern="{5,100}"
+            title="Debe de tener el formato nombre@dominio.extension"/>
+          <span class="spanLogin">{errorCorreo}</span>
+
+          <label for="contraseña">Contraseña</label>
+          <input type="password" id="contraseña" name="contraseña" value=""
+            pattern="[!-~]{6,12}" title="Debe de tener mínimo 6 carácteres"/>
+          <span class="spanLogin">{errorContraseña}</span>
+
+		      <button>Guardar</button>
 	      </form>
 	    </section>
     </div>
   </body>
 </html>
-
