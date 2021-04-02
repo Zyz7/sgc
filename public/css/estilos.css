@@ -250,4 +250,60 @@ span[class="acierto"] {
   background-color: hsl(207, 44%, 49%, 0.1);
 }
 
+.form1 { grid-area: form1; }
+.form2 { grid-area: form2; }
+.form3 { grid-area: form3; }
+
+.contendorFormUsuario {
+  display: grid;
+  grid:
+  'form1 form2'
+  'form1 form3';
+}
+
+.formUsuario {
+  width: 40%;
+  padding: 5px;
+  display: flex;
+  margin: 5% auto;
+  border-radius: 7px;
+  flex-direction: column;
+  border: 1px solid hsl(207, 44%, 49%);
+}
+
+.formUsuario label {
+  margin: 10px;
+}
+
+.formUsuario input {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  margin: 0 10px 10px 10px;
+}
+
+.formUsuario .spanLogin {
+  color: red;
+  text-align: left;
+  margin: 0 10px 10px 10px;
+}
+
+.formUsuario button {
+  color: white;
+  margin: 10px;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  background-color: hsl(146, 50%, 36%);
+}
+
+.formUsuario .botonEliminar {
+  background-color: hsl(0, 100%, 50%);
+}
+
+.formEliminar {
+  border: 1px solid hsl(0, 100%, 50%);
+}
+
 /********** Termina vista usuario **********/

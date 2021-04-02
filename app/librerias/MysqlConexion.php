@@ -48,7 +48,7 @@ class MysqlConexion
   /// \fn cosultas Regresa más de un valor
   function consultas($consulta)
   {
-    $valores = array();
+    $valores = [];
     $resultado = mysqli_query($this->conexion, $consulta);
 
 	  if ($resultado) {

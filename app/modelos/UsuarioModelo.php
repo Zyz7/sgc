@@ -32,4 +32,13 @@ class UsuarioModelo
     return $valor;
   }
 
+  /// \fn datosUsuario
+  function datosUsuario($email)
+  {
+    $consulta = "select * from usuarios where email='".$email."'";
+    $valores = $this->db->consultas($consulta);
+    return $valores;
+  }
+
+
 }

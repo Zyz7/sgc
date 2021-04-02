@@ -48,42 +48,69 @@
 	      <span class="error">{error}</span>
         <span class="acierto">{acierto}</span>
 
-	      <form class="formLogin" method="post" action="{RUTA}usuario/editar/{email}">
-	        <label for="imagen">Imagen</label>
-	        <input type="url" id="imagen" name="imagen" autofocus="true" value=""
-            title="Ingrese sólo una dirección válida"/>
-          <span class="spanLogin">{errorImagen}</span>
+        <div class="contendorFormUsuario">
+          <div class="form1">
+	          <form class="formUsuario" method="post"
+            action="{RUTA}usuario/editar/{email}">
+	            <label for="imagen">Imagen</label>
+	            <input type="url" id="imagen" name="imagen" autofocus="true"
+                value="{imagen}" title="Ingrese una dirección válida"/>
+              <span class="spanLogin">{errorImagen}</span>
 
-          <label for="nombre">Nombre</label>
-          <input type="text" id="nombre" name="nombre" value=""
-            pattern="[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]{2,25}"
-            title="Ingrese sólo letras menores a 25 carácteres"/>
-          <span class="spanLogin">{errorNombre}</span>
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" value="{nombre}"
+                pattern="[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]{2,25}"
+                title="Ingrese sólo letras menores a 25 carácteres"/>
+              <span class="spanLogin">{errorNombre}</span>
 
-          <label for="apellido">Apellido</label>
-          <input type="text" id="apellido" name="apellido" value=""
-            pattern="[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]{2,25}"
-            title="Ingrese sólo letras menores a 25 carácteres"/>
-          <span class="spanLogin">{errorApellido}</span>
+              <label for="apellido">Apellido</label>
+              <input type="text" id="apellido" name="apellido" value="{apellido}"
+                pattern="[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]{2,25}"
+                title="Ingrese sólo letras menores a 25 carácteres"/>
+              <span class="spanLogin">{errorApellido}</span>
 
-          <label for="usuario">Nombre de usuario</label>
-          <input type="text" id="usuario" name="usuario" value=""
-            pattern="[a-zA-Z0-9\sáéíóúÁÉÍÓÚñÑ]{2,15}"
-            title="Sólo letras y números menores a 15 carácteres"/>
-          <span class="spanLogin">{errorUsuario}</span>
+              <label for="usuario">Nombre de usuario</label>
+              <input type="text" id="usuario" name="usuario" value="{usuario}"
+                pattern="[a-zA-Z0-9\sáéíóúÁÉÍÓÚñÑ]{2,15}"
+                title="Sólo letras y números menores a 15 carácteres"/>
+              <span class="spanLogin">{errorUsuario}</span>
 
-          <label for="email">Correo electrónico</label>
-          <input type="email" id="email" name="email" value="" pattern="{5,100}"
-            title="Debe de tener el formato nombre@dominio.extension"/>
-          <span class="spanLogin">{errorCorreo}</span>
+              <label for="email">Correo electrónico</label>
+              <input type="email" id="email" name="email" value="{emailForm}"
+                pattern="{5,100}"
+                title="Debe de tener el formato nombre@dominio.extension"/>
+              <span class="spanLogin">{errorCorreo}</span>
 
-          <label for="contraseña">Contraseña</label>
-          <input type="password" id="contraseña" name="contraseña" value=""
-            pattern="[!-~]{6,12}" title="Debe de tener mínimo 6 carácteres"/>
-          <span class="spanLogin">{errorContraseña}</span>
+		          <button>Guardar</button>
+	          </form>
+          </div>
 
-		      <button>Guardar</button>
-	      </form>
+          <div class="form2">
+            <form class="formUsuario" method="post"
+            action="{RUTA}usuario/clave/{email}">
+              <label for="contraseña">Contraseña actual</label>
+              <input type="password" id="contraseña" name="contraseña" value=""
+                pattern="[!-~]{6,12}" title="Debe de tener mínimo 6 carácteres"/>
+              <span class="spanLogin">{errorContraseña}</span>
+
+              <label for="contraseña">Nueva contraseña</label>
+              <input type="password" id="contraseña" name="contraseña" value=""
+                pattern="[!-~]{6,12}" title="Debe de tener mínimo 6 carácteres"/>
+              <span class="spanLogin">{errorNuevaContraseña}</span>
+
+		          <button>Cambiar</button>
+	          </form>
+          </div>
+
+          <div class="form3">
+            <form class="formUsuario formEliminar" method="post"
+            action="{RUTA}usuario/eliminar/{email}">
+              <label for="">Tenga cuidado.
+                Al eliminar su usuario ya no podra recuperarlo.</label>
+		          <button class="botonEliminar">Eliminar mi usuario</button>
+	          </form>
+          </div>
+        </div>
 	    </section>
     </div>
   </body>

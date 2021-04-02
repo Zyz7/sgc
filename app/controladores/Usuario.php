@@ -49,15 +49,19 @@ class Usuario extends Controlador
   {
     session_start();
     $usuario = $this->modelo->usuario(base64_decode($email));
+    $valores = $this->modelo->datosUsuario(base64_decode($email));
 
     if (isset($_SESSION[base64_decode($email)])) {
       $datos = ['RUTA' => RUTA, 'titulo' => 'Editar usuario', 'email' => $email,
-      'usuario' => $usuario['usuario'], 'error' => '', 'acierto' => '',
+      'usuario' => $usuario['usuario'], 'imagen' => $valores[0]['imagen'],
+      'nombre' => $valores[0]['nombre'], 'apellido' => $valores[0]['apellido'],
+      'emailForm' => $valores[0]['email'], 'error' => '', 'acierto' => '',
       'errorNombre' => '', 'errorApellido' => '', 'errorUsuario' => '',
-      'errorCorreo' => '', 'errorContraseña' => '', 'errorImagen' => ''];
+      'errorCorreo' => '', 'errorContraseña' => '', 'errorImagen' => '',
+      'errorNuevaContraseña' => ''];
 
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        
+
       }
       $this->vista('usuarioEditarVista', $datos);
     } else {
