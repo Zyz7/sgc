@@ -86,4 +86,17 @@ class Validar
     return $this->resultado;
   }
 
+  /// \fn url Valida la dirección url
+  function url($valor)
+  {
+    $this->resultado = false;
+
+    if (!empty($valor)) {
+     if (filter_var($valor, FILTER_VALIDATE_URL)) {
+        $this->resultado = true;
+      }
+    }
+    return $this->resultado;
+  }
+
 }

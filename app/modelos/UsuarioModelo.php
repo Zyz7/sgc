@@ -32,7 +32,7 @@ class UsuarioModelo
     return $valor;
   }
 
-  /// \fn datosUsuario
+  /// \fn datosUsuario Obtiene todos los datos del usuario
   function datosUsuario($email)
   {
     $consulta = "select * from usuarios where email='".$email."'";
@@ -40,5 +40,41 @@ class UsuarioModelo
     return $valores;
   }
 
+  /// \fn validarEmail Valida que no exista el email que se desea guardar
+  function validarEmail($email)
+  {
+    $this->resultado = false;
+    $consulta = "select email from usuarios where email='".$email."'";
+    $valores = $this->db->consulta($consulta);
+
+    if ($email == $valores['email']) {
+      $this->resultado = true;
+    } elseif (empty($valores)) {
+      $this->resultado = true;
+    }
+
+    return $this->resultado;
+  }
+
+  /// \fn actualizar Actualiza los datos del usuario
+  function actualizar($valores)
+  {
+    $this->resultado = false;
+
+    $consultaId = "select id from usuarios where email='".$valores["email"]."'";
+    $id = $this->db->consulta($consultaId);
+    $consulta = "update usuarios set ";
+    $consulta.= "nombre='".$valores["nombre"]."', ";
+    $consulta.= "apellido='".$valores["apellido"]."', ";
+    $consulta.= "usuario='".$valores["usuario"]."', ";
+    $consulta.= "email='".$valores["correo"]."', ";
+    $consulta.= "imagen='".$valores["imagen"]."' ";
+    $consulta.= "where id='".$id['id']."'";
+
+    if ($this->db->consultaBooleano($consulta)) {
+      $this->resultado = true;
+    }
+    return $this->resultado;
+  }
 
 }
