@@ -91,12 +91,14 @@
             action="{RUTA}usuario/clave/{email}">
               <label for="contraseña">Contraseña actual</label>
               <input type="password" id="contraseña" name="contraseña" value=""
-                pattern="[!-~]{6,12}" title="Debe de tener mínimo 6 carácteres"/>
+                pattern="[!-~]{6,12}" title="Debe de tener mínimo 6 carácteres"
+                required/>
               <span class="spanLogin">{errorContraseña}</span>
 
-              <label for="contraseña">Nueva contraseña</label>
-              <input type="password" id="contraseña" name="contraseña" value=""
-                pattern="[!-~]{6,12}" title="Debe de tener mínimo 6 carácteres"/>
+              <label for="nuevaContraseña">Nueva contraseña</label>
+              <input type="password" id="nuevaContraseña" name="nuevaContraseña"
+                value="" pattern="[!-~]{6,12}"
+                title="Debe de tener mínimo 6 carácteres" required/>
               <span class="spanLogin">{errorNuevaContraseña}</span>
 
 		          <button>Cambiar</button>

@@ -122,4 +122,52 @@ class Usuario extends Controlador
     }
   }
 
+  /// \fn clave Cambia la contraseña del usuario
+  function clave($email)
+  {
+    session_start();
+
+    if (isset($_SESSION[base64_decode($email)])) {
+      $datos = ['RUTA' => RUTA, 'titulo' => 'Editar usuario', 'email' => $email,
+      'usuario' => '', 'imagen' => '', 'nombre' => '', 'apellido' => '',
+      'emailForm' => '', 'error' => '', 'acierto' => '',
+      'errorNombre' => '', 'errorApellido' => '', 'errorUsuario' => '',
+      'errorCorreo' => '', 'errorContraseña' => '', 'errorImagen' => '',
+      'errorNuevaContraseña' => ''];
+
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $contraseña = $_POST['contraseña'];
+        $nuevaContraseña = $_POST['nuevaContraseña'];
+        $valores = ['nuevaContraseña' => $nuevaContraseña,
+        'email' => base64_decode($email), 'contraseña' => $contraseña];
+
+        if ($this->modelo->validarContraseña($valores)) {
+          if ($this->validar->contraseña($nuevaContraseña)) {
+            if ($this->modelo->cambiarContraseña($valores)) {
+              $datos['acierto'] = 'Se ha cambiado la contraseña';
+            } else {
+              $datos['error'] = 'Error al cambiar la contraseña';
+            }
+          } else {
+            $datos['error'] = 'Nueva contraseña incorrecta';
+            $datos['errorContraseña'] = 'Debe de tener mínimo 6 caracteres';
+          }
+        } else {
+          $datos['error'] = 'Contraseña actual incorrecta';
+        }
+      }
+
+      $valores = $this->modelo->datosUsuario(base64_decode($email));
+      $datos['imagen'] = $valores[0]['imagen'];
+      $datos['nombre'] = $valores[0]['nombre'];
+      $datos['apellido'] = $valores[0]['apellido'];
+      $datos['nombre'] = $valores[0]['nombre'];
+      $datos['usuario'] = $valores[0]['usuario'];
+      $datos['emailForm'] = $valores[0]['email'];
+      $this->vista('usuarioEditarVista', $datos);
+    } else {
+      header('Location:'.RUTA.'login');
+    }
+  }
+
 }

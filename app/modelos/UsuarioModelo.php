@@ -77,4 +77,36 @@ class UsuarioModelo
     return $this->resultado;
   }
 
+  /// \fn validarContraseña Valida que sea correcta la contraseña actual
+  function validarContraseña($valores)
+  {
+    $this->resultado = false;
+    $consulta = "select clave from usuarios where email='".$valores["email"]."'";
+    $valor = $this->db->consulta($consulta);
+
+    if (password_verify($valores['contraseña'], $valor['clave'])) {
+      $this->resultado = true;
+    }
+
+    return $this->resultado;
+  }
+
+  /// \fn cambiarContraseña Actualiza la contraseña del usuario
+  function cambiarContraseña($valores)
+  {
+    $this->resultado = false;
+    $hash = password_hash($valores['nuevaContraseña'], PASSWORD_BCRYPT);
+
+    $consultaId = "select id from usuarios where email='".$valores["email"]."'";
+    $id = $this->db->consulta($consultaId);
+    $consulta = "update usuarios set ";
+    $consulta.= "clave='".$hash."' ";
+    $consulta.= "where id='".$id['id']."'";
+
+    if ($this->db->consultaBooleano($consulta)) {
+      $this->resultado = true;
+    }
+    return $this->resultado;
+  }
+
 }

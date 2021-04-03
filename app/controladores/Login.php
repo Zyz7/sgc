@@ -241,7 +241,7 @@ class Login extends Controlador
     $email = base64_decode($email);
     unset($_SESSION[$email]);
     session_destroy();
-    header('Location:'.RUTA);
+    header('Location:'.RUTA.'login');
   }
 
 }
