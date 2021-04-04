@@ -127,14 +127,14 @@ class LoginModelo
   }
   /*
   function enviarEmail($email) {
-    $this->sendgrid->setFrom("test@example.com", "Example User");
+    $this->sendgrid->setFrom("app199993999@heroku.com", "Example User");
     $this->sendgrid->setSubject("Sending with Twilio SendGrid is Fun");
     $this->sendgrid->addTo($email, "Example User");
     $this->sendgrid->addContent("text/plain", "and easy to do anywhere, even with PHP");
     $this->sendgrid->addContent(
       "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
     );
-    $enviar = new \SendGrid('');
+    $enviar = new \SendGrid(getenv('SENDGRID_API_KEY'));
     try {
       $response = $enviar->send($this->sendgrid);
       if ($response) {
