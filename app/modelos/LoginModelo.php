@@ -126,6 +126,7 @@ class LoginModelo
     return $this->resultado;
   }
   /*
+  /// \fn enviarEmail Envía un correo electrónico mediante sendgrid
   function enviarEmail($email) {
     $this->sendgrid->setFrom("app199993999@heroku.com", "Example User");
     $this->sendgrid->setSubject("Sending with Twilio SendGrid is Fun");

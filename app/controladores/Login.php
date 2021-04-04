@@ -108,7 +108,7 @@ class Login extends Controlador
     $blanco = imagecolorallocate($imagen, 255, 255, 255);
     $texto_colores = [$negro, $blanco];
 
-    for($i = 0; $i < 6; $i++) {
+    /*for($i = 0; $i < 6; $i++) {
       $letra_espacio = 170/6;
       $inicial = 15;
 	    // Establecer la variable de entorno para GD
@@ -117,7 +117,7 @@ class Login extends Controlador
       // Escribe texto en la imagen usando fuentes
       imagettftext($imagen, 24, rand(-15, 15), $inicial + $i*$letra_espacio,
       rand(25, 45), $texto_colores[rand(0, 1)], $fuente, $captcha[$i]);
-    }
+    }*/
 
     header('Content-type: image/png');
     imagepng($imagen);
