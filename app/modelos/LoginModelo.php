@@ -79,7 +79,7 @@ class LoginModelo
     $consulta = "select estado from usuarios where email='".$email."'";
     $valor = $this->db->consulta($consulta);
 
-    if ($valor) {
+    if ($valor['estado']) {
       $this->resultado = true;
     }
 

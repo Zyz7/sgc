@@ -110,7 +110,14 @@
             action="{RUTA}usuario/eliminar/{email}">
               <label for="">Tenga cuidado.
                 Al eliminar su usuario ya no podra recuperarlo.</label>
-		          <button class="botonEliminar">Eliminar mi usuario</button>
+
+              <label for="contraseña">Contraseña</label>
+              <input type="password" id="contraseña" name="contraseña" value=""
+                pattern="[!-~]{6,12}" title="Debe de tener mínimo 6 carácteres"
+                required/>
+              <span class="spanLogin">{errorContraseñaEliminar}</span>
+
+              <button class="botonEliminar">Eliminar mi usuario</button>
 	          </form>
           </div>
         </div>

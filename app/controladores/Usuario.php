@@ -55,7 +55,7 @@ class Usuario extends Controlador
       'emailForm' => '', 'error' => '', 'acierto' => '',
       'errorNombre' => '', 'errorApellido' => '', 'errorUsuario' => '',
       'errorCorreo' => '', 'errorContraseña' => '', 'errorImagen' => '',
-      'errorNuevaContraseña' => ''];
+      'errorNuevaContraseña' => '', 'errorContraseñaEliminar' => ''];
 
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $imagen = $_POST['imagen'];
@@ -133,7 +133,7 @@ class Usuario extends Controlador
       'emailForm' => '', 'error' => '', 'acierto' => '',
       'errorNombre' => '', 'errorApellido' => '', 'errorUsuario' => '',
       'errorCorreo' => '', 'errorContraseña' => '', 'errorImagen' => '',
-      'errorNuevaContraseña' => ''];
+      'errorNuevaContraseña' => '', 'errorContraseñaEliminar' => ''];
 
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $contraseña = $_POST['contraseña'];
@@ -165,6 +165,61 @@ class Usuario extends Controlador
       $datos['usuario'] = $valores[0]['usuario'];
       $datos['emailForm'] = $valores[0]['email'];
       $this->vista('usuarioEditarVista', $datos);
+    } else {
+      header('Location:'.RUTA.'login');
+    }
+  }
+
+  /// \fn eliminar Se inhabilita al usuario
+  function eliminar($email)
+  {
+    session_start();
+
+    if (isset($_SESSION[base64_decode($email)])) {
+      $datos = ['RUTA' => RUTA, 'titulo' => 'Editar usuario', 'email' => $email,
+      'usuario' => '', 'imagen' => '', 'nombre' => '', 'apellido' => '',
+      'emailForm' => '', 'error' => '', 'acierto' => '',
+      'errorNombre' => '', 'errorApellido' => '', 'errorUsuario' => '',
+      'errorCorreo' => '', 'errorContraseña' => '', 'errorImagen' => '',
+      'errorNuevaContraseña' => '', 'errorContraseñaEliminar' => ''];
+
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $contraseña = $_POST['contraseña'];
+        $valores = ['email' => base64_decode($email), 'contraseña' => $contraseña];
+
+        if ($this->validar->contraseña($contraseña)) {
+          if ($this->modelo->validarContraseña($valores)) {
+            if ($this->modelo->eliminar($valores)) {
+              header('Location:'.RUTA.'login');
+            } else {
+              $datos['error'] = 'Error al eliminar al usuario';
+            }
+          } else {
+            $datos['error'] = 'Contraseña incorrecta';
+          }
+        } else {
+          $datos['errorContraseñaEliminar'] = 'Debe de tener mínimo 6 caracteres';
+        }
+
+        $valores = $this->modelo->datosUsuario(base64_decode($email));
+        $datos['imagen'] = $valores[0]['imagen'];
+        $datos['nombre'] = $valores[0]['nombre'];
+        $datos['apellido'] = $valores[0]['apellido'];
+        $datos['nombre'] = $valores[0]['nombre'];
+        $datos['usuario'] = $valores[0]['usuario'];
+        $datos['emailForm'] = $valores[0]['email'];
+        $this->vista('usuarioEditarVista', $datos);
+      } else {
+
+        $valores = $this->modelo->datosUsuario(base64_decode($email));
+        $datos['imagen'] = $valores[0]['imagen'];
+        $datos['nombre'] = $valores[0]['nombre'];
+        $datos['apellido'] = $valores[0]['apellido'];
+        $datos['nombre'] = $valores[0]['nombre'];
+        $datos['usuario'] = $valores[0]['usuario'];
+        $datos['emailForm'] = $valores[0]['email'];
+        $this->vista('usuarioEditarVista', $datos);
+      }
     } else {
       header('Location:'.RUTA.'login');
     }

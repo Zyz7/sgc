@@ -109,4 +109,21 @@ class UsuarioModelo
     return $this->resultado;
   }
 
+  /// \fn eliminar Cambia el estado del usuario a 0
+  function eliminar($valores)
+  {
+    $this->resultado = false;
+
+    $consultaId = "select id from usuarios where email='".$valores["email"]."'";
+    $id = $this->db->consulta($consultaId);
+    $consulta = "update usuarios set ";
+    $consulta.= "estado='0' ";
+    $consulta.= "where id='".$id['id']."'";
+
+    if ($this->db->consultaBooleano($consulta)) {
+      $this->resultado = true;
+    }
+    return $this->resultado;
+  }
+
 }
