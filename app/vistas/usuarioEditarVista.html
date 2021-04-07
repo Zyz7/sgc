@@ -32,11 +32,10 @@
 
         <div class="menu">
           <p><a href="{RUTA}usuario/{email}">Inicio</a></p>
-          <span>{usuario}</span>
-	        <p><a href="{RUTA}usuario/editar/{email}">Editar</a></p>
+	        <p><a href="{RUTA}usuario/editar/{email}">{usuario}</a></p>
           <span>Plantillas</span>
           <span>Entradas</span>
-          <span>Usuarios</span>
+          <p><a href="{RUTA}usuarios/{email}">Usuarios</a></p>
           <span>Actividad</span>
           <span>Autoconfigurar</span>
 	        <p><a href="{RUTA}login/salir/{email}">Salir</a></p>
@@ -44,7 +43,7 @@
       </section>
 
 	    <section class="menuDer">
-	      <h2 class="h1Login">Editar</h2>
+	      <h2 class="h1Login">{usuario}</h2>
 	      <span class="error">{error}</span>
         <span class="acierto">{acierto}</span>
 

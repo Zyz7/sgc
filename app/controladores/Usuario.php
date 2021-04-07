@@ -2,7 +2,7 @@
 
 /*
  * \class Usuario
- * \brief
+ * \brief Gestiona al usuario que ha iniciado sesión
  * \date 2021
  * \author Mario Alberto Zayas González
  */
