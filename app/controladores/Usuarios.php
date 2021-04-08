@@ -26,7 +26,13 @@ class Usuarios extends Controlador
 
     if (isset($_SESSION[base64_decode($email)])) {
       $datos = ['RUTA' => RUTA, 'titulo' => 'Usuarios', 'email' => $email,
-      'usuario' => $usuario['usuario'], 'error' => '', 'usuarios' => $usuarios];
+      'usuario' => $usuario['usuario'], 'error' => ''];
+
+      $datos['usuario0'] = $usuarios[0]['usuario'];
+      $datos['nombre0'] = $usuarios[0]['nombre'];
+      $datos['apellido0'] = $usuarios[0]['apellido'];
+      $datos['email0'] = $usuarios[0]['email'];
+
       $this->vista('usuariosVista', $datos);
     } else {
       $datos['error'] = 'No se encontró la sesión';
