@@ -37,7 +37,7 @@ class Login extends Controlador
 
               $id = $this->modelo->id($email);
               $_SESSION[$email] = $email;
-              header('Location:'.RUTA.'usuario/'.base64_encode($email));
+              header('Location:'.RUTA.'admin/'.base64_encode($email));
             } else {
               $datos['error'] = 'Usuario inactivo';
               $this->vista('loginVista', $datos);

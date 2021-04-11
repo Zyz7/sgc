@@ -1,12 +1,12 @@
 <?php
 
 /*
- * \class UsuarioModelo
+ * \class EntradasModelo
  * \brief Se crean y ejecutan las consultas a la base de datos
  * \date 2021
  * \author Mario Alberto Zayas González
  */
-class UsuariosModelo
+class EntradasModelo
 {
   private $db;
   private $resultado;
@@ -16,18 +16,18 @@ class UsuariosModelo
     $this->db = new MysqlConexion();
   }
 
-  /// \fn usuario Obtiene el pseudónimo del usuario
-  function usuario($email)
+  /// \fn datosUsuario Obtiene todos los datos del usuario
+  function datosUsuario($email)
   {
-    $consulta = "select usuario from usuarios where email='".$email."'";
-    $valor = $this->db->consulta($consulta);
-    return $valor;
+    $consulta = "select * from usuarios where email='".$email."'";
+    $valores = $this->db->consultas($consulta);
+    return $valores;
   }
 
   /// \fn listaUsuarios Obtiene la lista de los usuarios
-  function listaUsuarios()
+  function listaEntradas()
   {
-    $consulta = "select * from usuarios";
+    $consulta = "select * from entradas";
     $valores = $this->db->consultas($consulta);
     return $valores;
   }

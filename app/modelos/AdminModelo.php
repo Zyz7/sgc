@@ -1,12 +1,12 @@
 <?php
 
 /*
- * \class UsuarioModelo
+ * \class AdminModelo
  * \brief Se crean y ejecutan las consultas a la base de datos
  * \date 2021
  * \author Mario Alberto Zayas González
  */
-class UsuarioModelo
+class AdminModelo
 {
   private $db;
   private $resultado;
@@ -124,6 +124,14 @@ class UsuarioModelo
       $this->resultado = true;
     }
     return $this->resultado;
+  }
+
+  /// \fn listaUsuarios Obtiene la lista de los usuarios
+  function listaUsuarios()
+  {
+    $consulta = "select * from usuarios";
+    $valores = $this->db->consultas($consulta);
+    return $valores;
   }
 
 }

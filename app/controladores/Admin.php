@@ -1,19 +1,19 @@
 <?php
 
 /*
- * \class Usuario
- * \brief Gestiona al usuario que ha iniciado sesión
+ * \class Admin
+ * \brief Gestiona las actividades del usuario adminstrador
  * \date 2021
  * \author Mario Alberto Zayas González
  */
-class Usuario extends Controlador
+class Admin extends Controlador
 {
   private $modelo;
   private $validar;
 
   function __construct()
   {
-    $this->modelo = $this->modelo("UsuarioModelo");
+    $this->modelo = $this->modelo("AdminModelo");
     $this->validar = new Validar();
   }
 
@@ -26,7 +26,7 @@ class Usuario extends Controlador
     if (isset($_SESSION[base64_decode($email)])) {
       $datos = ['RUTA' => RUTA, 'titulo' => 'Inicio', 'email' => $email,
       'usuario' => $usuario['usuario'], 'error' => ''];
-      $this->vista('usuarioVista', $datos);
+      $this->vista('adminVista', $datos);
     } else {
       $datos['error'] = 'No se encontró la sesión';
       header('Location:'.RUTA.'login');
@@ -113,10 +113,9 @@ class Usuario extends Controlador
       $datos['imagen'] = $valores[0]['imagen'];
       $datos['nombre'] = $valores[0]['nombre'];
       $datos['apellido'] = $valores[0]['apellido'];
-      $datos['nombre'] = $valores[0]['nombre'];
       $datos['usuario'] = $valores[0]['usuario'];
       $datos['emailForm'] = $valores[0]['email'];
-      $this->vista('usuarioEditarVista', $datos);
+      $this->vista('adminEditarVista', $datos);
     } else {
       header('Location:'.RUTA.'login');
     }
@@ -161,10 +160,9 @@ class Usuario extends Controlador
       $datos['imagen'] = $valores[0]['imagen'];
       $datos['nombre'] = $valores[0]['nombre'];
       $datos['apellido'] = $valores[0]['apellido'];
-      $datos['nombre'] = $valores[0]['nombre'];
       $datos['usuario'] = $valores[0]['usuario'];
       $datos['emailForm'] = $valores[0]['email'];
-      $this->vista('usuarioEditarVista', $datos);
+      $this->vista('adminEditarVista', $datos);
     } else {
       header('Location:'.RUTA.'login');
     }
@@ -205,22 +203,46 @@ class Usuario extends Controlador
         $datos['imagen'] = $valores[0]['imagen'];
         $datos['nombre'] = $valores[0]['nombre'];
         $datos['apellido'] = $valores[0]['apellido'];
-        $datos['nombre'] = $valores[0]['nombre'];
         $datos['usuario'] = $valores[0]['usuario'];
         $datos['emailForm'] = $valores[0]['email'];
-        $this->vista('usuarioEditarVista', $datos);
+        $this->vista('adminEditarVista', $datos);
       } else {
 
         $valores = $this->modelo->datosUsuario(base64_decode($email));
         $datos['imagen'] = $valores[0]['imagen'];
         $datos['nombre'] = $valores[0]['nombre'];
         $datos['apellido'] = $valores[0]['apellido'];
-        $datos['nombre'] = $valores[0]['nombre'];
         $datos['usuario'] = $valores[0]['usuario'];
         $datos['emailForm'] = $valores[0]['email'];
-        $this->vista('usuarioEditarVista', $datos);
+        $this->vista('adminEditarVista', $datos);
       }
     } else {
+      header('Location:'.RUTA.'login');
+    }
+  }
+
+  /// \fn usuarios
+  function usuarios($email)
+  {
+    session_start();
+    $valores = $this->modelo->datosUsuario(base64_decode($email));
+    $usuarios = $this->modelo->listaUsuarios();
+
+    if (isset($_SESSION[base64_decode($email)])) {
+      $datos = ['RUTA' => RUTA, 'titulo' => 'Usuarios', 'email' => $email,
+      'usuario' => '', 'imagen' => ''];
+
+      $datos['imagen'] = $valores[0]['imagen'];
+      $datos['usuario'] = $valores[0]['usuario'];
+
+      $datos['usuario0'] = $usuarios[0]['usuario'];
+      $datos['nombre0'] = $usuarios[0]['nombre'];
+      $datos['apellido0'] = $usuarios[0]['apellido'];
+      $datos['email0'] = $usuarios[0]['email'];
+
+      $this->vista('usuariosVista', $datos);
+    } else {
+      $datos['error'] = 'No se encontró la sesión';
       header('Location:'.RUTA.'login');
     }
   }

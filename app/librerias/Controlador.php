@@ -30,7 +30,15 @@ class Controlador
         $template = str_replace('{'.$clave.'}', $valor, $template);
       }
       print $template;
-	  } else {
+	  } elseif (file_exists('../app/vistas/'.$vista.'.php')) {
+      $template = file_get_contents('../app/vistas/'.$vista.'.php');
+
+	    /// Sustituye los parámetros por su variable de la forma {valor}
+      foreach ($datos as $clave => $valor) {
+        $template = str_replace('{'.$clave.'}', $valor, $template);
+      }
+      print $template;
+    } else {
 	    die('La vista no existe');
 	  }
   }
