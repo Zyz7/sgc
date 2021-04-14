@@ -6,7 +6,7 @@
  * \date 2021
  * \author Mario Alberto Zayas González
  */
-class Entradas extends ControladorDependiente
+class Entradas extends Controlador
 {
   private $modelo;
   private $validar;
@@ -49,21 +49,23 @@ class Entradas extends ControladorDependiente
 
     if (isset($_SESSION[base64_decode($email)])) {
       $datos = ['RUTA' => RUTA, 'titulo' => 'Agregar entrada', 'email' => $email,
-      'usuario' => '', 'imagen' => ''];
+      'usuario' => '', 'imagen' => '', 'error' => '', 'acierto' => '',
+      'errorTitulo' => '', 'errorSubtitulo' => '', 'errorContenido' => '',
+      'errorCategoria' => ''];
 
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		    $titulo = $_POST['titulo'];
 		    $subtitulo = $_POST['subtitulo'];
         $contenido = $_POST['contenido'];
         $categoria = $_POST['categoria'];
-
+        $usuario = $this->modelo->datosUsuario(base64_decode($email));
         $valores = ['titulo' => $titulo, 'subtitulo' => $subtitulo,
         'contenido' => $contenido, 'categoria' => $categoria,
-        'email' => base64_decode($email)];
+        'email' => base64_decode($email), 'usuario' => $usuario['usuario']];
 
         if ($this->validar->texto($titulo) && $this->validar->texto($subtitulo) &&
         $this->validar->contenido($contenido)) {
-			    if ($this->modelo->agregar($valores)) {
+			    if ($this->modelo->entrada($valores)) {
             $datos['acierto'] = 'Datos guardados';
           } else {
             $datos['error'] = 'Error al guardar los datos';
@@ -107,7 +109,9 @@ class Entradas extends ControladorDependiente
 
     if (isset($_SESSION[base64_decode($email)])) {
       $datos = ['RUTA' => RUTA, 'titulo' => 'Agregar entrada', 'email' => $email,
-      'usuario' => '', 'imagen' => ''];
+      'usuario' => '', 'imagen' => '', 'error' => '', 'acierto' => '',
+      'errorTitulo' => '', 'errorSubtitulo' => '', 'errorContenido' => '',
+      'errorCategoria' => ''];
 
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $categoria = $_POST['nuevaCategoria'];

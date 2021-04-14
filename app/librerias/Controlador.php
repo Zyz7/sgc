@@ -31,13 +31,7 @@ class Controlador
       }
       print $template;
 	  } elseif (file_exists('../app/vistas/'.$vista.'.php')) {
-      $template = file_get_contents('../app/vistas/'.$vista.'.php');
-
-	    /// Sustituye los parámetros por su variable de la forma {valor}
-      foreach ($datos as $clave => $valor) {
-        $template = str_replace('{'.$clave.'}', $valor, $template);
-      }
-      print $template;
+      require_once("../app/vistas/".$vista.".php");
     } else {
 	    die('La vista no existe');
 	  }

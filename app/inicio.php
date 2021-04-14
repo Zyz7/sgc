@@ -15,7 +15,6 @@ define('RUTA', '/');
 /// Si no se pueden incluir los siguientes archivos se detiene la ejecución
 require_once('librerias/MysqlConexion.php');
 require_once('librerias/Controlador.php');
-require_once('librerias/ControladorDependiente.php');
 require_once('librerias/ControlUrl.php');
 require_once('librerias/Validar.php');
 require_once('librerias/Exception.php');

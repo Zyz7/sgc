@@ -33,8 +33,8 @@
         <div class="menu">
           <a href="<?php print RUTA; ?>admin/<?php print $datos["email"]; ?>">
             Inicio</a>
-	        <a href="<?php print RUTA; ?>admin/editar/<?php print $datos["email"]; ?>">
-            <?php print $datos["usuario"]; ?></a>
+	        <p><a href="<?php print RUTA; ?>admin/editar/<?php print $datos["email"]; ?>">
+            <?php print $datos["usuario"]; ?></a></p>
           <span>Plantillas</span>
           <a href="<?php print RUTA; ?>entradas/<?php print $datos["email"]; ?>">
             Entradas</a>

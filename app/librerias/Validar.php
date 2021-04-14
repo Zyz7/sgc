@@ -70,22 +70,6 @@ class Validar
     return $this->resultado;
   }
 
-  /// \fn imagen Valida las imagenes
-  function imagen($valores)
-  {
-    $this->resultado = false;
-    $extensiones = array('jpg', 'jpeg', 'png');
-    $name_campos = explode('.', $valores['name']);
-    $ext = strtolower(end($name_campos));
-
-    if (in_array($ext, $extensiones)) {
-      if ($valores['size'] < 1000000) {
-        $this->resultado = true;
-      }
-    }
-    return $this->resultado;
-  }
-
   /// \fn url Valida la dirección url
   function url($valor)
   {
@@ -94,6 +78,21 @@ class Validar
     if (!empty($valor)) {
      if (filter_var($valor, FILTER_VALIDATE_URL)) {
         $this->resultado = true;
+      }
+    }
+    return $this->resultado;
+  }
+
+  /// \fn contenido Valida el contenido de una entrada
+  function contenido($valor)
+  {
+    $this->resultado = false;
+
+    if (!empty($valor)) {
+      if (preg_match('/[a-zA-ZáéíóúÁÉÍÓÚñÑ\s0-9!-\/:-@[-`{-~]/', $valor)) {
+        if (!preg_match('/[<>]/', $valor)) {
+          $this->resultado = true;
+        }
       }
     }
     return $this->resultado;

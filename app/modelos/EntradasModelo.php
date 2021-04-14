@@ -32,4 +32,25 @@ class EntradasModelo
     return $valores;
   }
 
+  /// \fn entrada Agrega una nueva entrada
+  function entrada($valores)
+  {
+    $this->resultado = false;
+
+    $consulta = "insert into entradas values(0, ";
+    $consulta.= "'".$valores["titulo"]."', ";
+    $consulta.= "'".$valores["subtitulo"]."', ";
+    $consulta.= "'".$valores["contenido"]."', ";
+    $consulta.= "'', ";
+    $consulta.= "'', ";
+    $consulta.= "'".$valores["usuario"]."', ";
+    $consulta.= "'".$valores["categoria"]."', ";
+    $consulta.= "1)";
+
+    if ($this->db->consultaBooleano($consulta)) {
+      $this->resultado = true;
+    }
+    return $this->resultado;
+  }
+
 }
