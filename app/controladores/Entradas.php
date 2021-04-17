@@ -61,14 +61,14 @@ class Entradas extends Controlador
         $usuario = $this->modelo->datosUsuario(base64_decode($email));
         $valores = ['titulo' => $titulo, 'subtitulo' => $subtitulo,
         'contenido' => $contenido, 'categoria' => $categoria,
-        'email' => base64_decode($email), 'usuario' => $usuario['usuario']];
+        'email' => base64_decode($email), 'usuario' => $usuario[0]['usuario']];
 
         if ($this->validar->texto($titulo) && $this->validar->texto($subtitulo) &&
         $this->validar->contenido($contenido)) {
 			    if ($this->modelo->entrada($valores)) {
-            $datos['acierto'] = 'Datos guardados';
+            $datos['acierto'] = 'Entrada guardada';
           } else {
-            $datos['error'] = 'Error al guardar los datos';
+            $datos['error'] = 'Error al guardar los datos de entrada';
           }
 		    } else {
 			    $total = 0;
@@ -85,16 +85,18 @@ class Entradas extends Controlador
             $datos['errorContenido'] = 'Sólo caracteres válidos';
           }
           if ($total == 1) {
-  		      $datos['error'] = $total.' error en el formulario';
+  		      $datos['error'] = $total.' error en el formulario de entrada';
   		    } else {
-            $datos['error'] = $total.' errores en el formulario';
+            $datos['error'] = $total.' errores en el formulario de entrada';
   	      }
 		    }
       }
 
       $valores = $this->modelo->datosUsuario(base64_decode($email));
+      $categorias = $this->modelo->listaCategorias();
       $datos['imagen'] = $valores[0]['imagen'];
       $datos['usuario'] = $valores[0]['usuario'];
+      $datos['categorias'] = $categorias;
 
       $this->vista('agregarEntradaVista', $datos);
     } else {
@@ -116,13 +118,17 @@ class Entradas extends Controlador
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $categoria = $_POST['nuevaCategoria'];
 
-        $valores = ['categoria' => $nuevaCategoria, 'email' => base64_decode($email)];
+        $valores = ['categoria' => $categoria, 'email' => base64_decode($email)];
 
         if ($this->validar->texto($categoria)) {
-			    if ($this->modelo->categoria($valores)) {
-            $datos['acierto'] = 'Categoría guardada';
+          if ($this->modelo->validarCategoria($categoria)) {
+            if ($this->modelo->categoria($valores)) {
+              $datos['acierto'] = 'Categoría guardada';
+            } else {
+              $datos['error'] = 'Error al guardar los datos de la categoría';
+            }
           } else {
-            $datos['error'] = 'Error al guardar los datos';
+            $datos['error'] = 'Ya existe la categoría';
           }
 		    } else {
 			    $total = 0;
@@ -131,16 +137,18 @@ class Entradas extends Controlador
             $datos['errorTitulo'] = 'Ingrese sólo letras y números';
           }
           if ($total == 1) {
-  		      $datos['error'] = $total.' error en el formulario';
+  		      $datos['error'] = $total.' error en el formulario de la categoría';
   		    } else {
-            $datos['error'] = $total.' errores en el formulario';
+            $datos['error'] = $total.' errores en el formulario de la categoría';
   	      }
 		    }
       }
 
       $valores = $this->modelo->datosUsuario(base64_decode($email));
+      $categorias = $this->modelo->listaCategorias();
       $datos['imagen'] = $valores[0]['imagen'];
       $datos['usuario'] = $valores[0]['usuario'];
+      $datos['categorias'] = $categorias;
 
       $this->vista('agregarEntradaVista', $datos);
     } else {

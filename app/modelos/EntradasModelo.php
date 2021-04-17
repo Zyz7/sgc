@@ -41,8 +41,8 @@ class EntradasModelo
     $consulta.= "'".$valores["titulo"]."', ";
     $consulta.= "'".$valores["subtitulo"]."', ";
     $consulta.= "'".$valores["contenido"]."', ";
-    $consulta.= "'', ";
-    $consulta.= "'', ";
+    $consulta.= "current_date(), ";
+    $consulta.= "current_date(), ";
     $consulta.= "'".$valores["usuario"]."', ";
     $consulta.= "'".$valores["categoria"]."', ";
     $consulta.= "1)";
@@ -51,6 +51,43 @@ class EntradasModelo
       $this->resultado = true;
     }
     return $this->resultado;
+  }
+
+  /// \fn validarCategoria Valida que no exista la categoria que se desea guardar
+  function validarCategoria($categoria)
+  {
+    $this->resultado = false;
+    $consulta = "select nombre from categorias where nombre='".$categoria."'";
+    $valores = $this->db->consulta($consulta);
+
+    if (empty($valores)) {
+      $this->resultado = true;
+    }
+
+    return $this->resultado;
+  }
+
+  /// \fn categoria Agrega una nueva categoria
+  function categoria($valores)
+  {
+    $this->resultado = false;
+
+    $consulta = "insert into categorias values(0, ";
+    $consulta.= "'".$valores["categoria"]."', ";
+    $consulta.= "1)";
+
+    if ($this->db->consultaBooleano($consulta)) {
+      $this->resultado = true;
+    }
+    return $this->resultado;
+  }
+
+  /// \fn listaUsuarios Obtiene la lista de las categorias
+  function listaCategorias()
+  {
+    $consulta = "select * from categorias where estado=1";
+    $valores = $this->db->consultas($consulta);
+    return $valores;
   }
 
 }
