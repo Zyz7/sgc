@@ -65,16 +65,16 @@
 		        </tr>
 
             <?php
-              for ($i=0; count($datos["entradas"]); $i++) {
+              for ($i=0; $i<count($datos["entradas"]); $i++) {
                 print "<tr>";
                 print "<td>".$datos["entradas"][$i]["titulo"]."</td>";
                 print "<td>".$datos["entradas"][$i]["subtitulo"]."</td>";
                 print "<td>".$datos["entradas"][$i]["autor"]."</td>";
                 print "<td>".$datos["entradas"][$i]["creacion"]."</td>";
                 print "<td>".$datos["entradas"][$i]["modificacion"]."</td>";
-                print "<td><a href='".RUTA."entradas/editar/".$datos["email"]."'>
+                print "<td><a href='".RUTA."entradas/editar/".$datos["entradas"][$i]["id"]."/".$datos["email"]."'>
                   Editar</a></td>";
-                print "<td><a href='".RUTA."entradas/eliminar".$datos["email"]."'>
+                print "<td><a href='".RUTA."entradas/eliminar/".$datos["entradas"][$i]["id"]."/".$datos["email"]."'>
                   Eliminar</a></td>";
                 print "</tr>";
               }
