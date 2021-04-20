@@ -155,5 +155,45 @@ class Entradas extends Controlador
       header('Location:'.RUTA.'login');
     }
   }
+	
+	/// \fn eliminar Elimina una entrada
+  function eliminar($id, $email)
+  {
+    session_start();
+
+    if (isset($_SESSION[base64_decode($email)])) {
+      $datos = ['RUTA' => RUTA, 'titulo' => 'Eliminar entrada', 'email' => $email,
+      'usuario' => '', 'imagen' => '', 'error' => '', 'acierto' => '',
+      'errorContraseñaEliminar' => '', 'id' => $id];
+
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $contraseña = $_POST['contraseña'];
+        $valores = ['email' => base64_decode($email), 'contraseña' => $contraseña,
+        'id' => $id];
+
+        if ($this->validar->contraseña($contraseña)) {
+          if ($this->modelo->validarContraseña($valores)) {
+            if ($this->modelo->eliminarEntrada($valores)) {
+              $datos['acierto'] = 'Entrada eliminada';
+            } else {
+              $datos['error'] = 'Error al eliminar la entrada';
+            }
+          } else {
+            $datos['error'] = 'Contraseña incorrecta';
+          }
+        } else {
+          $datos['errorContraseñaEliminar'] = 'Debe de tener mínimo 6 caracteres';
+        }
+      }
+
+      $valores = $this->modelo->datosUsuario(base64_decode($email));
+      $datos['imagen'] = $valores[0]['imagen'];
+      $datos['usuario'] = $valores[0]['usuario'];
+
+      $this->vista('eliminarEntradaVista', $datos);
+    } else {
+      header('Location:'.RUTA.'login');
+    }
+  }
 
 }
