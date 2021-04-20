@@ -89,5 +89,19 @@ class EntradasModelo
     $valores = $this->db->consultas($consulta);
     return $valores;
   }
+  
+   /// \fn validarContraseña Valida que sea correcta la contraseña actual
+  function validarContraseña($valores)
+  {
+    $this->resultado = false;
+    $consulta = "select clave from usuarios where email='".$valores["email"]."'";
+    $valor = $this->db->consulta($consulta);
+
+    if (password_verify($valores['contraseña'], $valor['clave'])) {
+      $this->resultado = true;
+    }
+
+    return $this->resultado;
+  }
 
 }
