@@ -246,5 +246,69 @@ class Admin extends Controlador
       header('Location:'.RUTA.'login');
     }
   }
+  
+  /// \fn crear Guarda un nuevo usuario en la base de datos
+  function crear($email)
+  {
+    $datos = ['RUTA' => RUTA, 'titulo' => 'Registrate', 'error' => '',
+    'errorNombre' => '', 'errorApellido' => '', 'errorUsuario' => '',
+    'errorCorreo' => '', 'errorContraseña' => '', 'acierto' => '',
+    'email' => $email];
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      $nombre = $_POST['nombre'];
+      $apellido = $_POST['apellido'];
+      $usuario = $_POST['usuario'];
+      $email = $_POST['email'];
+      $contraseña = $_POST['contraseña'];
+      $valores = ['nombre' => $nombre, 'apellido' => $apellido,
+      'usuario' => $usuario, 'email' => $email, 'contraseña' => $contraseña];
+
+      if ($this->validar->texto($nombre) && $this->validar->texto($apellido) &&
+      $this->validar->usuario($usuario) && $this->validar->email($email) &&
+      $this->validar->contraseña($contraseña)) {
+        if ($this->modelo->validarEmail($email)) {
+          if ($this->modelo->crear($valores)) {
+            $datos['acierto'] = 'Usuario creado';
+          } else {
+            $datos['error'] = 'Error al crear el usuario';
+          }
+        } else {
+          $datos['error'] = 'El correo ya se encuentra registrado';
+        }
+      } else {
+        $total = 0;
+        if (!$this->validar->texto($nombre)) {
+          $total++;
+          $datos['errorNombre'] = 'Ingrese sólo letras menores a 25 caracteres';
+        }
+        if (!$this->validar->texto($apellido)) {
+          $total++;
+          $datos['errorApellido'] = 'Ingrese sólo letras menores a 25 caracteres';
+        }
+        if (!$this->validar->usuario($usuario)) {
+          $total++;
+          $datos['errorUsuario'] = 'Sólo letras y números menores a 15 caracteres';
+        }
+        if (!$this->validar->email($email)) {
+          $total++;
+          $datos['errorCorreo'] = 'Debe de tener el formato nombre@dominio.extension';
+        }
+        if (!$this->validar->contraseña($contraseña)) {
+          $total++;
+          $datos['errorContraseña'] = 'Debe de tener entre 6 y 12 caracteres';
+        }
+        if ($total == 1) {
+		      $datos['error'] = $total.' error en el formulario';
+		    } else {
+          $datos['error'] = $total.' errores en el formulario';
+	      }
+      }
+    }
+    
+    $valores = $this->modelo->datosUsuario(base64_decode($email));
+        $datos['usuario'] = $valores[0]['usuario'];
+    $this->vista('crearUsuarioVista', $datos);
+  }
 
 }
