@@ -126,5 +126,28 @@ class EntradasModelo
 
     return $this->resultado;
   }
+  
+  /// \fn categoriaNombre Obtiene el nombre de la categoría
+  function categoriaNombre($id)
+  {
+    $consulta = "select nombre from categorias where id='".$id."'";
+    $valor = $this->db->consulta($consulta);
+    return $valor;
+  }
+  
+  /// \fn eliminarCategoria Elimina de forma lógica una categoría
+  function eliminarCategoria($valores)
+  {
+    $this->resultado = false;
+    $consulta = "update categorias set ";
+    $consulta.= "estado='0' ";
+    $consulta.= "where id='".$valores['id']."'";
+
+    if ($this->db->consultaBooleano($consulta)) {
+      $this->resultado = true;
+    }
+
+    return $this->resultado;
+  }
 
 }
