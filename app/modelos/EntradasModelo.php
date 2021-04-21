@@ -90,7 +90,7 @@ class EntradasModelo
     return $valores;
   }
   
-   /// \fn validarContraseña Valida que sea correcta la contraseña actual
+   /// \fn validarContraseña Valida que la contraseña actual sea la correcta
   function validarContraseña($valores)
   {
     $this->resultado = false;
@@ -98,6 +98,21 @@ class EntradasModelo
     $valor = $this->db->consulta($consulta);
 
     if (password_verify($valores['contraseña'], $valor['clave'])) {
+      $this->resultado = true;
+    }
+
+    return $this->resultado;
+  }
+  
+  /// \fn eliminarEntrada Elimina de forma lógica una entrada
+  function eliminarEntrada($valores)
+  {
+    $this->resultado = false;
+    $consulta = "update entradas set ";
+    $consulta.= "estado='0', ";
+    $consulta.= "where id='".$valores['id']."'";
+
+    if ($this->db->consultaBooleano($consulta)) {
       $this->resultado = true;
     }
 
