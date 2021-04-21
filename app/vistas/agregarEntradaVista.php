@@ -107,6 +107,23 @@
 				      <button>Guardar</button>
 	          </form>
 			    </div>
+		
+		<div style="overflow-y: auto" class="form3">
+				 <table>
+            <tr>
+			        <th>Categorías</th>
+		        </tr>
+		        <?php
+		          for ($i=0; $i<count($datos["categorias"]); $i++) {
+					  print "<tr>";
+					  print "<td>".$datos["categorias"][$i]["nombre"]."</td>";
+					  print "<td><a href='".RUTA."entradas/eliminarCategoria/".$datos["categorias"][$i]["id"]."/".$datos["email"]."'>
+                        Eliminar</a></td>";
+					  print "</tr>"; 
+				  }
+		        ?>
+		        </table>
+			 </div>
 		    </div>
 	    </section>
     </div>
