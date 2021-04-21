@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<!--
+ * https://sgcphp.herokuapp.com
+ * Vista para eliminar una entrada
+ * Febrero 2021
+ * Mario Alberto Zayas González
+-->
+
+<html lang="es">
+  <head>
+    <title>{titulo}</title>
+    <meta charset="utf-8"/>
+    <meta name="author" content=""/>
+    <meta http-equiv="x-ua-compatible" content="ie-edge"/>
+    <meta name="keywords" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+
+    <link rel="canonical" href="https://sgcphp.herokuapp.com"/>
+    <link rel="stylesheet" href="{RUTA}css/estilos.css"/>
+    <link rel="shortcut icon" href="{RUTA}img/logo.png"/>
+  </head>
+
+  <body>
+    <div class="contenedor">
+      <section class="menuIzq">
+        <figure class="imagenPerfil">
+          <img src="{RUTA}admin/imagen/{email}" alt="Imagen de perfil"
+          aria-describedby=""/>
+        </figure>
+
+        <div class="menu">
+          <a href="{RUTA}admin/{email}">Inicio</a>
+	        <p><a href="{RUTA}admin/editar/{email}">{usuario}</a></p>
+          <span>Plantillas</span>
+          <a href="{RUTA}entradas/{email}">Entradas</a>
+          <p><a href="{RUTA}entradas/agregar/{email}">Agregar</a></p>
+          <a href="{RUTA}admin/usuarios/{email}">Usuarios</a>
+          <p><a href="{RUTA}admin/usuarios/crear/{email}">Crear</a></p>
+          <span>Actividad</span>
+          <span>Autoconfigurar</span>
+	        <a href="{RUTA}login/salir/{email}">Salir</a>
+        </div>
+      </section>
+
+      <section class="menuDer">
+	      <h1 class="h1Login">Eliminar entrada: {entrada}</h1>
+	      
+	      <span class="error">{error}</span>
+        <span class="acierto">{acierto}</span>
+	      
+	      <div>
+	                <div class="form1">
+            <form class="formUsuario formEliminar" method="post"
+            action="{RUTA}entradas/eliminar/{id}/{email}">
+              <label for="">Verifique antes de eliminar</label>
+
+              <label for="contraseña">Contraseña</label>
+              <input type="password" id="contraseña" name="contraseña" value=""
+                pattern="[!-~]{6,12}" title="Debe de tener mínimo 6 carácteres"
+                required/>
+              <span class="spanLogin">{errorContraseñaEliminar}</span>
+
+              <button class="botonEliminar">Eliminar</button>
+	          </form>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
