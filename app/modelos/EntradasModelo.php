@@ -27,7 +27,7 @@ class EntradasModelo
   /// \fn listaUsuarios Obtiene la lista de los usuarios
   function listaEntradas()
   {
-    $consulta = "select * from entradas";
+    $consulta = "select * from entradas where estado=1";
     $valores = $this->db->consultas($consulta);
     return $valores;
   }
@@ -102,6 +102,14 @@ class EntradasModelo
     }
 
     return $this->resultado;
+  }
+  
+  /// \fn entrada Obtiene el título de una entrada
+  function entradaTitulo($id)
+  {
+    $consulta = "select titulo from entradas where id='".$id."'";
+    $valor = $this->db->consulta($consulta);
+    return $valor;
   }
   
   /// \fn eliminarEntrada Elimina de forma lógica una entrada
