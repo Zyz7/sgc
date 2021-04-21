@@ -187,8 +187,10 @@ class Entradas extends Controlador
       }
 
       $valores = $this->modelo->datosUsuario(base64_decode($email));
+	    $entrada = $this->modelo->entradaTitulo($id);
       $datos['imagen'] = $valores[0]['imagen'];
       $datos['usuario'] = $valores[0]['usuario'];
+	    $datos['entrada'] = $entrada['titulo'];
 
       $this->vista('eliminarEntradaVista', $datos);
     } else {
