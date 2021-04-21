@@ -133,5 +133,27 @@ class AdminModelo
     $valores = $this->db->consultas($consulta);
     return $valores;
   }
+  
+  /// \fn crear Crea un nuevo usuario
+  function crear($valores)
+  {
+    $this->resultado = false;
+    $hash = password_hash($valores['contraseña'], PASSWORD_BCRYPT);
+
+    $consulta = "insert into usuarios values(0, ";
+    $consulta.= "'".$valores["nombre"]."', ";
+    $consulta.= "'".$valores["apellido"]."', ";
+    $consulta.= "'".$valores["usuario"]."', ";
+    $consulta.= "'".$valores["email"]."', ";
+    $consulta.= "'".$hash."', ";
+    $consulta.= "'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png', ";
+    $consulta.= "'', ";
+    $consulta.= "1)";
+
+    if ($this->db->consultaBooleano($consulta)) {
+      $this->resultado = true;
+    }
+    return $this->resultado;
+  }
 
 }
