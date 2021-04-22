@@ -207,6 +207,7 @@ class Entradas extends Controlador
       }
 
       $valores = $this->modelo->datosUsuario(base64_decode($email));
+      $categorias = $this->modelo->listaCategorias();
 	    $entrada = $this->modelo->datosEntrada($id);
       $datos['imagen'] = $valores[0]['imagen'];
       $datos['usuario'] = $valores[0]['usuario'];
@@ -214,6 +215,8 @@ class Entradas extends Controlador
       $datos['tituloEntrada'] = $entrada[0]['titulo'];
       $datos['subtitulo'] = $entrada[0]['subtitulo'];
       $datos['contenido'] = $entrada[0]['contenido'];
+      $datos['categoria'] = $entrada[0]['categoria'];
+      $datos['categorias'] = $categorias;
 
       $this->vista('editarEntradaVista', $datos);
     } else {
@@ -253,6 +256,7 @@ class Entradas extends Controlador
       }
 
       $valores = $this->modelo->datosUsuario(base64_decode($email));
+      $categorias = $this->modelo->listaCategorias();
 	    $entrada = $this->modelo->datosEntrada($id);
       $datos['imagen'] = $valores[0]['imagen'];
       $datos['usuario'] = $valores[0]['usuario'];
@@ -260,6 +264,8 @@ class Entradas extends Controlador
       $datos['tituloEntrada'] = $entrada[0]['titulo'];
       $datos['subtitulo'] = $entrada[0]['subtitulo'];
       $datos['contenido'] = $entrada[0]['contenido'];
+      $datos['categoria'] = $entrada[0]['categoria'];
+      $datos['categorias'] = $categorias;
 
       $this->vista('editarEntradaVista', $datos);
     } else {
