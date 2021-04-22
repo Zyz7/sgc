@@ -53,7 +53,7 @@
 
           <div class="form1">
 	          <form class="formUsuario" method="post"
-              action="{RUTA}admin/editar/{email}">
+              action="{RUTA}entradas/editar/{id}/{email}">
 
             <label for="titulo">Título</label>
             <input type="text" id="titulo" name="titulo" autofocus="true"
@@ -69,12 +69,12 @@
 
             <label for="contenido">Contenido</label>
             <textarea rows="50" cols="50" maxlength="2500"
-              name="contenido" id="contenido" required></textarea>
+              name="contenido" id="contenido" required>{contenido}</textarea>
             <span class="spanLogin">{errorContenido}</span>
 
             <label for="categoria">Categoría</label>
             <select name="categoria">
-              <option selected>Sin categoría</option>
+              <option selected>{categoria}</option>
               <?php
                 for ($i=0; $i<count($datos["categorias"]); $i++) {
                   print "<option>".$datos["categorias"][$i]["nombre"]."</option>";
