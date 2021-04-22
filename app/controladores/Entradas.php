@@ -174,12 +174,12 @@ class Entradas extends Controlador
         $categoria = $_POST['categoria'];
         $usuario = $this->modelo->datosUsuario(base64_decode($email));
         $valores = ['titulo' => $titulo, 'subtitulo' => $subtitulo,
-        'contenido' => $contenido, 'categoria' => $categoria,
+        'contenido' => $contenido, 'categoria' => $categoria, 'id' => $id,
         'email' => base64_decode($email), 'usuario' => $usuario[0]['usuario']];
 
         if ($this->validar->texto($titulo) && $this->validar->texto($subtitulo) &&
         $this->validar->contenido($contenido)) {
-			    if ($this->modelo->entrada($valores)) {
+			    if ($this->modelo->editarEntrada($valores)) {
             $datos['acierto'] = 'Datos guardados';
           } else {
             $datos['error'] = 'Error al guardar los datos de entrada';
