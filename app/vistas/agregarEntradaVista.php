@@ -42,7 +42,7 @@
             Agregar</a></p>
           <a href="<?php print RUTA; ?>admin/usuarios/<?php print $datos["email"]; ?>">
             Usuarios</a>
-          <p><a href="<?php print RUTA; ?>admin/usuarios/crear/<?php print $datos["email"]; ?>">
+          <p><a href="<?php print RUTA; ?>admin/crear/<?php print $datos["email"]; ?>">
             Crear</a></p>
           <span>Actividad</span>
           <span>Autoconfigurar</span>
@@ -102,28 +102,26 @@
 				        title="Ingrese sólo letras menores a 25 carácteres" required/>
 				      <span class="spanLogin"><?php print $datos["errorCategoria"]; ?></span>
 
-				      <a href="<?php print RUTA; ?>entradas/categorias/<?php print $datos["email"]; ?>">
-              Lista de las categorías</a>
 				      <button>Guardar</button>
 	          </form>
 			    </div>
-		
-		<div style="overflow-y: auto" class="form3">
-				 <table>
-            <tr>
-			        <th>Categorías</th>
-		        </tr>
-		        <?php
+
+		      <div style="overflow-y: auto" class="form3">
+            <table>
+              <tr>
+                <th>Categorías</th>
+		          </tr>
+		          <?php
 		          for ($i=0; $i<count($datos["categorias"]); $i++) {
-					  print "<tr>";
-					  print "<td>".$datos["categorias"][$i]["nombre"]."</td>";
-					  print "<td><a href='".RUTA."entradas/eliminarCategoria/".$datos["categorias"][$i]["id"]."/".$datos["email"]."'>
+					      print "<tr>";
+					      print "<td>".$datos["categorias"][$i]["nombre"]."</td>";
+					      print "<td><a href='".RUTA."entradas/eliminarCategoria/".$datos["categorias"][$i]["id"]."/".$datos["email"]."'>
                         Eliminar</a></td>";
-					  print "</tr>"; 
-				  }
-		        ?>
+					      print "</tr>";
+				      }
+		          ?>
 		        </table>
-			 </div>
+			    </div>
 		    </div>
 	    </section>
     </div>

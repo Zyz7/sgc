@@ -42,7 +42,7 @@
               Agregar</a></p>
           <a href="<?php print RUTA; ?>admin/usuarios/<?php print $datos["email"]; ?>">
             Usuarios</a>
-          <p><a href="<?php print RUTA; ?>admin/usuarios/crear/<?php print $datos["email"]; ?>">
+          <p><a href="<?php print RUTA; ?>admin/crear/<?php print $datos["email"]; ?>">
               Crear</a></p>
           <span>Actividad</span>
           <span>Autoconfigurar</span>
@@ -74,8 +74,6 @@
                 print "<td>".$datos["entradas"][$i]["modificacion"]."</td>";
                 print "<td><a href='".RUTA."entradas/editar/".$datos["entradas"][$i]["id"]."/".$datos["email"]."'>
                   Editar</a></td>";
-                print "<td><a href='".RUTA."entradas/eliminar/".$datos["entradas"][$i]["id"]."/".$datos["email"]."'>
-                  Eliminar</a></td>";
                 print "</tr>";
               }
             ?>

@@ -46,41 +46,41 @@
 
       <section class="menuDer">
 	      <h1 class="h1Login">Crear usuario</h1>
-	      
+
 	      <span class="error">{error}</span>
-    <span class="acierto">{acierto}</span>
+        <span class="acierto">{acierto}</span>
 
-    <form class="formLogin" method="post" action="{RUTA}admin/crear/{email}">
-      <label for="nombre">Nombre</label>
-      <input type="text" id="nombre" name="nombre" autofocus="true" value=""
-        pattern="[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]{2,25}"
-        title="Ingrese sólo letras menores a 25 carácteres" required/>
-      <span class="spanLogin">{errorNombre}</span>
+        <form class="formLogin" method="post" action="{RUTA}admin/crear/{email}">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" autofocus="true" value=""
+            pattern="[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]{2,25}"
+            title="Ingrese sólo letras menores a 25 carácteres" required/>
+          <span class="spanLogin">{errorNombre}</span>
 
-      <label for="apellido">Apellido</label>
-      <input type="text" id="apellido" name="apellido" value=""
-        pattern="[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]{2,25}"
-        title="Ingrese sólo letras menores a 25 carácteres" required/>
-      <span class="spanLogin">{errorApellido}</span>
+          <label for="apellido">Apellido</label>
+          <input type="text" id="apellido" name="apellido" value=""
+            pattern="[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]{2,25}"
+            title="Ingrese sólo letras menores a 25 carácteres" required/>
+          <span class="spanLogin">{errorApellido}</span>
 
-      <label for="usuario">Nombre de usuario</label>
-      <input type="text" id="usuario" name="usuario" value=""
-        pattern="[a-zA-Z0-9\sáéíóúÁÉÍÓÚñÑ]{2,15}"
-        title="Sólo letras y números menores a 15 carácteres" required/>
-      <span class="spanLogin">{errorUsuario}</span>
+          <label for="usuario">Nombre de usuario</label>
+          <input type="text" id="usuario" name="usuario" value=""
+            pattern="[a-zA-Z0-9\sáéíóúÁÉÍÓÚñÑ]{2,15}"
+            title="Sólo letras y números menores a 15 carácteres" required/>
+          <span class="spanLogin">{errorUsuario}</span>
 
-      <label for="email">Correo electrónico</label>
-      <input type="email" id="email" name="email" value="" pattern="{5,100}"
-        title="Debe de tener el formato nombre@dominio.extension" required/>
-      <span class="spanLogin">{errorCorreo}</span>
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" value="" pattern="{5,100}"
+            title="Debe de tener el formato nombre@dominio.extension" required/>
+          <span class="spanLogin">{errorCorreo}</span>
 
-      <label for="contraseña">Contraseña</label>
-      <input type="password" id="contraseña" name="contraseña" value=""
-        pattern="[!-~]{6,12}" title="Debe de tener entre 6 y 12 caracteres" required/>
-      <span class="spanLogin">{errorContraseña}</span>
+          <label for="contraseña">Contraseña</label>
+          <input type="password" id="contraseña" name="contraseña" value=""
+            pattern="[!-~]{6,12}" title="Debe de tener entre 6 y 12 caracteres" required/>
+          <span class="spanLogin">{errorContraseña}</span>
 
-      <button>Crear</button>
-    </form>
+          <button>Crear</button>
+        </form>
       </section>
     </div>
   </body>

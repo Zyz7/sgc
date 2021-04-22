@@ -89,7 +89,7 @@ class EntradasModelo
     $valores = $this->db->consultas($consulta);
     return $valores;
   }
-  
+
    /// \fn validarContraseña Valida que la contraseña actual sea la correcta
   function validarContraseña($valores)
   {
@@ -103,15 +103,15 @@ class EntradasModelo
 
     return $this->resultado;
   }
-  
-  /// \fn entrada Obtiene el título de una entrada
-  function entradaTitulo($id)
+
+  /// \fn datosEntrada Obtiene los datos de una entrada
+  function datosEntrada($id)
   {
-    $consulta = "select titulo from entradas where id='".$id."'";
-    $valor = $this->db->consulta($consulta);
-    return $valor;
+    $consulta = "select * from entradas where id='".$id."'";
+    $valores = $this->db->consultas($consulta);
+    return $valores;
   }
-  
+
   /// \fn eliminarEntrada Elimina de forma lógica una entrada
   function eliminarEntrada($valores)
   {
@@ -126,7 +126,7 @@ class EntradasModelo
 
     return $this->resultado;
   }
-  
+
   /// \fn categoriaNombre Obtiene el nombre de la categoría
   function categoriaNombre($id)
   {
@@ -134,7 +134,7 @@ class EntradasModelo
     $valor = $this->db->consulta($consulta);
     return $valor;
   }
-  
+
   /// \fn eliminarCategoria Elimina de forma lógica una categoría
   function eliminarCategoria($valores)
   {

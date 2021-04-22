@@ -115,7 +115,7 @@ class Admin extends Controlador
       $datos['apellido'] = $valores[0]['apellido'];
       $datos['usuario'] = $valores[0]['usuario'];
       $datos['emailForm'] = $valores[0]['email'];
-      $this->vista('adminEditarVista', $datos);
+      $this->vista('editarAdminVista', $datos);
     } else {
       header('Location:'.RUTA.'login');
     }
@@ -246,8 +246,8 @@ class Admin extends Controlador
       header('Location:'.RUTA.'login');
     }
   }
-  
-  /// \fn crear Guarda un nuevo usuario en la base de datos
+
+  /// \fn crear Crea un nuevo usuario
   function crear($email)
   {
     $datos = ['RUTA' => RUTA, 'titulo' => 'Registrate', 'error' => '',
@@ -305,9 +305,9 @@ class Admin extends Controlador
 	      }
       }
     }
-    
+
     $valores = $this->modelo->datosUsuario(base64_decode($email));
-        $datos['usuario'] = $valores[0]['usuario'];
+    $datos['usuario'] = $valores[0]['usuario'];
     $this->vista('crearUsuarioVista', $datos);
   }
 
