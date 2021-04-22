@@ -310,5 +310,83 @@ class Admin extends Controlador
     $datos['usuario'] = $valores[0]['usuario'];
     $this->vista('crearUsuarioVista', $datos);
   }
+	
+	/// \fn editarOperador Edita los datos de un usuario
+  function editarOperador($id, $email)
+  {
+    session_start();
+
+    if (isset($_SESSION[base64_decode($email)])) {
+      $datos = ['RUTA' => RUTA, 'titulo' => 'Editar usuario', 'email' => $email,
+      'usuario' => '', 'imagen' => '', 'nombre' => '', 'apellido' => '',
+      'emailForm' => '', 'error' => '', 'acierto' => '',
+      'errorNombre' => '', 'errorApellido' => '', 'errorUsuario' => '',
+      'errorCorreo' => '', 'errorContraseña' => '', 'errorImagen' => '',
+      'errorContraseñaEliminar' => ''];
+
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $imagen = $_POST['imagen'];
+        $nombre = $_POST['nombre'];
+        $apellido = $_POST['apellido'];
+        $usuario = $_POST['usuario'];
+        $correo = $_POST['email'];
+        $valores = ['nombre' => $nombre, 'apellido' => $apellido,
+        'usuario' => $usuario, 'correo' => $correo, 'imagen' => $imagen,
+        'email' => base64_decode($email)];
+
+        if ($this->validar->texto($nombre) && $this->validar->texto($apellido) &&
+        $this->validar->usuario($usuario) && $this->validar->email($correo) &&
+        $this->validar->url($imagen)) {
+          if ($this->modelo->validarEmail($correo)) {
+            if ($this->modelo->actualizar($valores)) {
+              $datos['acierto'] = 'Datos guardados';
+            } else {
+              $datos['error'] = 'Error al guardar los datos';
+            }
+          } else {
+            $datos['error'] = 'El correo ya se encuentra registrado';
+          }
+        } else {
+          $total = 0;
+          if (!$this->validar->texto($nombre)) {
+            $total++;
+            $datos['errorNombre'] = 'Ingrese sólo letras menores a 25 caracteres';
+          }
+          if (!$this->validar->texto($apellido)) {
+            $total++;
+            $datos['errorApellido'] = 'Ingrese sólo letras menores a 25 caracteres';
+          }
+          if (!$this->validar->usuario($usuario)) {
+            $total++;
+            $datos['errorUsuario'] = 'Sólo letras y números menores a 15 caracteres';
+          }
+          if (!$this->validar->email($email)) {
+            $total++;
+            $datos['errorCorreo'] = 'Debe de tener el formato nombre@dominio.extension';
+          }
+          if (!$this->validar->url($imagen)) {
+            $total++;
+            $datos['errorImagen'] = 'Debe ser una url válida de una imagen .png';
+          }
+          if ($total == 1) {
+  		      $datos['error'] = $total.' error en el formulario';
+  		    } else {
+            $datos['error'] = $total.' errores en el formulario';
+  	      }
+        }
+      }
+
+      $valores = $this->modelo->datosUsuario(base64_decode($email));
+      $datos['imagen'] = $valores[0]['imagen'];
+      $datos['nombre'] = $valores[0]['nombre'];
+      $datos['apellido'] = $valores[0]['apellido'];
+      $datos['usuario'] = $valores[0]['usuario'];
+      $datos['emailForm'] = $valores[0]['email'];
+
+      $this->vista('editarOperadorVista', $datos);
+    } else {
+      header('Location:'.RUTA.'login');
+    }
+  }
 
 }
