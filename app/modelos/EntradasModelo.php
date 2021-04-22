@@ -122,7 +122,7 @@ class EntradasModelo
     $consulta.= "subtitulo='".$valores["subtitulo"]."', ";
     $consulta.= "contenido='".$valores["contenido"]."', ";
     $consulta.= "modificacion=current_date(), ";
-    $consulta.= "usuario='".$valores["usuario"]."', ";
+    $consulta.= "autor='".$valores["usuario"]."', ";
     $consulta.= "categoria='".$valores["categoria"]."' ";
     $consulta.= "where id='".$valores["id"]."'";
 
