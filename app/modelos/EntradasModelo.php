@@ -111,6 +111,26 @@ class EntradasModelo
     $valores = $this->db->consultas($consulta);
     return $valores;
   }
+  
+  /// \fn editarEntrada Actualiza los datos de una entrada
+  function editarEntrada($valores)
+  {
+    $this->resultado = false;
+
+    $consulta = "update entradas set ";
+    $consulta.= "titulo='".$valores["titulo"]."', ";
+    $consulta.= "subtitulo='".$valores["subtitulo"]."', ";
+    $consulta.= "contenido='".$valores["contenido"]."', ";
+    $consulta.= "modificacion=current_date(), ";
+    $consulta.= "usuario='".$valores["usuario"]."', ";
+    $consulta.= "categoria='".$valores["categoria"]."' ";
+    $consulta.= "where id='".$valores["id"]."'";
+
+    if ($this->db->consultaBooleano($consulta)) {
+      $this->resultado = true;
+    }
+    return $this->resultado;
+  }
 
   /// \fn eliminarEntrada Elimina de forma lógica una entrada
   function eliminarEntrada($valores)
