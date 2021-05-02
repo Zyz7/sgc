@@ -126,14 +126,14 @@ class AdminModelo
     return $this->resultado;
   }
 
-  /// \fn listaUsuarios Obtiene la lista de los usuarios
-  function listaUsuarios()
+  /// \fn listaOperadores Obtiene la lista de los operadores
+  function listaOperadores()
   {
-    $consulta = "select * from usuarios";
+    $consulta = "select * from operadores";
     $valores = $this->db->consultas($consulta);
     return $valores;
   }
-  
+
   /// \fn crear Crea un nuevo usuario
   function crear($valores)
   {

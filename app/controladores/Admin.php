@@ -222,20 +222,20 @@ class Admin extends Controlador
   }
 
   /// \fn usuarios
-  function usuarios($email)
+  function operadores($email)
   {
     session_start();
     $valores = $this->modelo->datosUsuario(base64_decode($email));
-    $usuarios = $this->modelo->listaUsuarios();
+    $operadores = $this->modelo->listaOperadores();
 
     if (isset($_SESSION[base64_decode($email)])) {
-      $datos = ['RUTA' => RUTA, 'titulo' => 'Usuarios', 'email' => $email,
-      'usuario' => '', 'imagen' => '', 'usuarios' => $usuarios];
+      $datos = ['RUTA' => RUTA, 'titulo' => 'Operadores', 'email' => $email,
+      'usuario' => '', 'imagen' => '', 'operadores' => $operadores];
 
       $datos['imagen'] = $valores[0]['imagen'];
       $datos['usuario'] = $valores[0]['usuario'];
 
-      $this->vista('usuariosVista', $datos);
+      $this->vista('operadoresVista', $datos);
     } else {
       $datos['error'] = 'No se encontró la sesión';
       header('Location:'.RUTA.'login');

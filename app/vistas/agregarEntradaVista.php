@@ -40,7 +40,7 @@
             Entradas</a>
           <p><a href="<?php print RUTA; ?>entradas/agregar/<?php print $datos["email"]; ?>">
             Agregar</a></p>
-          <a href="<?php print RUTA; ?>admin/usuarios/<?php print $datos["email"]; ?>">
+          <a href="<?php print RUTA; ?>admin/operadores/<?php print $datos["email"]; ?>">
             Operadores</a>
           <p><a href="<?php print RUTA; ?>admin/crear/<?php print $datos["email"]; ?>">
             Crear</a></p>

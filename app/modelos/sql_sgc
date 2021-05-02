@@ -9,6 +9,17 @@ imagen varchar(200),
 tipo varchar(15),
 estado boolean);
 
+create table operadores (
+id integer auto_increment primary key,
+nombre varchar(25) not null,
+apellido varchar(25) not null,
+usuario varchar(15) not null,
+email varchar(50) not null,
+clave varchar(60) not null,
+imagen varchar(200),
+tipo varchar(15),
+estado boolean);
+
 create table categorias (
 id integer auto_increment primary key,
 nombre varchar(25) not null,

@@ -40,7 +40,7 @@
             Entradas</a>
           <p><a href="<?php print RUTA; ?>entradas/agregar/<?php print $datos["email"]; ?>">
               Agregar</a></p>
-          <a href="<?php print RUTA; ?>admin/usuarios/<?php print $datos["email"]; ?>">
+          <a href="<?php print RUTA; ?>admin/operadores/<?php print $datos["email"]; ?>">
             Operadores</a>
           <p><a href="<?php print RUTA; ?>admin/crear/<?php print $datos["email"]; ?>">
               Crear</a></p>
@@ -64,13 +64,13 @@
 		        </tr>
 
             <?php
-              for ($i=0; $i<count($datos["usuarios"]); $i++) {
+              for ($i=0; $i<count($datos["operadores"]); $i++) {
                 print "<tr>";
-                print "<td>".$datos["usuarios"][$i]["usuario"]."</td>";
-                print "<td>".$datos["usuarios"][$i]["nombre"]."</td>";
-                print "<td>".$datos["usuarios"][$i]["apellido"]."</td>";
-                print "<td>".$datos["usuarios"][$i]["email"]."</td>";
-                print "<td><a href='".RUTA."admin/editarOperador/".$datos["usuarios"][$i]["id"]."/".$datos["email"]."'>
+                print "<td>".$datos["operadores"][$i]["usuario"]."</td>";
+                print "<td>".$datos["operadores"][$i]["nombre"]."</td>";
+                print "<td>".$datos["operadores"][$i]["apellido"]."</td>";
+                print "<td>".$datos["operadores"][$i]["email"]."</td>";
+                print "<td><a href='".RUTA."admin/editarOperador/".$datos["operadores"][$i]["id"]."/".$datos["email"]."'>
                   Editar</a></td>";
                 print "</tr>";
               }
