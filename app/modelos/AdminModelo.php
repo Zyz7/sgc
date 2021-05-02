@@ -77,7 +77,7 @@ class AdminModelo
     return $this->resultado;
   }
 
-  /// \fn validarContraseña Valida que sea correcta la contraseña actual
+  /// \fn validarContraseña Valida la contraseña del administrador
   function validarContraseña($valores)
   {
     $this->resultado = false;
@@ -134,13 +134,13 @@ class AdminModelo
     return $valores;
   }
 
-  /// \fn crear Crea un nuevo usuario
-  function crear($valores)
+  /// \fn crearOperador Crea un nuevo usuario operador
+  function crearOperador($valores)
   {
     $this->resultado = false;
     $hash = password_hash($valores['contraseña'], PASSWORD_BCRYPT);
 
-    $consulta = "insert into usuarios values(0, ";
+    $consulta = "insert into operadores values(0, ";
     $consulta.= "'".$valores["nombre"]."', ";
     $consulta.= "'".$valores["apellido"]."', ";
     $consulta.= "'".$valores["usuario"]."', ";
@@ -149,6 +149,48 @@ class AdminModelo
     $consulta.= "'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png', ";
     $consulta.= "'', ";
     $consulta.= "1)";
+
+    if ($this->db->consultaBooleano($consulta)) {
+      $this->resultado = true;
+    }
+    return $this->resultado;
+  }
+
+  /// \fn datosOperador Obtiene todos los datos del usuario operador
+  function datosOperador($id)
+  {
+    $consulta = "select * from operadores where id='".$id."'";
+    $valores = $this->db->consultas($consulta);
+    return $valores;
+  }
+
+  /// \fn actualizarOperador Actualiza los datos del usuario operador
+  function actualizarOperador($valores)
+  {
+    $this->resultado = false;
+
+    $consulta = "update operadores set ";
+    $consulta.= "nombre='".$valores["nombre"]."', ";
+    $consulta.= "apellido='".$valores["apellido"]."', ";
+    $consulta.= "usuario='".$valores["usuario"]."', ";
+    $consulta.= "email='".$valores["correo"]."', ";
+    $consulta.= "imagen='".$valores["imagen"]."' ";
+    $consulta.= "where id='".$valores["id"]."'";
+
+    if ($this->db->consultaBooleano($consulta)) {
+      $this->resultado = true;
+    }
+    return $this->resultado;
+  }
+
+  /// \fn eliminar Cambia el estado del usuario operador a 0
+  function eliminarOperador($id)
+  {
+    $this->resultado = false;
+
+    $consulta = "update operadores set ";
+    $consulta.= "estado='0' ";
+    $consulta.= "where id='".$id."'";
 
     if ($this->db->consultaBooleano($consulta)) {
       $this->resultado = true;

@@ -64,7 +64,7 @@
 
             <label for="titulo">Título</label>
             <input type="text" id="titulo" name="titulo" autofocus="true"
-              value="<?php print $datos["tituloEntrada"]; ?>"
+              value="<?php print $datos["entrada"]; ?>"
               pattern="[0-9a-zA-Z\sáéíóúÁÉÍÓÚñÑ]{2,150}"
               title="Ingrese sólo letras y números" required/>
             <span class="spanLogin"><?php print $datos["errorTitulo"]; ?></span>

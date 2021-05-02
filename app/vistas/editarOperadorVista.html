@@ -45,7 +45,7 @@
       </section>
 
 	    <section class="menuDer">
-	      <h1 class="h1Login">{usuario}</h1>
+	      <h1 class="h1Login">{usuarioForm}</h1>
 	      <span class="error">{error}</span>
         <span class="acierto">{acierto}</span>
 
@@ -55,7 +55,7 @@
             action="{RUTA}admin/editarOperador/{id}/{email}">
 	            <label for="imagen">Imagen</label>
 	            <input type="url" id="imagen" name="imagen" autofocus="true"
-                value="{imagen}"
+                value="{imagenForm}"
                 title="Ingrese una dirección válida de una imagen .png"/>
               <span class="spanLogin">{errorImagen}</span>
 
@@ -72,7 +72,7 @@
               <span class="spanLogin">{errorApellido}</span>
 
               <label for="usuario">Nombre de usuario</label>
-              <input type="text" id="usuario" name="usuario" value="{usuario}"
+              <input type="text" id="usuario" name="usuario" value="{usuarioForm}"
                 pattern="[a-zA-Z0-9\sáéíóúÁÉÍÓÚñÑ]{2,15}"
                 title="Sólo letras y números menores a 15 carácteres"/>
               <span class="spanLogin">{errorUsuario}</span>
@@ -93,13 +93,13 @@
               <label for="">Tenga cuidado.
                 Al eliminar al usuario ya no podra recuperarlo.</label>
 
-              <label for="contraseña">Contraseña</label>
+              <label for="contraseña">Contraseña del administrador</label>
               <input type="password" id="contraseña" name="contraseña" value=""
                 pattern="[!-~]{6,12}" title="Debe de tener entre 6 y 12 carácteres"
                 required/>
               <span class="spanLogin">{errorContraseñaEliminar}</span>
 
-              <button class="botonEliminar">Eliminar mi usuario</button>
+              <button class="botonEliminar">Eliminar operador</button>
 	          </form>
           </div>
         </div>

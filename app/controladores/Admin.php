@@ -33,7 +33,7 @@ class Admin extends Controlador
     }
   }
 
-  /// \fn imagen Muestra la imagen de perfil del usuario
+  /// \fn imagen Muestra la imagen de perfil del usuario administrador
   function imagen($email) {
     $email = base64_decode($email);
     $ruta = $this->modelo->imagen($email);
@@ -44,7 +44,7 @@ class Admin extends Controlador
     imagedestroy($imagen);
   }
 
-  /// \fn editar Interfaz para editar datos del usuario
+  /// \fn editar Interfaz para editar los datos del usuario administrador
   function editar($email)
   {
     session_start();
@@ -121,7 +121,7 @@ class Admin extends Controlador
     }
   }
 
-  /// \fn clave Cambia la contraseña del usuario
+  /// \fn clave Cambia la contraseña del usuario administrador
   function clave($email)
   {
     session_start();
@@ -168,7 +168,7 @@ class Admin extends Controlador
     }
   }
 
-  /// \fn eliminar Se inhabilita al usuario
+  /// \fn eliminar Se elimina de forma lógica al usuario administrador
   function eliminar($email)
   {
     session_start();
@@ -221,20 +221,19 @@ class Admin extends Controlador
     }
   }
 
-  /// \fn usuarios
+  /// \fn operadores Lista todos los usuarios operadores
   function operadores($email)
   {
     session_start();
-    $valores = $this->modelo->datosUsuario(base64_decode($email));
     $operadores = $this->modelo->listaOperadores();
 
     if (isset($_SESSION[base64_decode($email)])) {
       $datos = ['RUTA' => RUTA, 'titulo' => 'Operadores', 'email' => $email,
       'usuario' => '', 'imagen' => '', 'operadores' => $operadores];
 
+      $valores = $this->modelo->datosUsuario(base64_decode($email));
       $datos['imagen'] = $valores[0]['imagen'];
       $datos['usuario'] = $valores[0]['usuario'];
-
       $this->vista('operadoresVista', $datos);
     } else {
       $datos['error'] = 'No se encontró la sesión';
@@ -242,7 +241,7 @@ class Admin extends Controlador
     }
   }
 
-  /// \fn crear Crea un nuevo usuario
+  /// \fn crear Crea un nuevo usuario operador
   function crear($email)
   {
     $datos = ['RUTA' => RUTA, 'titulo' => 'Registrate', 'error' => '',
@@ -263,7 +262,7 @@ class Admin extends Controlador
       $this->validar->usuario($usuario) && $this->validar->email($email) &&
       $this->validar->contraseña($contraseña)) {
         if ($this->modelo->validarEmail($email)) {
-          if ($this->modelo->crear($valores)) {
+          if ($this->modelo->crearOperador($valores)) {
             $datos['acierto'] = 'Usuario creado';
           } else {
             $datos['error'] = 'Error al crear el usuario';
@@ -302,11 +301,12 @@ class Admin extends Controlador
     }
 
     $valores = $this->modelo->datosUsuario(base64_decode($email));
+    $datos['imagen'] = $valores[0]['imagen'];
     $datos['usuario'] = $valores[0]['usuario'];
     $this->vista('crearUsuarioVista', $datos);
   }
 
-	/// \fn editarOperador Edita los datos de un usuario
+	/// \fn editarOperador Edita los datos de el usuario operador
   function editarOperador($id, $email)
   {
     session_start();
@@ -317,7 +317,7 @@ class Admin extends Controlador
       'emailForm' => '', 'error' => '', 'acierto' => '',
       'errorNombre' => '', 'errorApellido' => '', 'errorUsuario' => '',
       'errorCorreo' => '', 'errorContraseña' => '', 'errorImagen' => '',
-      'errorContraseñaEliminar' => ''];
+      'errorContraseñaEliminar' => '', 'id' => $id];
 
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $imagen = $_POST['imagen'];
@@ -327,13 +327,13 @@ class Admin extends Controlador
         $correo = $_POST['email'];
         $valores = ['nombre' => $nombre, 'apellido' => $apellido,
         'usuario' => $usuario, 'correo' => $correo, 'imagen' => $imagen,
-        'email' => base64_decode($email)];
+        'id' => $id];
 
         if ($this->validar->texto($nombre) && $this->validar->texto($apellido) &&
         $this->validar->usuario($usuario) && $this->validar->email($correo) &&
         $this->validar->url($imagen)) {
           if ($this->modelo->validarEmail($correo)) {
-            if ($this->modelo->actualizar($valores)) {
+            if ($this->modelo->actualizarOperador($valores)) {
               $datos['acierto'] = 'Datos guardados';
             } else {
               $datos['error'] = 'Error al guardar los datos';
@@ -373,9 +373,61 @@ class Admin extends Controlador
 
       $valores = $this->modelo->datosUsuario(base64_decode($email));
       $datos['imagen'] = $valores[0]['imagen'];
+      $datos['usuario'] = $valores[0]['usuario'];
+      $valores = $this->modelo->datosOperador($id);
+      $datos['imagenForm'] = $valores[0]['imagen'];
       $datos['nombre'] = $valores[0]['nombre'];
       $datos['apellido'] = $valores[0]['apellido'];
+      $datos['usuarioForm'] = $valores[0]['usuario'];
+      $datos['emailForm'] = $valores[0]['email'];
+
+      $this->vista('editarOperadorVista', $datos);
+    } else {
+      header('Location:'.RUTA.'login');
+    }
+  }
+
+  /// \fn eliminarOperador Elimina al usuario operador
+  function eliminarOperador($id, $email)
+  {
+    session_start();
+
+    if (isset($_SESSION[base64_decode($email)])) {
+      $datos = ['RUTA' => RUTA, 'titulo' => 'Editar usuario', 'email' => $email,
+      'usuario' => '', 'imagen' => '', 'nombre' => '', 'apellido' => '',
+      'emailForm' => '', 'error' => '', 'acierto' => '',
+      'errorNombre' => '', 'errorApellido' => '', 'errorUsuario' => '',
+      'errorCorreo' => '', 'errorContraseña' => '', 'errorImagen' => '',
+      'errorContraseñaEliminar' => '', 'id' => $id];
+
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $contraseña = $_POST['contraseña'];
+        $valores = ['email' => base64_decode($email), 'contraseña' => $contraseña];
+
+        if ($this->validar->contraseña($contraseña)) {
+          if ($this->modelo->validarContraseña($valores)) {
+            if ($this->modelo->eliminarOperador($id)) {
+              $datos['acierto'] = 'Usuario eliminado';
+            } else {
+              $datos['error'] = 'Error al eliminar al usuario';
+            }
+          } else {
+            $datos['error'] = 'Contraseña incorrecta';
+          }
+        } else {
+          $datos['errorContraseñaEliminar'] = 'Debe de tener mínimo 6 caracteres';
+        }
+
+      }
+
+      $valores = $this->modelo->datosUsuario(base64_decode($email));
+      $datos['imagen'] = $valores[0]['imagen'];
       $datos['usuario'] = $valores[0]['usuario'];
+      $valores = $this->modelo->datosOperador($id);
+      $datos['imagenForm'] = $valores[0]['imagen'];
+      $datos['nombre'] = $valores[0]['nombre'];
+      $datos['apellido'] = $valores[0]['apellido'];
+      $datos['usuarioForm'] = $valores[0]['usuario'];
       $datos['emailForm'] = $valores[0]['email'];
 
       $this->vista('editarOperadorVista', $datos);
