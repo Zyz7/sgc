@@ -2,7 +2,7 @@
 
 <!--
  * https://sgcphp.herokuapp.com
- * Vista de las entradas
+ * Vista para mostrar todas las entradas
  * Febrero 2021
  * Mario Alberto Zayas González
 -->
@@ -41,7 +41,7 @@
           <p><a href="<?php print RUTA; ?>entradas/agregar/<?php print $datos["email"]; ?>">
               Agregar</a></p>
           <a href="<?php print RUTA; ?>admin/usuarios/<?php print $datos["email"]; ?>">
-            Usuarios</a>
+            Operadores</a>
           <p><a href="<?php print RUTA; ?>admin/crear/<?php print $datos["email"]; ?>">
               Crear</a></p>
           <span>Actividad</span>

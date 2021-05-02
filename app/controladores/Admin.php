@@ -230,15 +230,10 @@ class Admin extends Controlador
 
     if (isset($_SESSION[base64_decode($email)])) {
       $datos = ['RUTA' => RUTA, 'titulo' => 'Usuarios', 'email' => $email,
-      'usuario' => '', 'imagen' => ''];
+      'usuario' => '', 'imagen' => '', 'usuarios' => $usuarios];
 
       $datos['imagen'] = $valores[0]['imagen'];
       $datos['usuario'] = $valores[0]['usuario'];
-
-      $datos['usuario0'] = $usuarios[0]['usuario'];
-      $datos['nombre0'] = $usuarios[0]['nombre'];
-      $datos['apellido0'] = $usuarios[0]['apellido'];
-      $datos['email0'] = $usuarios[0]['email'];
 
       $this->vista('usuariosVista', $datos);
     } else {
@@ -310,7 +305,7 @@ class Admin extends Controlador
     $datos['usuario'] = $valores[0]['usuario'];
     $this->vista('crearUsuarioVista', $datos);
   }
-	
+
 	/// \fn editarOperador Edita los datos de un usuario
   function editarOperador($id, $email)
   {

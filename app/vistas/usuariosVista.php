@@ -41,7 +41,7 @@
           <p><a href="<?php print RUTA; ?>entradas/agregar/<?php print $datos["email"]; ?>">
               Agregar</a></p>
           <a href="<?php print RUTA; ?>admin/usuarios/<?php print $datos["email"]; ?>">
-            Usuarios</a>
+            Operadores</a>
           <p><a href="<?php print RUTA; ?>admin/crear/<?php print $datos["email"]; ?>">
               Crear</a></p>
           <span>Actividad</span>
@@ -52,7 +52,7 @@
       </section>
 
 	    <section class="menuDer">
-	      <h1 class="h1Login">Entradas</h1>
+	      <h1 class="h1Login">Operadores</h1>
 
         <div style="overflow-x: auto">
 	        <table>
