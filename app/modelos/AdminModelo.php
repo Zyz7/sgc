@@ -129,7 +129,7 @@ class AdminModelo
   /// \fn listaOperadores Obtiene la lista de los operadores
   function listaOperadores()
   {
-    $consulta = "select * from operadores";
+    $consulta = "select * from operadores where estado=1";
     $valores = $this->db->consultas($consulta);
     return $valores;
   }
