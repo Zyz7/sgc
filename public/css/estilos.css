@@ -250,6 +250,18 @@ span[class="acierto"] {
   background-color: hsl(207, 44%, 49%, 0.1);
 }
 
+.div1 { grid-area: div1; }
+.div2 { grid-area: div2; }
+.div3 { grid-area: div3; }
+.div4 { grid-area: div4; }
+
+.contenedorAdminInicio {
+  display: grid;
+  grid:
+  'div1 div2'
+  'div3 div4';
+}
+
 .form1 { grid-area: form1; }
 .form2 { grid-area: form2; }
 .form3 { grid-area: form3; }
