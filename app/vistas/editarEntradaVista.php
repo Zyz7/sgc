@@ -77,7 +77,7 @@
             <span class="spanLogin"><?php print $datos["errorSubtitulo"]; ?></span>
 
             <label for="contenido">Contenido</label>
-            <textarea rows="50" cols="50" maxlength="2500"
+            <textarea rows="15" cols="50" maxlength="2500"
               name="contenido" id="contenido" required><?php print $datos["contenido"]; ?></textarea>
             <span class="spanLogin"><?php print $datos["errorContenido"]; ?></span>
 
