@@ -56,8 +56,8 @@
 	      <span class="error"><?php print $datos["error"]; ?></span>
         <span class="acierto"><?php print $datos["acierto"]; ?></span>
 
-        <div class="contendorFormUsuario">
-			    <div class="form1">
+        <div class="contendorFormEntradas">
+			    <div class="formEntrada">
 			      <form class="formUsuario" method="post"
             action="<?php print RUTA; ?>entradas/agregar/<?php print $datos["email"]; ?>">
 
@@ -92,7 +92,7 @@
 	          </form>
 	        </div>
 
-	        <div class="form2">
+	        <div class="formCategoria">
 				    <form class="formUsuario" method="post"
             action="<?php print RUTA; ?>entradas/categoria/<?php print $datos["email"]; ?>">
 
@@ -106,7 +106,7 @@
 	          </form>
 			    </div>
 
-		      <div style="overflow-y: auto" class="form3">
+		      <div style="overflow-y: auto" class="formCategorias">
             <table>
               <tr>
                 <th>Categorías</th>
