@@ -273,6 +273,17 @@ span[class="acierto"] {
   'form1 form3';
 }
 
+.formEntrada { grid-area: formEntrada; }
+.formCategoria { grid-area: formCategoria; }
+.formCategorias { grid-area: formCategorias; }
+
+.contendorFormEntradas {
+  display: grid;
+  grid:
+  'formEntrada formCategoria'
+  'formEntrada formCategorias';
+}
+
 .formUsuario {
   width: 90%;
   padding: 5px;
