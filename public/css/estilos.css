@@ -325,4 +325,22 @@ span[class="acierto"] {
   border: 1px solid hsl(0, 100%, 50%);
 }
 
+table {
+  width: 90%;
+  padding: 15px;
+  margin: 2% auto;
+}
+
+tr th {
+  padding: 15px;
+  text-align: center;
+  border: 1px solid hsl(207, 44%, 49%);
+}
+
+tr td {
+  padding: 3px;
+  text-align: center;
+  border: 1px solid hsl(207, 44%, 49%);
+}
+
 /********** Termina vista usuario **********/
