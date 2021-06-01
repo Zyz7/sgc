@@ -197,5 +197,13 @@ class AdminModelo
     }
     return $this->resultado;
   }
+  
+  /// \fn listaAdministradores Obtiene la lista de los administradores
+  function listaAdministradores()
+  {
+    $consulta = "select * from usuarios where estado=1";
+    $valores = $this->db->consultas($consulta);
+    return $valores;
+  }
 
 }
