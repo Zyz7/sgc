@@ -435,5 +435,25 @@ class Admin extends Controlador
       header('Location:'.RUTA.'login');
     }
   }
+	
+  /// \fn administradores Lista de los usuarios administradores
+  function administradores($email)
+  {
+    session_start();
+    $administradores = $this->modelo->listaAdministradores();
+
+    if (isset($_SESSION[base64_decode($email)])) {
+      $datos = ['RUTA' => RUTA, 'titulo' => 'Administradores', 'email' => $email,
+      'usuario' => '', 'imagen' => '', 'administradores' => $administradores];
+
+      $valores = $this->modelo->datosUsuario(base64_decode($email));
+      $datos['imagen'] = $valores[0]['imagen'];
+      $datos['usuario'] = $valores[0]['usuario'];
+      $this->vista('administradoresVista', $datos);
+    } else {
+      $datos['error'] = 'No se encontró la sesión';
+      header('Location:'.RUTA.'login');
+    }
+  }
 
 }
