@@ -72,7 +72,7 @@
                 print "<td>".$datos["administradores"][$i]["nombre"]."</td>";
                 print "<td>".$datos["administradores"][$i]["apellido"]."</td>";
                 print "<td>".$datos["administradores"][$i]["email"]."</td>";
-                print "<td><a href='".RUTA."admin/verAdministrador/".$datos["operadores"][$i]["id"]."/".$datos["email"]."'>
+                print "<td><a href='".RUTA."admin/verAdministrador/".$datos["administradores"][$i]["id"]."/".$datos["email"]."'>
                   Ver</a></td>";
                 print "</tr>";
               }
