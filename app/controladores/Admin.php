@@ -455,5 +455,51 @@ class Admin extends Controlador
       header('Location:'.RUTA.'login');
     }
   }
+	
+  /// \fn verAdministrador Muestra los datos del usuario administrador
+  function verAdministrador($id, $email)
+  {
+    session_start();
+
+    if (isset($_SESSION[base64_decode($email)])) {
+      $datos = ['RUTA' => RUTA, 'titulo' => 'Administrador', 'email' => $email,
+      'usuario' => '', 'imagen' => '', 'error' => '', 'acierto' => '',
+      'errorContraseñaEliminar' => '', 'id' => $id];
+
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $contraseña = $_POST['contraseña'];
+        $valores = ['email' => base64_decode($email), 'contraseña' => $contraseña];
+
+        if ($this->validar->contraseña($contraseña)) {
+          if ($this->modelo->validarContraseña($valores)) {
+            if ($this->modelo->eliminarAdministrador($id)) {
+              $datos['acierto'] = 'Usuario eliminado';
+            } else {
+              $datos['error'] = 'Error al eliminar al usuario';
+            }
+          } else {
+            $datos['error'] = 'Contraseña incorrecta';
+          }
+        } else {
+          $datos['errorContraseñaEliminar'] = 'Debe de tener mínimo 6 caracteres';
+        }
+        
+      }
+
+      $valores = $this->modelo->datosUsuario(base64_decode($email));
+      $datos['imagen'] = $valores[0]['imagen'];
+      $datos['usuario'] = $valores[0]['usuario'];
+      $valores = $this->modelo->datosAdministrador($id);
+      $datos['imagenForm'] = $valores[0]['imagen'];
+      $datos['nombre'] = $valores[0]['nombre'];
+      $datos['apellido'] = $valores[0]['apellido'];
+      $datos['usuarioForm'] = $valores[0]['usuario'];
+      $datos['emailForm'] = $valores[0]['email'];
+
+      $this->vista('verAdministradorVista', $datos);
+    } else {
+      header('Location:'.RUTA.'login');
+    }
+  }
 
 }
