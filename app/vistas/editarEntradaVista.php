@@ -96,7 +96,7 @@
           </div>
 
 	        <div class="form2">
-            <form class="formUsuario formEliminar" method="post"
+            <form class="formUsuario formEliminar formEliminarEntrada" method="post"
             action="<?php print RUTA; ?>entradas/eliminar/<?php print $datos["id"]; ?>/<?php print $datos["email"]; ?>">
               <label for="">Verifique antes de eliminar</label>
 
