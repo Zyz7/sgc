@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<!--
+ * https://sgcphp.herokuapp.com
+ * Vista del usuario administrador 
+ * Febrero 2021
+ * Mario Alberto Zayas González
+-->
+
+<html lang="es">
+  <head>
+    <title>{titulo}</title>
+    <meta charset="utf-8"/>
+    <meta name="author" content=""/>
+    <meta http-equiv="x-ua-compatible" content="ie-edge"/>
+    <meta name="keywords" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+
+    <link rel="canonical" href="https://sgcphp.herokuapp.com"/>
+    <link rel="stylesheet" href="{RUTA}css/estilos.css"/>
+    <link rel="shortcut icon" href="{RUTA}img/logo.png"/>
+  </head>
+
+  <body>
+    <div class="contenedor">
+      <section class="menuIzq">
+        <figure class="imagenPerfil">
+          <img src="{RUTA}admin/imagen/{email}" alt="Imagen de perfil"
+          aria-describedby=""/>
+        </figure>
+
+        <div class="menu">
+          <a href="{RUTA}admin/{email}">Inicio</a>
+	        <p><a href="{RUTA}admin/editar/{email}">{usuario}</a></p>
+          <span>Plantillas</span>
+          <a href="{RUTA}entradas/{email}">Entradas</a>
+          <p><a href="{RUTA}entradas/agregar/{email}">Agregar</a></p>
+          <a href="{RUTA}admin/operadores/{email}">Operadores</a>
+          <p><a href="{RUTA}admin/crear/{email}">Crear</a></p>
+          <span>Actividad</span>
+          <span>Autoconfigurar</span>
+	        <a href="{RUTA}login/salir/{email}">Salir</a>
+        </div>
+      </section>
+
+	    <section class="menuDer">
+	      <h1 class="h1Login">{usuarioForm}</h1>
+	      <span class="error">{error}</span>
+        <span class="acierto">{acierto}</span>
+
+        <div class="contendorFormUsuario">
+          <div class="form1">
+	          <form class="formUsuario" method="post"
+            action="{RUTA}admin/editarOperador/{id}/{email}">
+	            <label for="imagen">Imagen</label>
+	            <input type="url" id="imagen" name="imagen" autofocus="true"
+                value="{imagenForm}" disabled
+                title="Ingrese una dirección válida de una imagen .png"/>
+
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" value="{nombre}"
+                pattern="[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]{2,25}" disabled
+                title="Ingrese sólo letras menores a 25 carácteres"/>
+
+              <label for="apellido">Apellido</label>
+              <input type="text" id="apellido" name="apellido" value="{apellido}"
+                pattern="[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]{2,25}" disabled
+                title="Ingrese sólo letras menores a 25 carácteres"/>
+
+              <label for="usuario">Nombre de usuario</label>
+              <input type="text" id="usuario" name="usuario" value="{usuarioForm}"
+                pattern="[a-zA-Z0-9\sáéíóúÁÉÍÓÚñÑ]{2,15}" disabled
+                title="Sólo letras y números menores a 15 carácteres"/>
+
+              <label for="email">Correo electrónico</label>
+              <input type="email" id="email" name="email" value="{emailForm}"
+                pattern="{5,100}" disabled
+                title="Debe de tener el formato nombre@dominio.extension"/>
+	          </form>
+          </div>
+
+          <div class="form2">
+            <form class="formUsuario formEliminar" method="post"
+            action="{RUTA}admin/eliminarOperador/{id}/{email}">
+              <label for="">Tenga cuidado.
+                Al eliminar al usuario ya no podra recuperarlo.</label>
+
+              <label for="contraseña">Contraseña del administrador</label>
+              <input type="password" id="contraseña" name="contraseña" value=""
+                pattern="[!-~]{6,12}" title="Debe de tener entre 6 y 12 carácteres"
+                required/>
+              <span class="spanLogin">{errorContraseñaEliminar}</span>
+
+              <button class="botonEliminar">Eliminar administrador</button>
+	          </form>
+          </div>
+        </div>
+	    </section>
+    </div>
+  </body>
+</html>
