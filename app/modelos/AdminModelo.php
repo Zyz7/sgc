@@ -205,5 +205,13 @@ class AdminModelo
     $valores = $this->db->consultas($consulta);
     return $valores;
   }
+  
+  /// \fn datosAdministrador Obtiene todos los datos del administrador
+  function datosAdministrador($id)
+  {
+    $consulta = "select * from usuarios where id='".$id."'";
+    $valores = $this->db->consultas($consulta);
+    return $valores;
+  }
 
 }
