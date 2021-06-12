@@ -267,7 +267,6 @@ span[class="acierto"] {
 .form3 { grid-area: form3; }
 
 .contendorFormularios {
-  background-color: white;
   display: grid;
   grid:
   'form1 form2'
