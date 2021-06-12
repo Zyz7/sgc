@@ -58,10 +58,9 @@
 	      <span class="error"><?php print $datos["error"]; ?></span>
         <span class="acierto"><?php print $datos["acierto"]; ?></span>
 
-	      <div class="contendorFormUsuario">
-
+	      <div class="contendorFormularios">
           <div class="form1">
-	          <form class="formUsuario" method="post"
+	          <form class="formDatos" method="post"
               action="<?php print RUTA; ?>entradas/editar/<?php print $datos["id"]; ?>/<?php print $datos["email"]; ?>">
 
             <label for="titulo">Título</label>
@@ -98,7 +97,7 @@
           </div>
 
 	        <div class="form2">
-            <form class="formUsuario formEliminar formEliminarEntrada" method="post"
+            <form class="formDatos" method="post"
             action="<?php print RUTA; ?>entradas/eliminar/<?php print $datos["id"]; ?>/<?php print $datos["email"]; ?>">
               <label for="">Verifique antes de eliminar</label>
 

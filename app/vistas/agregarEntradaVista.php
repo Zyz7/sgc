@@ -58,9 +58,9 @@
 	      <span class="error"><?php print $datos["error"]; ?></span>
         <span class="acierto"><?php print $datos["acierto"]; ?></span>
 
-        <div class="contendorFormEntradas">
-			    <div class="formEntrada">
-			      <form class="formUsuario" method="post"
+        <div class="contendorFormularios">
+			    <div class="form1">
+			      <form class="formDatos" method="post"
             action="<?php print RUTA; ?>entradas/agregar/<?php print $datos["email"]; ?>">
 
 	            <label for="titulo">Título</label>
@@ -94,8 +94,8 @@
 	          </form>
 	        </div>
 
-	        <div class="formCategoria">
-				    <form class="formUsuario" method="post"
+	        <div class="form2">
+				    <form class="formDatos" method="post"
             action="<?php print RUTA; ?>entradas/categoria/<?php print $datos["email"]; ?>">
 
 				      <label for="nuevaCategoria">Categoría</label>

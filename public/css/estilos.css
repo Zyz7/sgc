@@ -266,25 +266,15 @@ span[class="acierto"] {
 .form2 { grid-area: form2; }
 .form3 { grid-area: form3; }
 
-.contendorFormUsuario {
+.contendorFormularios {
+  background-color: white;
   display: grid;
   grid:
   'form1 form2'
   'form1 form3';
 }
 
-.formEntrada { grid-area: formEntrada; }
-.formCategoria { grid-area: formCategoria; }
-.formCategorias { grid-area: formCategorias; }
-
-.contendorFormEntradas {
-  display: grid;
-  grid:
-  'formEntrada formCategoria'
-  'formEntrada formCategorias';
-}
-
-.formUsuario {
+.formDatos {
   width: 75%;
   padding: 5px;
   display: flex;
@@ -294,24 +284,24 @@ span[class="acierto"] {
   border: 1px solid hsl(207, 44%, 49%);
 }
 
-.formUsuario label {
+.formDatos label {
   margin: 10px;
 }
 
-.formUsuario input {
+.formDatos input {
   padding: 5px 10px;
   border-radius: 5px;
   border: 1px solid gray;
   margin: 0 10px 10px 10px;
 }
 
-.formUsuario .spanLogin {
+.formDatos .spanLogin {
   color: red;
   text-align: left;
   margin: 0 10px 10px 10px;
 }
 
-.formUsuario button {
+.formDatos button {
   color: white;
   margin: 10px;
   font-weight: bold;
@@ -321,7 +311,7 @@ span[class="acierto"] {
   background-color: hsl(146, 50%, 36%);
 }
 
-.formUsuario .botonEliminar {
+.formDatos .botonEliminar {
   background-color: hsl(0, 100%, 50%);
 }
 
