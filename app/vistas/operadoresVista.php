@@ -39,11 +39,13 @@
           <a href="<?php print RUTA; ?>entradas/<?php print $datos["email"]; ?>">
             Entradas</a>
           <p><a href="<?php print RUTA; ?>entradas/agregar/<?php print $datos["email"]; ?>">
-              Agregar</a></p>
+            Agregar</a></p>
           <a href="<?php print RUTA; ?>admin/operadores/<?php print $datos["email"]; ?>">
             Operadores</a>
           <p><a href="<?php print RUTA; ?>admin/crear/<?php print $datos["email"]; ?>">
-              Crear</a></p>
+            Crear</a></p>
+          <a href="<?php print RUTA; ?>admin/administradores/<?php print $datos["email"]; ?>">
+            Administradores</a>
           <span>Actividad</span>
           <span>Autoconfigurar</span>
 	        <a href="<?php print RUTA; ?>login/salir/<?php print $datos["email"]; ?>">

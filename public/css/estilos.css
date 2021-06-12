@@ -285,7 +285,7 @@ span[class="acierto"] {
 }
 
 .formUsuario {
-  width: 90%;
+  width: 75%;
   padding: 5px;
   display: flex;
   margin: 15%;
@@ -326,18 +326,18 @@ span[class="acierto"] {
 }
 
 .formContraseña {
-  width: 50%; 
+  width: 50%;
   margin: 7% auto;
 }
 
 .formEliminar {
-  width: 50%;  
+  width: 50%;
   margin: 5% auto;
   border: 1px solid hsl(0, 100%, 50%);
 }
 
 .formEntrada {
-  width: 75%; 
+  width: 75%;
 }
 
 .formEliminarEntrada {

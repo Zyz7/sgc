@@ -44,6 +44,8 @@
             Operadores</a>
           <p><a href="<?php print RUTA; ?>admin/crear/<?php print $datos["email"]; ?>">
             Crear</a></p>
+          <a href="<?php print RUTA; ?>admin/administradores/<?php print $datos["email"]; ?>">
+            Administradores</a>
           <span>Actividad</span>
           <span>Autoconfigurar</span>
 	        <a href="<?php print RUTA; ?>login/salir/<?php print $datos["email"]; ?>">
