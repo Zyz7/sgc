@@ -197,7 +197,7 @@ class AdminModelo
     }
     return $this->resultado;
   }
-  
+
   /// \fn listaAdministradores Obtiene la lista de los administradores
   function listaAdministradores()
   {
@@ -205,11 +205,19 @@ class AdminModelo
     $valores = $this->db->consultas($consulta);
     return $valores;
   }
-  
+
   /// \fn datosAdministrador Obtiene todos los datos del administrador
   function datosAdministrador($id)
   {
     $consulta = "select * from usuarios where id='".$id."'";
+    $valores = $this->db->consultas($consulta);
+    return $valores;
+  }
+
+  /// \fn listaActividad Obtiene registro de los dispositivos
+  function listaActividad()
+  {
+    $consulta = "select * from actividad order by id desc";
     $valores = $this->db->consultas($consulta);
     return $valores;
   }

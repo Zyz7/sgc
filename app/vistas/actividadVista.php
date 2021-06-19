@@ -55,7 +55,7 @@
       </section>
 
 	    <section class="menuDer">
-	      <h1 class="h1Login">Entradas</h1>
+	      <h1 class="h1Login">Actividad</h1>
 
         <div style="overflow-x: auto">
 	        <table>
@@ -84,8 +84,9 @@
                 print "<td>".$datos["actividad"][$i]["ip_cliente"]."</td>";
                 print "<td>".$datos["actividad"][$i]["agente"]."</td>";
                 print "<td>".$datos["actividad"][$i]["puerto"]."</td>";
-                print "<td><a href='".RUTA."entradas/editar/".$datos["entradas"][$i]["id"]."/".$datos["email"]."'>
-                  Editar</a></td>";
+                print "<td>".$datos["actividad"][$i]["fecha"]."</td>";
+                print "<td><a href='".RUTA."actividad/".$datos["entradas"][$i]["id"]."/".$datos["email"]."'>
+                  Cerrar</a></td>";
                 print "</tr>";
               }
             ?>

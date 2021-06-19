@@ -178,18 +178,22 @@ class LoginModelo
   ///  \fn actividad Registra los dispositivos conectados
   function actividad()
   {
+    session_start();
     $this->resultado = false;
+    date_default_timezone_set('UTC');
 
     $consulta = "insert into actividad values(0, ";
     $consulta.= "'".$_SERVER['SERVER_ADDR']."', ";
     $consulta.= "'".$_SERVER['SERVER_NAME']."', ";
     $consulta.= "'".$_SERVER['SERVER_SOFTWARE']."', ";
-    $consulta.= "'"$_SERVER['SERVER_PROTOCOL']."', ";
-    $consulta.= "'"$_SERVER['REQUEST_METHOD']"', ";
+    $consulta.= "'".$_SERVER['SERVER_PROTOCOL']."', ";
+    $consulta.= "'".$_SERVER['REQUEST_METHOD']."', ";
     $consulta.= "'".$_SERVER['REQUEST_TIME']."', ";
-    $consulta.= "'".$_SERVER['HTTP_USER_AGENT']."', ";
     $consulta.= "'".$_SERVER['REMOTE_ADDR']."', ";
-    $consulta.= "'".$_SERVER['REMOTE_PORT']."')";
+    $consulta.= "'".$_SERVER['HTTP_USER_AGENT']."', ";
+    $consulta.= "'".$_SERVER['REMOTE_PORT']."', ";
+    $consulta.= "'".date("Y-m-d H:i:s")."', ";
+    $consulta.= "'".session_id()."') ";
 
     if ($this->db->consultaBooleano($consulta)) {
       $this->resultado = true;
