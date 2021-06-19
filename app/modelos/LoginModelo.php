@@ -175,4 +175,26 @@ class LoginModelo
     return $valor;
   }
 
+  ///  \fn actividad Registra los dispositivos conectados
+  function actividad()
+  {
+    $this->resultado = false;
+
+    $consulta = "insert into actividad values(0, ";
+    $consulta.= "'".$_SERVER['SERVER_ADDR']."', ";
+    $consulta.= "'".$_SERVER['SERVER_NAME']."', ";
+    $consulta.= "'".$_SERVER['SERVER_SOFTWARE']."', ";
+    $consulta.= "'"$_SERVER['SERVER_PROTOCOL']."', ";
+    $consulta.= "'"$_SERVER['REQUEST_METHOD']"', ";
+    $consulta.= "'".$_SERVER['REQUEST_TIME']."', ";
+    $consulta.= "'".$_SERVER['HTTP_USER_AGENT']."', ";
+    $consulta.= "'".$_SERVER['REMOTE_ADDR']."', ";
+    $consulta.= "'".$_SERVER['REMOTE_PORT']."')";
+
+    if ($this->db->consultaBooleano($consulta)) {
+      $this->resultado = true;
+    }
+    return $this->resultado;
+  }
+
 }

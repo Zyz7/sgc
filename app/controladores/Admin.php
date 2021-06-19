@@ -506,12 +506,12 @@ class Admin extends Controlador
   function actividad($email)
   {
     session_start();
+    $actividad = $this->modelo->listaActividad();
 
     if (isset($_SESSION[base64_decode($email)])) {
       $datos = ['RUTA' => RUTA, 'titulo' => 'Actividad', 'email' => $email,
-      'usuario' => '', 'imagen' => ''];
+      'usuario' => '', 'imagen' => '', 'actividad' => $actividad];
 
-      $datos['ip'] = $_SERVER['SERVER_ADDR'];
       $this->vista('actividadVista', $datos);
     } else {
       $datos['error'] = 'No se encontró la sesión';

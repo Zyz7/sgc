@@ -46,8 +46,8 @@
             Crear</a></p>
           <a href="<?php print RUTA; ?>admin/administradores/<?php print $datos["email"]; ?>">
             Administradores</a>
-            <a href="<?php print RUTA; ?>admin/actividad/<?php print $datos["email"]; ?>">
-              Actividad</a>
+          <a href="<?php print RUTA; ?>admin/actividad/<?php print $datos["email"]; ?>">
+            Actividad</a>
           <span>Autoconfigurar</span>
 	        <a href="<?php print RUTA; ?>login/salir/<?php print $datos["email"]; ?>">
             Salir</a>

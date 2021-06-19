@@ -40,3 +40,17 @@ modificacion date,
 autor varchar(15),
 categoria varchar(25),
 estado boolean);
+
+create table actividad (
+id integer auto_increment primary key,
+ip_servidor varchar(25),
+nombre varchar(25),
+software varchar(150),
+protocolo varchar(25),
+metodo varchar(10),
+tiempo int,
+ip_cliente varchar(25),
+agente varchar(200),
+puerto int,
+fecha datetime,
+id_sesion varchar(35));
