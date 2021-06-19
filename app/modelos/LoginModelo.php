@@ -180,7 +180,7 @@ class LoginModelo
   {
     session_start();
     $this->resultado = false;
-    date_default_timezone_set('UTC');
+    date_default_timezone_set('America/Mexico_City');
 
     $consulta = "insert into actividad values(0, ";
     $consulta.= "'".$_SERVER['SERVER_ADDR']."', ";
