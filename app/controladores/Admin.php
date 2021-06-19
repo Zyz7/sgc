@@ -435,7 +435,7 @@ class Admin extends Controlador
       header('Location:'.RUTA.'login');
     }
   }
-	
+
   /// \fn administradores Lista de los usuarios administradores
   function administradores($email)
   {
@@ -455,7 +455,7 @@ class Admin extends Controlador
       header('Location:'.RUTA.'login');
     }
   }
-	
+
   /// \fn verAdministrador Muestra los datos del usuario administrador
   function verAdministrador($id, $email)
   {
@@ -483,7 +483,7 @@ class Admin extends Controlador
         } else {
           $datos['errorContraseñaEliminar'] = 'Debe de tener mínimo 6 caracteres';
         }
-        
+
       }
 
       $valores = $this->modelo->datosUsuario(base64_decode($email));
@@ -498,6 +498,23 @@ class Admin extends Controlador
 
       $this->vista('verAdministradorVista', $datos);
     } else {
+      header('Location:'.RUTA.'login');
+    }
+  }
+
+  /// \fn actividad Muestra todos los dispositivos que iniciaron sesión
+  function actividad($email)
+  {
+    session_start();
+
+    if (isset($_SESSION[base64_decode($email)])) {
+      $datos = ['RUTA' => RUTA, 'titulo' => 'Actividad', 'email' => $email,
+      'usuario' => '', 'imagen' => ''];
+
+      $datos['ip'] = $_SERVER['SERVER_ADDR'];
+      $this->vista('actividadVista', $datos);
+    } else {
+      $datos['error'] = 'No se encontró la sesión';
       header('Location:'.RUTA.'login');
     }
   }

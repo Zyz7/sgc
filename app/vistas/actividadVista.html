@@ -2,7 +2,7 @@
 
 <!--
  * https://sgcphp.herokuapp.com
- * Vista principal del usuario administrador
+ * Vista actividad
  * Febrero 2021
  * Mario Alberto Zayas González
 -->
@@ -46,21 +46,25 @@
       </section>
 
       <section class="menuDer">
-	      <h1 class="h1Login">Inicio</h1>
-        <div class="contenedorAdminInicio">
-		      <div class="div1">
-		        <p>Entradas</p>
-	        </div>
-		      <div class="div2">
-		        <p>Operadores</p>
-		      </div>
-		      <div class="div3">
-		        <p>Administradores</p>
-		      </div>
-          <div class="div4">
-		        <p>Actividad</p>
-	        </div>
-	      </div>
+	      <h1 class="h1Login">Actividad</h1>
+
+        <div style="overflow-x: auto">
+          <table>
+            <tr>
+              <th>IP</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Email</th>
+            </tr>
+
+            <tr>
+              <td>{ip}</td>
+              <td>Nombre</td>
+              <td>Apellido</td>
+              <td>Email</td>
+            </tr>
+          </table>
+        </div>
       </section>
     </div>
   </body>

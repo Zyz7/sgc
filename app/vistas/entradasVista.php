@@ -42,7 +42,7 @@
             Agregar</a></p>
           <a href="<?php print RUTA; ?>admin/operadores/<?php print $datos["email"]; ?>">
             Operadores</a>
-            Crear</a></p>
+          <p><a>Crear</a></p>
           <p><a href="<?php print RUTA; ?>admin/crear/<?php print $datos["email"]; ?>">
           <a href="<?php print RUTA; ?>admin/administradores/<?php print $datos["email"]; ?>">
             Administradores</a>
