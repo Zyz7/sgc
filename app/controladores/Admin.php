@@ -519,4 +519,20 @@ class Admin extends Controlador
     }
   }
 
+  /// \fn configurar Muestra las opciones para configurar la interfaz
+  function configurar($email)
+  {
+    session_start();
+
+    if (isset($_SESSION[base64_decode($email)])) {
+      $datos = ['RUTA' => RUTA, 'titulo' => 'Configurar', 'email' => $email,
+      'usuario' => '', 'imagen' => ''];
+
+      $this->vista('configurarVista', $datos);
+    } else {
+      $datos['error'] = 'No se encontró la sesión';
+      header('Location:'.RUTA.'login');
+    }
+  }
+
 }
